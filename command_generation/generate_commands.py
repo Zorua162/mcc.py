@@ -181,6 +181,9 @@ def create_command_classes(docs_data: dict):
     """Create the Command classes"""
     # Delete the old classes
     for file_name in os.listdir(commands_folder):
+        # Skip over folders or any non Command.py files
+        if "Command.py" not in file_name:
+            continue
         os.remove(f"{commands_folder}/{file_name}")
 
     with open("./command_template.txt", "r") as f_obj:
