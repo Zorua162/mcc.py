@@ -3,5 +3,5 @@ from command import Command
 
 class <<command_name>>Command(Command):
     def __init__(self):
-        super().__init__("<<command_name>>")
-        self.parameters = <<parameters>>
+        super().__init__("<<command_name>>", parameters)
+        self.parameters = parameters

@@ -3,5 +3,5 @@ from command import Command
 
 class GetPitchCommand(Command):
     def __init__(self):
-        super().__init__("GetPitch")
-        self.parameters = ['GetPitch', 'double', 'GetUserUUID']
+        super().__init__("GetPitch", parameters)
+        self.parameters = parameters
