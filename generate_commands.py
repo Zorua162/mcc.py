@@ -1,0 +1,1 @@
+# Scrape the commands from the MCC.js docs
