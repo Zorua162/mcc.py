@@ -1,8 +1,9 @@
 from websockets.sync.client import connect
 import logging
-import asyncio
-from commands.AuthenticateCommand import AuthenticateCommand
-from commands.ChangeSessionIdCommand import ChangeSessionIdCommand
+
+# import asyncio
+from mcc.commands.AuthenticateCommand import AuthenticateCommand
+from mcc.commands.ChangeSessionIdCommand import ChangeSessionIdCommand
 
 logging.basicConfig()
 logger = logging.getLogger(__name__)
@@ -21,7 +22,7 @@ class MccPyClient:
     async def connect(self) -> None:
         logger.info("Connecting to {self.host} on port {self.port} ...")
         with connect("ws://127.0.0.1:8043/mcc", logger=logger) as socket:
-            logger.info("Successfully connected to {self.host} on port {self.port} ...")
+            logger.info(f"Successfully connected to {self.host} on port {self.port} ...")
 
             if self.password != "":
                 # Send authenticate event
@@ -29,23 +30,24 @@ class MccPyClient:
 
             if self.session_name != "":
                 # Send session name command
-                socket.send(ChangeSessionIdCommand([self.session_name])
-                            .get_command_json())
+                socket.send(
+                    ChangeSessionIdCommand([self.session_name]).get_command_json()
+                )
 
             # Python websockets doesn't provide callbacks, so implement our own:
             # https://websockets.readthedocs.io/en/stable/faq/misc.html#are-there-onopen-onmessage-onerror-and-onclose-callbacks
-            await asyncio.gather(
-                consumer_handler(socket),
-                producer_handler(socket),
-            )
+            # await asyncio.gather(
+            #     consumer_handler(socket),
+            #     producer_handler(socket),
+            # )
 
 
-async def producer_handler(websocket):
-    while True:
-        message = await producer()
-        await websocket.send(message)
-
-
-async def consumer_handler(websocket):
-    async for message in websocket:
-        await consumer(message)
+# async def producer_handler(websocket):
+#     while True:
+#         message = await producer()
+#         await websocket.send(message)
+#
+#
+# async def consumer_handler(websocket):
+#     async for message in websocket:
+#         await consumer(message)

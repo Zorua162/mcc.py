@@ -1,7 +1,8 @@
 # Experiment with printing the python path
 
-from mcc import ChatBot
+# from mcc import ChatBot
 from mcc.mcc import MccPyClient
+import asyncio
 
 # class TestChatBot(ChatBot):
 #     """An example of implementing the ChatBot"""
@@ -9,7 +10,7 @@ from mcc.mcc import MccPyClient
 
 client = MccPyClient(
     host="127.0.0.1",
-    port="8043",
+    port=8043,
     password="wspass12345",
     # loggingEnabled="todo",
     # LogLevels="todo",
@@ -19,4 +20,4 @@ client = MccPyClient(
     # reconnectAttempts="todo",
 )
 
-client.connect()
+asyncio.run(client.connect())
