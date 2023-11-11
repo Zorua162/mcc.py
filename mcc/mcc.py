@@ -1,5 +1,6 @@
 from websockets.sync.client import connect
 import logging
+from commands import AuthenticateCommand
 
 logging.basicConfig()
 logger = logging.getLogger(__name__)
@@ -23,7 +24,7 @@ class MccPyClient:
 
         if self.password != "":
             # Send authenticate event
-            self.socket.send(new AuthenticateCommand(self.password).get_command_json())
+            self.socket.send(AuthenticateCommand(self.password, []).get_command_json())
 
         if self.session_name != "":
             # Send session name command
@@ -35,6 +36,7 @@ class MccPyClient:
             consumer_handler(websocket),
             producer_handler(websocket),
         )
+
 
 async def producer_handler(websocket):
     while True:

@@ -25,8 +25,9 @@ commands_folder = "../mcc/commands"
 path_to_source: str = (
     "../minecraft-console-client-source/MinecraftClient/ChatBots/" "WebSocketBot.cs"
 )
-path_to_docs: str = ("../minecraft-console-client-source/docs/guide/websocket/"
-                     "Commands.md")
+path_to_docs: str = (
+    "../minecraft-console-client-source/docs/guide/websocket/" "Commands.md"
+)
 
 
 def tidy_line(line: str) -> str:
@@ -182,9 +183,19 @@ def create_command_classes(docs_data: dict):
     for file_name in os.listdir(commands_folder):
         os.remove(f"{commands_folder}/{file_name}")
 
+    with open("./command_template.txt", "r") as f_obj:
+        template = f_obj.read()
+
     for command in docs_data["CommandData"]:
+        current_template = template
+        current_template = current_template.replace("<<command_name>>", command["name"])
+
+        # Add parameters if they are present
+        current_template = current_template.replace(
+            "<<parameters>>", str(command["parameters"])
+        )
         with open(f'{commands_folder}/{command["name"]}Command.py', "w") as f_obj:
-            f_obj.write("test")
+            f_obj.write(current_template)
 
 
 # Create the command classes
