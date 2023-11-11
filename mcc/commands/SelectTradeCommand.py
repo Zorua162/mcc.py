@@ -3,5 +3,4 @@ from command import Command
 
 class SelectTradeCommand(Command):
     def __init__(self, parameters):
-        super().__init__("SelectTrade")
-        self.parameters = parameters
+        super().__init__("SelectTrade", parameters)

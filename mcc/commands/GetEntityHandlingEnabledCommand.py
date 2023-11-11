@@ -3,5 +3,4 @@ from command import Command
 
 class GetEntityHandlingEnabledCommand(Command):
     def __init__(self, parameters):
-        super().__init__("GetEntityHandlingEnabled")
-        self.parameters = parameters
+        super().__init__("GetEntityHandlingEnabled", parameters)
