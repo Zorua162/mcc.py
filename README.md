@@ -14,7 +14,7 @@ features of Minecraft Console Client. It may break with no warning due to
 changes that are not under the control of the maintainer.
 
 My main goal is to play with the technologies and ideas, so this repo may not
-be maintained in hte future.
+be maintained in the future.
 
 ## Commands
 
