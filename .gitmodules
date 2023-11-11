@@ -1,0 +1,3 @@
+[submodule "minecraft-console-client-source"]
+	path = minecraft-console-client-source
+	url = https://github.com/MCCTeam/Minecraft-Console-Client.git
