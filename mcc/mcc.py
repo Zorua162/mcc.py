@@ -1,4 +1,4 @@
-from websockets.sync.client import connect
+from websockets import connect
 import logging
 
 # import asyncio
@@ -21,18 +21,20 @@ class MccPyClient:
 
     async def connect(self) -> None:
         logger.info("Connecting to {self.host} on port {self.port} ...")
-        with connect("ws://127.0.0.1:8043/mcc", logger=logger) as socket:
+        async with connect("ws://127.0.0.1:8043/mcc", logger=logger) as socket:
             logger.info(
                 f"Successfully connected to {self.host} on port {self.port} ..."
             )
 
             if self.password != "":
                 # Send authenticate event
-                socket.send(AuthenticateCommand([self.password]).get_command_json())
+                await socket.send(
+                    AuthenticateCommand([self.password]).get_command_json()
+                    )
 
             if self.session_name != "":
                 # Send session name command
-                socket.send(
+                await socket.send(
                     ChangeSessionIdCommand([self.session_name]).get_command_json()
                 )
 
@@ -42,6 +44,8 @@ class MccPyClient:
             #     consumer_handler(socket),
             #     producer_handler(socket),
             # )
+            async for message in socket:
+                await consumer(message)
 
 
 # async def producer_handler(websocket):
@@ -51,5 +55,9 @@ class MccPyClient:
 #
 #
 # async def consumer_handler(websocket):
-#     async for message in websocket:
-#         await consumer(message)
+
+async def consumer(message):
+    """Send the message to where it needs to go"""
+    if isinstance(message, bytes):
+        message = message.decode()
+    logger.info("Received message %s", message)
