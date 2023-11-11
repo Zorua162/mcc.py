@@ -2,6 +2,7 @@ from websockets.sync.client import connect
 import logging
 import asyncio
 from commands.AuthenticateCommand import AuthenticateCommand
+from commands.ChangeSessionIdCommand import ChangeSessionIdCommand
 
 logging.basicConfig()
 logger = logging.getLogger(__name__)
@@ -28,8 +29,9 @@ class MccPyClient:
 
             if self.session_name != "":
                 # Send session name command
-                pass
-        
+                socket.send(ChangeSessionIdCommand([self.session_name])
+                            .get_command_json())
+
             # Python websockets doesn't provide callbacks, so implement our own:
             # https://websockets.readthedocs.io/en/stable/faq/misc.html#are-there-onopen-onmessage-onerror-and-onclose-callbacks
             await asyncio.gather(
