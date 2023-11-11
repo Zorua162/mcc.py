@@ -22,7 +22,9 @@ class MccPyClient:
     async def connect(self) -> None:
         logger.info("Connecting to {self.host} on port {self.port} ...")
         with connect("ws://127.0.0.1:8043/mcc", logger=logger) as socket:
-            logger.info(f"Successfully connected to {self.host} on port {self.port} ...")
+            logger.info(
+                f"Successfully connected to {self.host} on port {self.port} ..."
+            )
 
             if self.password != "":
                 # Send authenticate event
