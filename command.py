@@ -11,13 +11,13 @@ class Command:
         self.request_id = random_request_id()
         self.parameters = parameters
 
-    def get_command_json(self) -> dict:
+    def get_command_json(self) -> str:
         # We convert this to the names that MCC expects, such as requestId
-        return {
+        return str({
             "command": self.name,
             "requestId": self.request_id,
             "parameters": self.parameters,
-        }
+        })
 
 
 def random_request_id():
