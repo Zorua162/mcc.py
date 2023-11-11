@@ -2,6 +2,6 @@ from command import Command
 
 
 class DigBlockCommand(Command):
-    def __init__(self):
-        super().__init__("DigBlock", parameters)
+    def __init__(self, parameters):
+        super().__init__("DigBlock")
         self.parameters = parameters

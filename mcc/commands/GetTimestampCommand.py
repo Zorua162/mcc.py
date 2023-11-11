@@ -2,6 +2,6 @@ from command import Command
 
 
 class GetTimestampCommand(Command):
-    def __init__(self):
-        super().__init__("GetTimestamp", parameters)
+    def __init__(self, parameters):
+        super().__init__("GetTimestamp")
         self.parameters = parameters

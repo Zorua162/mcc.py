@@ -2,6 +2,6 @@ from command import Command
 
 
 class SelectTradeCommand(Command):
-    def __init__(self):
-        super().__init__("SelectTrade", parameters)
+    def __init__(self, parameters):
+        super().__init__("SelectTrade")
         self.parameters = parameters

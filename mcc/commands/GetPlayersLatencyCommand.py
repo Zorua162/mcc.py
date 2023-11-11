@@ -2,6 +2,6 @@ from command import Command
 
 
 class GetPlayersLatencyCommand(Command):
-    def __init__(self):
-        super().__init__("GetPlayersLatency", parameters)
+    def __init__(self, parameters):
+        super().__init__("GetPlayersLatency")
         self.parameters = parameters

@@ -24,7 +24,7 @@ class MccPyClient:
 
             if self.password != "":
                 # Send authenticate event
-                socket.send(AuthenticateCommand(self.password).get_command_json())
+                socket.send(AuthenticateCommand([self.password]).get_command_json())
 
             if self.session_name != "":
                 # Send session name command
