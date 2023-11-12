@@ -2,6 +2,7 @@
 
 # from mcc import ChatBot
 from mcc.mcc import MccPyClient
+from mcc.commands.GetWorldCommand import GetWorldCommand
 import asyncio
 
 # class TestChatBot(ChatBot):
@@ -20,4 +21,13 @@ client = MccPyClient(
     # reconnectAttempts="todo",
 )
 
-asyncio.run(client.connect())
+
+async def main():
+    await client.connect()
+    command = GetWorldCommand([])
+    client.run_command(command)
+    await client.keep_alive()
+
+
+if __name__ == "__main__":
+    asyncio.run(main())
