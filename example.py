@@ -25,7 +25,7 @@ client = MccPyClient(
 async def main():
     await client.connect()
     command = GetWorldCommand([])
-    client.run_command(command)
+    await client.run_command(command)
     await client.keep_alive()
 
 
