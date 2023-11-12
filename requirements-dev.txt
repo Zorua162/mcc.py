@@ -1,1 +1,2 @@
 pre-commit>=3.5.0
+robotframework>=6.1.1
