@@ -1,0 +1,14 @@
+services:
+  mc:
+    image: itzg/minecraft-server
+    environment:
+      EULA: "true"
+      WHITELIST: |
+        zorua162
+      ENABLE_WHITELIST: true
+      EXISTING_WHITELIST_FILE: "SYNCHRONIZE"
+      VERSION: 1.20.1
+    volumes:
+      - ./mc-data:/data
+    ports:
+      - "25565:25565"

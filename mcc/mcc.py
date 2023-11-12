@@ -74,7 +74,7 @@ class MccPyClient:
         logger.info("Client successfully connected")
 
     async def disconnect(self):
-        self._socket.close()
+        await self._socket.close()
 
     async def keep_alive(self):
         # Wait for background tasks
