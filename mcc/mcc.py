@@ -7,17 +7,23 @@ import asyncio
 from mcc.commands.AuthenticateCommand import AuthenticateCommand
 from mcc.commands.ChangeSessionIdCommand import ChangeSessionIdCommand
 from command import Command
+from ChatBot import ChatBot
 
 from typing import Optional
 
 logging.basicConfig()
 logger = logging.getLogger(__name__)
-logger.setLevel("INFO")
 
 
 class MccPyClient:
     def __init__(
-        self, host: str, port: int, password: str = "", session_name: str = ""
+        self,
+        host: str,
+        port: int,
+        password: str = "",
+        log_level: logging.LogLevels = logging.INFO,
+        session_name: str = "",
+        chat_bot: Optional[ChatBot] = None,
     ):
         # self._socket: Optional[WebSocketCommonProtocol] = None
         self.host: str = host
@@ -28,6 +34,12 @@ class MccPyClient:
         # Message queue
         self.message_queue: list = []
         self.responses: list = []
+
+        # Chat bot
+        self.chat_bot = chat_bot
+
+        # Logging
+        logger.setLevel(log_level)
 
     async def run_background_tasks(self, socket):
         """Run the consumer and producer tasks"""
@@ -111,6 +123,19 @@ class MccPyClient:
         async for message in socket:
             await self.consumer(message)
 
+    async def execute_chat_bot_event(self, message: dict):
+        """Given the current  chat bot execute the given event"""
+        if self.chat_bot is None:
+            logger.debug('Chat bot was none, ignoring event {message["event"]}')
+            return
+        # Call the method on the bot
+        event: str = message["event"]
+        attribute = getattr(self.chat_bot, event, None)
+        if attribute is None:
+            logger.error(f"Unsupported event {event}")
+        if callable(attribute):
+            attribute(message)
+
     async def consumer(self, message_data):
         """Send the message to where it needs to go"""
         # Decode it
@@ -118,6 +143,7 @@ class MccPyClient:
         logger.debug("Received message %s", message)
         if message["event"] == "OnWsCommandResponse":
             self.responses.append(json.loads(message["data"]))
+        self.execute_chat_bot_event(message)
 
     async def wait_for_response(
         self, request_id, timeout=30, poll_sleep=0.5

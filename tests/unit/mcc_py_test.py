@@ -8,12 +8,11 @@ logger = logging.getLogger()
 
 
 class FakeWebSocketCommonProtocol:
-    
     async def send(message):
         logger.info(f"Send called with message {message}")
-    
-    async def disconnect():
-        
+
+    async def disconnect(self):
+        pass
 
 
 def fake_websocket_connect():
