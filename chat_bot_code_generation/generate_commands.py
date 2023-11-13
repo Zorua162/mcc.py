@@ -5,7 +5,7 @@
 
 import json
 import os
-from doc_parsing_utils import CommandData, parse_doc_command_data
+from doc_parsing_utils import CommandData, parse_doc_commands
 
 
 # Paths
@@ -26,7 +26,7 @@ def tidy_line(line: str) -> str:
     return line
 
 
-print("Collecting all the commands form the WebSocketBot.cs file...")
+print("Collecting all the commands from the WebSocketBot.cs file...")
 
 # Get all commands from source
 source_commands: list[str] = []
@@ -43,29 +43,14 @@ print(f"Found {len(source_commands)} source commands")
 
 # Get all the commands from the docs, used as main source
 print("Collecting all the commands from the docs...")
-commands: list[CommandData] = []
 with open(path_to_docs) as f_obj:
     data = f_obj.read().split("\n")
-    # print(data)
-    docs_commands: list[CommandData] = []
-    # Create initial command (line there for completeness, but gets discarded later)
-    current_command: list[str] = [data[0]]
-    for line in data:
-        # If the line starts with ### then save that command, otherwise current command
-        # print(line[0:3])
-        current_command.append(line)
-        if line[0:3] == "###":
-            if current_command[0][0:3] != "# W":
-                docs_commands.append(parse_doc_command_data(current_command))
-            current_command = [line]
+    docs_commands: list[CommandData] = parse_doc_commands(data)
 
 
 print(f"Found {len(docs_commands)} commands in the docs")
 
-doc_data: dict = {"CommandData": []}
-
-for docs_command in docs_commands:
-    doc_data["CommandData"].append(docs_command.as_dict())
+doc_data: dict = {"CommandData": [command.as_dict() for command in docs_commands]}
 
 with open(json_out_path, "w") as f_obj:
     # f_obj.writelines(str(doc_data))

@@ -1,0 +1,614 @@
+{
+    "EventData": [
+        {
+            "name": "OnWsCommandResponse",
+            "description": "Sent by the WebSocket Chat Bot when a command was executed.",
+            "parameters": [
+                {
+                    "name": "success",
+                    "type": "boolean"
+                },
+                {
+                    "name": "requestId",
+                    "type": "string"
+                },
+                {
+                    "name": "command",
+                    "type": "string"
+                },
+                {
+                    "name": "result",
+                    "type": "object"
+                }
+            ]
+        },
+        {
+            "name": "OnBlockBreakAnimation",
+            "description": "Sent when a block is broken in the world.",
+            "parameters": [
+                {
+                    "name": "Entity",
+                    "type": "Entity json encoded object"
+                },
+                {
+                    "name": "Location",
+                    "type": "Location json encoded object"
+                },
+                {
+                    "name": "stage",
+                    "type": "integer"
+                }
+            ]
+        },
+        {
+            "name": "OnEntityAnimation",
+            "description": "Sent when an entity does an animation.",
+            "parameters": [
+                {
+                    "name": "Entity",
+                    "type": "Entity json encoded object"
+                },
+                {
+                    "name": "animation",
+                    "type": "integer"
+                }
+            ]
+        },
+        {
+            "name": "OnChatPrivate",
+            "description": "Sent when the MCC receives a private chat message.",
+            "parameters": [
+                {
+                    "name": "sender",
+                    "type": "string"
+                },
+                {
+                    "name": "message",
+                    "type": "string"
+                },
+                {
+                    "name": "rawText",
+                    "type": "string"
+                }
+            ]
+        },
+        {
+            "name": "OnChatPublic",
+            "description": "Sent when a public message was sent in the chat.",
+            "parameters": [
+                {
+                    "name": "username",
+                    "type": "string"
+                },
+                {
+                    "name": "message",
+                    "type": "string"
+                },
+                {
+                    "name": "rawText",
+                    "type": "string"
+                }
+            ]
+        },
+        {
+            "name": "OnTeleportRequest",
+            "description": "Sent when the bot gets a teleport request",
+            "parameters": [
+                {
+                    "name": "sender",
+                    "type": "string"
+                },
+                {
+                    "name": "rawText",
+                    "type": "string"
+                }
+            ]
+        },
+        {
+            "name": "OnChatRaw",
+            "description": "Sent when any kind of chat message was received by the MCC. Can contain JSON.",
+            "parameters": [
+                {
+                    "name": "text",
+                    "type": "string"
+                },
+                {
+                    "name": "json",
+                    "type": "string"
+                }
+            ]
+        },
+        {
+            "name": "OnDisconnect",
+            "description": "Sent when the bot has disconnected from a server. At this point you can't send commands to the MCC.",
+            "parameters": [
+                {
+                    "name": "reason",
+                    "type": "string"
+                },
+                {
+                    "name": "message",
+                    "type": "string"
+                }
+            ]
+        },
+        {
+            "name": "OnPlayerProperty",
+            "description": "Sent when the server need to update a player property",
+            "parameters": [
+                {
+                    "name": "prop",
+                    "type": "json encoded object of { string key: double/number value }"
+                }
+            ]
+        },
+        {
+            "name": "OnServerTpsUpdate",
+            "description": "Sent when the server TPS changes/updates.",
+            "parameters": [
+                {
+                    "name": "tps",
+                    "type": "double"
+                }
+            ]
+        },
+        {
+            "name": "OnTimeUpdate",
+            "description": "Sent when the world time changes.",
+            "parameters": [
+                {
+                    "name": "worldAge",
+                    "type": "long"
+                },
+                {
+                    "name": "timeOfDay",
+                    "type": "long"
+                }
+            ]
+        },
+        {
+            "name": "OnEntityMove",
+            "description": "Sent when an entity moves.",
+            "parameters": [
+                {
+                    "name": "Entity",
+                    "type": "Entity json encoded object"
+                }
+            ]
+        },
+        {
+            "name": "OnInternalCommand",
+            "description": "Sent when an internal MCC command has been executed.",
+            "parameters": [
+                {
+                    "name": "command",
+                    "type": "string"
+                },
+                {
+                    "name": "parameters",
+                    "type": "string"
+                },
+                {
+                    "name": "result",
+                    "type": "string"
+                }
+            ]
+        },
+        {
+            "name": "OnEntitySpawn",
+            "description": "Sent when an entity is spawned or enters the player radius.",
+            "parameters": [
+                {
+                    "name": "Entity",
+                    "type": "Entity json encoded object"
+                }
+            ]
+        },
+        {
+            "name": "OnEntityDespawn",
+            "description": "Sent when an entity is de-spawned or leaves the player radius.",
+            "parameters": [
+                {
+                    "name": null,
+                    "type": "Entity json encoded object"
+                }
+            ]
+        },
+        {
+            "name": "OnHeldItemChange",
+            "description": "Sent when a held item is changed.",
+            "parameters": [
+                {
+                    "name": "OnHeldItemChange",
+                    "type": "integer"
+                }
+            ]
+        },
+        {
+            "name": "OnHealthUpdate",
+            "description": "Sent when player's health is updated.",
+            "parameters": [
+                {
+                    "name": "OnHealthUpdate",
+                    "type": "float"
+                },
+                {
+                    "name": "health",
+                    "type": "int"
+                }
+            ]
+        },
+        {
+            "name": "OnExplosion",
+            "description": "Sent when there is an explosion.",
+            "parameters": [
+                {
+                    "name": "OnExplosion",
+                    "type": "Location json encoded object"
+                },
+                {
+                    "name": "Location",
+                    "type": "float"
+                },
+                {
+                    "name": "strength",
+                    "type": "int"
+                }
+            ]
+        },
+        {
+            "name": "OnSetExperience",
+            "description": "Sent when the player's experience is updated.",
+            "parameters": [
+                {
+                    "name": "OnSetExperience",
+                    "type": "float"
+                },
+                {
+                    "name": "experienceBar",
+                    "type": "int"
+                },
+                {
+                    "name": "level",
+                    "type": "int"
+                }
+            ]
+        },
+        {
+            "name": "OnGamemodeUpdate",
+            "description": "Sent when the player's game mode has changed.",
+            "parameters": [
+                {
+                    "name": "OnGamemodeUpdate",
+                    "type": "string"
+                },
+                {
+                    "name": "playerName",
+                    "type": "string with UUID"
+                },
+                {
+                    "name": "uuid",
+                    "type": "string"
+                }
+            ]
+        },
+        {
+            "name": "OnLatencyUpdate",
+            "description": "Sent when the player's ping has changed.",
+            "parameters": [
+                {
+                    "name": "OnLatencyUpdate",
+                    "type": "string"
+                },
+                {
+                    "name": "playerName",
+                    "type": "string with UUID"
+                },
+                {
+                    "name": "uuid",
+                    "type": "int"
+                }
+            ]
+        },
+        {
+            "name": "OnMapData",
+            "description": "Sent when map data is received.",
+            "parameters": [
+                {
+                    "name": "OnMapData",
+                    "type": "int"
+                },
+                {
+                    "name": "mapId",
+                    "type": "integer"
+                },
+                {
+                    "name": "scale",
+                    "type": "bool"
+                },
+                {
+                    "name": "trackingPosition",
+                    "type": "bool"
+                },
+                {
+                    "name": "locked",
+                    "type": "array of map icon object"
+                },
+                {
+                    "name": "icons",
+                    "type": "integer"
+                },
+                {
+                    "name": "columnsUpdated",
+                    "type": "integer"
+                },
+                {
+                    "name": "rowsUpdated",
+                    "type": "integer"
+                },
+                {
+                    "name": "mapColumnX",
+                    "type": "integer"
+                },
+                {
+                    "name": "mapRowZ",
+                    "type": "base 64 encoded string of colors"
+                }
+            ]
+        },
+        {
+            "name": "OnTradeList",
+            "description": "Sent when villager's trade list has been received/updated.",
+            "parameters": [
+                {
+                    "name": "OnTradeList",
+                    "type": "int"
+                },
+                {
+                    "name": "windowId",
+                    "type": "List<VillagerTrade>"
+                },
+                {
+                    "name": "trades",
+                    "type": "VillagerInfo"
+                }
+            ]
+        },
+        {
+            "name": "OnTitle",
+            "description": "Sent when a title action has been received.",
+            "parameters": [
+                {
+                    "name": "OnTitle",
+                    "type": "int"
+                },
+                {
+                    "name": "action",
+                    "type": "string"
+                },
+                {
+                    "name": "titleText",
+                    "type": "string"
+                },
+                {
+                    "name": "subtitleText",
+                    "type": "string"
+                },
+                {
+                    "name": "actionBarText",
+                    "type": "int"
+                },
+                {
+                    "name": "fadeIn",
+                    "type": "int"
+                },
+                {
+                    "name": "stay",
+                    "type": "int"
+                },
+                {
+                    "name": "fadeout",
+                    "type": "string"
+                }
+            ]
+        },
+        {
+            "name": "OnEntityEquipment",
+            "description": "Sent when entity has changed or equipped equipment.",
+            "parameters": [
+                {
+                    "name": "OnEntityEquipment",
+                    "type": "Entity json encoded object"
+                },
+                {
+                    "name": "Entity",
+                    "type": "int"
+                },
+                {
+                    "name": "slot",
+                    "type": "Item?"
+                }
+            ]
+        },
+        {
+            "name": "OnEntityEffect",
+            "description": "Sent when there are effects applied to an entity.",
+            "parameters": [
+                {
+                    "name": "OnEntityEffect",
+                    "type": "Entity json encoded object"
+                },
+                {
+                    "name": "Entity",
+                    "type": "Effects"
+                },
+                {
+                    "name": "effect",
+                    "type": "int"
+                },
+                {
+                    "name": "amplifier",
+                    "type": "int"
+                },
+                {
+                    "name": "duration",
+                    "type": "integer"
+                }
+            ]
+        },
+        {
+            "name": "OnScoreboardObjective",
+            "description": "Sent when scoreboard objective has been added.",
+            "parameters": [
+                {
+                    "name": "OnScoreboardObjective",
+                    "type": "string"
+                },
+                {
+                    "name": "objectiveName",
+                    "type": "integer"
+                },
+                {
+                    "name": "mode",
+                    "type": "string"
+                },
+                {
+                    "name": "objectiveValue",
+                    "type": "int"
+                },
+                {
+                    "name": "type",
+                    "type": "string"
+                }
+            ]
+        },
+        {
+            "name": "OnUpdateScore",
+            "description": "Sent when scoreboard objective has been update/changed for an entity.",
+            "parameters": [
+                {
+                    "name": "OnUpdateScore",
+                    "type": "string"
+                },
+                {
+                    "name": "entityName",
+                    "type": "int"
+                },
+                {
+                    "name": "action",
+                    "type": "string"
+                },
+                {
+                    "name": "objectiveName",
+                    "type": "int"
+                }
+            ]
+        },
+        {
+            "name": "OnInventoryUpdate",
+            "description": "Sent when the an inventory has been updated.",
+            "parameters": [
+                {
+                    "name": "OnInventoryUpdate",
+                    "type": "int"
+                }
+            ]
+        },
+        {
+            "name": "OnInventoryOpen",
+            "description": "Sent when a player opens an inventory.",
+            "parameters": [
+                {
+                    "name": "OnInventoryOpen",
+                    "type": "int"
+                }
+            ]
+        },
+        {
+            "name": "OnInventoryClose",
+            "description": "Sent when a player/server closes an inventory.",
+            "parameters": [
+                {
+                    "name": "OnInventoryClose",
+                    "type": "int"
+                }
+            ]
+        },
+        {
+            "name": "OnPlayerJoin",
+            "description": "Sent when a player joins the server. (Not the bot)",
+            "parameters": [
+                {
+                    "name": "OnPlayerJoin",
+                    "type": "string with UUID"
+                },
+                {
+                    "name": "uuid",
+                    "type": "string"
+                }
+            ]
+        },
+        {
+            "name": "OnPlayerLeave",
+            "description": "Sent when a player leaves the server. (Not the bot)",
+            "parameters": [
+                {
+                    "name": "OnPlayerLeave",
+                    "type": "string with UUID"
+                },
+                {
+                    "name": "uuid",
+                    "type": "string"
+                }
+            ]
+        },
+        {
+            "name": "OnDeath",
+            "description": "Sent when the bot dies.",
+            "parameters": []
+        },
+        {
+            "name": "OnRespawn",
+            "description": "Sent when the bot respawns.",
+            "parameters": []
+        },
+        {
+            "name": "OnEntityHealth",
+            "description": "Sent when an entity health changes/updates.",
+            "parameters": [
+                {
+                    "name": "OnEntityHealth",
+                    "type": "Entity json encoded object"
+                },
+                {
+                    "name": "Entity",
+                    "type": "float"
+                }
+            ]
+        },
+        {
+            "name": "OnEntityMetadata",
+            "description": "Sent when entity's metadata has been received/updated/changed.",
+            "parameters": [
+                {
+                    "name": "OnEntityMetadata",
+                    "type": "Entity json encoded object"
+                },
+                {
+                    "name": "Entity",
+                    "type": "Object of number as a key and object as value"
+                }
+            ]
+        },
+        {
+            "name": "OnPlayerStatus",
+            "description": "Sent when player's status has been updated/changed.",
+            "parameters": [
+                {
+                    "name": "OnPlayerStatus",
+                    "type": "integer"
+                }
+            ]
+        }
+    ]
+}
