@@ -4,7 +4,7 @@ services:
     environment:
       EULA: "true"
       WHITELIST: |
-        zorua162
+        tester
       ENABLE_WHITELIST: true
       EXISTING_WHITELIST_FILE: "SYNCHRONIZE"
       VERSION: 1.20.1

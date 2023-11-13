@@ -1,0 +1,7 @@
+services:
+  MCC:
+    image: "localhost/minecraft-console-client:latest"
+    volumes:
+      - "./data:/opt/data"
+    ports:
+      - 8043:8043
