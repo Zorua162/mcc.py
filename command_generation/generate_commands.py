@@ -1,18 +1,7 @@
 # Generate the classes for commands based on the Minecraft-Console-Client source code
 
-# Need to choose between source code and docs
-# Source code:
-# Pros:
-# - Will always be up to date, don't need to rely on someone else's documentation
-# Cons:
-# - Will be much harder to get the needed data
-# Docs
-# - Much easier to get the needed data
-# Cons:
-# - Might not always be up to date
-
-# The list of commands is easy to get from the source code, so maybe we cross
-# reference that with the docs (and then we update the docs using this knowledge)
+# The docs are used as the main source, but we also extract command names
+# from the source code and output any that are missing from the docs
 
 import re
 import json
@@ -23,10 +12,10 @@ backtick_search = r"`(.*?)`"
 # Paths
 commands_folder = "../mcc/commands"
 path_to_source: str = (
-    "../minecraft-console-client-source/MinecraftClient/ChatBots/" "WebSocketBot.cs"
+    "../minecraft-console-client-source/MinecraftClient/ChatBots/WebSocketBot.cs"
 )
 path_to_docs: str = (
-    "../minecraft-console-client-source/docs/guide/websocket/" "Commands.md"
+    "../minecraft-console-client-source/docs/guide/websocket/Commands.md"
 )
 
 

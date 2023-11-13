@@ -1,3 +1,2 @@
-
 class ChatBot:
-    """Implements ChatBot events"""
+    """Implements ChatBot events and commands"""
