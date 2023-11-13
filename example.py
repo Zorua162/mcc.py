@@ -12,7 +12,7 @@ class TestChatBot(ChatBot):
 client = MccPyClient(
     host="127.0.0.1",
     port=8043,
-    password="wspass12345",
+    password="wspass12345",  # pragma: allowlist secret
     # loggingEnabled="todo",
     log_level=logging.INFO,
     session_name="Test Chat Bot",

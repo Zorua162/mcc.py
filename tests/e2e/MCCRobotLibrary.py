@@ -9,7 +9,7 @@ class MCCRobotLibrary:
         client = MccPyClient(
             host="127.0.0.1",
             port=8043,
-            password="wspass12345",
+            password="wspass12345",  # pragma: allowlist secret
             # loggingEnabled="todo",
             # LogLevels="todo",
             session_name="Test Chat Bot",
