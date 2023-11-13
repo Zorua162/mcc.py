@@ -1,4 +1,9 @@
 __pycache__
+
+# Robot framework test oututs
 log.html
 output.xml
 report.html
+
+# Ignore the MinecraftClient binary that gets download by the container
+MinecraftClient
