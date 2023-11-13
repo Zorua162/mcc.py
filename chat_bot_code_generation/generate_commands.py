@@ -3,12 +3,11 @@
 # The docs are used as the main source, but we also extract command names
 # from the source code and output any that are missing from the docs
 
-import re
 import json
 import os
-from typing import Optional
+from doc_parsing_utils import CommandData, parse_doc_command_data
 
-backtick_search = r"`(.*?)`"
+
 # Paths
 commands_folder = "../mcc/commands"
 path_to_source: str = (
@@ -18,37 +17,13 @@ path_to_docs: str = (
     "../minecraft-console-client-source/docs/guide/websocket/Commands.md"
 )
 
+command_template_path: str = "./command_template.txt"
+json_out_path = "./generate_commands_output.json"
+
 
 def tidy_line(line: str) -> str:
     line = line.strip(" ").replace(":", "").replace('"', "").replace("case ", "")
     return line
-
-
-class CommandData:
-    name: str
-    description: str
-    parameters: list[str]
-    return_type: Optional[str]
-
-    def __init__(
-        self,
-        name: str,
-        description: str,
-        parameters: list[str],
-        return_type: Optional[str],
-    ):
-        self.name = name
-        self.description = description
-        self.parameters = parameters
-        self.return_type = return_type
-
-    def as_dict(self):
-        return {
-            "name": self.name,
-            "description": self.description,
-            "parameters": self.parameters,
-            "return_type": self.return_type,
-        }
 
 
 print("Collecting all the commands form the WebSocketBot.cs file...")
@@ -68,64 +43,6 @@ print(f"Found {len(source_commands)} source commands")
 
 # Get all the commands from the docs, used as main source
 print("Collecting all the commands from the docs...")
-
-
-def regex_string(pattern: str, data: str) -> Optional[str]:
-    """Regex's a string, errors if nothing was found"""
-    results = re.finditer(pattern, data)
-    # Only return the first result
-    for result in results:
-        return result.group()[1:-1]
-    return None
-
-
-def get_name(command_data: list) -> str:
-    """Get the command name from the command data"""
-    name = regex_string(backtick_search, command_data[0])
-    if name is None:
-        raise Exception("Name was none")
-    return name
-
-
-def get_description(command_data: list) -> str:
-    """Get the command's description"""
-    command_data = [
-        line for line in command_data if "**Description**" not in line and line != ""
-    ]
-    return command_data[1].strip(" ")
-
-
-def get_parameters(command_data: list) -> list[str]:
-    """Get the command's parameters"""
-    parameters = [
-        regex_string(backtick_search, line) for line in command_data if "-" in line
-    ]
-    return [parameter for parameter in parameters if parameter is not None]
-
-
-def get_return_type(command_data: list) -> Optional[str]:
-    """Get the command's return type"""
-    possible_values = [
-        regex_string(backtick_search, line)
-        for line in command_data
-        if "Return type" in line
-    ]
-    return_value: Optional[str] = None
-    if len(possible_values) > 0:
-        return_value = possible_values[0]
-    return return_value
-
-
-def parse_doc_command_data(command_data: list[str]) -> CommandData:
-    """Parse out the data from the list of command data"""
-    # Remove lines that have **Description** for consistency
-    name: str = get_name(command_data)
-    description: str = get_description(command_data)
-    parameters: list[str] = get_parameters(command_data)
-    return_type: Optional[str] = get_return_type(command_data)
-    return CommandData(name, description, parameters, return_type)
-
-
 commands: list[CommandData] = []
 with open(path_to_docs) as f_obj:
     data = f_obj.read().split("\n")
@@ -150,7 +67,7 @@ doc_data: dict = {"CommandData": []}
 for docs_command in docs_commands:
     doc_data["CommandData"].append(docs_command.as_dict())
 
-with open("./generate_commands_output.json", "w") as f_obj:
+with open(json_out_path, "w") as f_obj:
     # f_obj.writelines(str(doc_data))
     json.dump(doc_data, f_obj, indent=4)
 
@@ -175,7 +92,7 @@ def create_command_classes(docs_data: dict):
             continue
         os.remove(f"{commands_folder}/{file_name}")
 
-    with open("./command_template.txt", "r") as f_obj:
+    with open(command_template_path, "r") as f_obj:
         template = f_obj.read()
 
     for command in docs_data["CommandData"]:
