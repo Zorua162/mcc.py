@@ -7,6 +7,7 @@ import asyncio
 from mcc.commands.AuthenticateCommand import AuthenticateCommand
 from mcc.commands.ChangeSessionIdCommand import ChangeSessionIdCommand
 from command import Command
+
 from ChatBot import ChatBot
 
 from typing import Optional
@@ -21,7 +22,7 @@ class MccPyClient:
         host: str,
         port: int,
         password: str = "",
-        log_level: logging.LogLevels = logging.INFO,
+        log_level: int = logging.INFO,
         session_name: str = "",
         chat_bot: Optional[ChatBot] = None,
     ):
@@ -132,7 +133,8 @@ class MccPyClient:
         event: str = message["event"]
         attribute = getattr(self.chat_bot, event, None)
         if attribute is None:
-            logger.error(f"Unsupported event {event}")
+            logger.error(f"Unsupported event {event}... Please report this error")
+        # If the attribute is callable then call the event method
         if callable(attribute):
             attribute(message)
 

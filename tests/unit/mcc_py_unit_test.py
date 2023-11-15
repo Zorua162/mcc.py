@@ -2,37 +2,43 @@ import logging
 import pytest
 
 from mcc.mcc import MccPyClient
-from unittest.mock import patch
+from unittest import mock
 
 logger = logging.getLogger()
 
 
-class FakeWebSocketCommonProtocol:
-    async def send(message):
-        logger.info(f"Send called with message {message}")
+@mock.patch("mcc.mcc.MccPyClient.websockets.connect")
+@pytest.mark.asyncio
+async def test_connect_smoke():
+    client = MccPyClient(
+        host="127.0.0.1",
+        port=8043,
+        password="wspass12345",  # pragma: allowlist secret
+        # loggingEnabled="todo",
+        # LogLevels="todo",
+        session_name="Test Chat Bot",
+        # reconnect="todo",
+        # reconnectTimeout="todo",
+        # reconnectAttempts="todo",
+    )
+    await client.connect()
 
-    async def disconnect(self):
-        pass
-
-
-def fake_websocket_connect():
-    return FakeWebSocketCommonProtocol()
+    await client.disconnect()
 
 
 @pytest.mark.asyncio
-async def test_connect_smoke():
-    with patch("websockets.connect", new=fake_websocket_connect):
-        client = MccPyClient(
-            host="127.0.0.1",
-            port=8043,
-            password="wspass12345",  # pragma: allowlist secret
-            # loggingEnabled="todo",
-            # LogLevels="todo",
-            session_name="Test Chat Bot",
-            # reconnect="todo",
-            # reconnectTimeout="todo",
-            # reconnectAttempts="todo",
-        )
-        await client.connect()
+async def test_consumer():
+    client = MccPyClient(
+        host="127.0.0.1",
+        port=8043,
+        password="wspass12345",  # pragma: allowlist secret
+        # loggingEnabled="todo",
+        # LogLevels="todo",
+        session_name="Test Chat Bot",
+        # reconnect="todo",
+        # reconnectTimeout="todo",
+        # reconnectAttempts="todo",
+    )
 
-        await client.disconnect()
+    message = {"event": "stuff"}
+    await client.execute_chat_bot_event(message)

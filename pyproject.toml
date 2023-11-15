@@ -2,5 +2,7 @@
 pythonpath = [
     ".",
     "tests",
-    "tests/unit"
+    "tests/unit",
+    "mcc",
+    "mcc/commands"
 ]
