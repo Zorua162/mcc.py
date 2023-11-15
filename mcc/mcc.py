@@ -8,7 +8,7 @@ from mcc.commands.AuthenticateCommand import AuthenticateCommand
 from mcc.commands.ChangeSessionIdCommand import ChangeSessionIdCommand
 from command import Command
 
-from ChatBot import ChatBot
+from ChatBot import ChatBot  # type: ignore
 
 from typing import Optional
 
