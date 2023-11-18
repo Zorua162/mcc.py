@@ -1,4 +1,4 @@
-from command import Command
+from mcc.command import Command
 
 
 class GetPlayersLatencyCommand(Command):

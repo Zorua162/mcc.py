@@ -16,7 +16,7 @@
         },
         {
             "name": "LogToConsole",
-            "description": "**Description:**",
+            "description": "Log stuff in to the MCC console.",
             "parameters": [
                 "LogToConsole",
                 "message",
@@ -26,7 +26,7 @@
         },
         {
             "name": "LogDebugToConsole",
-            "description": "**Description:**",
+            "description": "Log stuff in to the MCC debug console channel.",
             "parameters": [
                 "LogDebugToConsole",
                 "message",
@@ -36,7 +36,7 @@
         },
         {
             "name": "LogToConsoleTranslated",
-            "description": "**Description:**",
+            "description": "Log a translated string in to the MCC console.",
             "parameters": [
                 "LogToConsoleTranslated",
                 "message",
@@ -46,7 +46,7 @@
         },
         {
             "name": "LogDebugToConsoleTranslated",
-            "description": "**Description:**",
+            "description": "Log a translated string in to the MCC debug console channel.",
             "parameters": [
                 "LogDebugToConsoleTranslated",
                 "message",
@@ -56,7 +56,7 @@
         },
         {
             "name": "ReconnectToTheServer",
-            "description": "**Description:**",
+            "description": "Reconnect to the server the MCC is connected to.",
             "parameters": [
                 "ReconnectToTheServer",
                 "extraAttempts",
@@ -67,7 +67,7 @@
         },
         {
             "name": "DisconnectAndExit",
-            "description": "**Description:**",
+            "description": "Disconnect MCC from the server and close the program.",
             "parameters": [
                 "DisconnectAndExit",
                 "RunScript"
@@ -76,7 +76,7 @@
         },
         {
             "name": "RunScript",
-            "description": "**Description:**",
+            "description": "Run a MCC C# script.",
             "parameters": [
                 "RunScript",
                 "scriptName",
@@ -86,7 +86,7 @@
         },
         {
             "name": "GetTerrainEnabled",
-            "description": "**Description:**",
+            "description": "Check if the Terrain Handling is enabled.",
             "parameters": [
                 "GetTerrainEnabled",
                 "SetTerrainEnabled"
@@ -95,7 +95,7 @@
         },
         {
             "name": "SetTerrainEnabled",
-            "description": "**Description:**",
+            "description": "Try enabling the Terrain Handling.",
             "parameters": [
                 "SetTerrainEnabled",
                 "enabled",
@@ -105,7 +105,7 @@
         },
         {
             "name": "GetEntityHandlingEnabled",
-            "description": "**Description:**",
+            "description": "Check if the Entity Handling is enabled.",
             "parameters": [
                 "GetEntityHandlingEnabled",
                 "Sneak"
@@ -114,7 +114,7 @@
         },
         {
             "name": "Sneak",
-            "description": "**Description:**",
+            "description": "Toggle sneak.",
             "parameters": [
                 "Sneak",
                 "toggle",
@@ -124,7 +124,7 @@
         },
         {
             "name": "SendEntityAction",
-            "description": "**Description:**",
+            "description": "Send an entity action.",
             "parameters": [
                 "SendEntityAction",
                 "actionType",
@@ -135,7 +135,7 @@
         },
         {
             "name": "DigBlock",
-            "description": "**Description:**",
+            "description": "Dig a block in the world.",
             "parameters": [
                 "DigBlock",
                 "X",
@@ -149,7 +149,7 @@
         },
         {
             "name": "SetSlot",
-            "description": "**Description:**",
+            "description": "Set the current active hot bar slot.",
             "parameters": [
                 "SetSlot",
                 "slotId",
@@ -159,7 +159,7 @@
         },
         {
             "name": "GetWorld",
-            "description": "**Description:**",
+            "description": "Get world info.",
             "parameters": [
                 "GetWorld",
                 "json encoded object with world info",
@@ -169,7 +169,7 @@
         },
         {
             "name": "GetEntities",
-            "description": "**Description:**",
+            "description": "Get a list of entities around the player.",
             "parameters": [
                 "GetEntities",
                 "GetPlayersLatency"
@@ -178,7 +178,7 @@
         },
         {
             "name": "GetPlayersLatency",
-            "description": "**Description:**",
+            "description": "Get a list of players and their latencies.",
             "parameters": [
                 "GetPlayersLatency",
                 "GetCurrentLocation"
@@ -187,7 +187,7 @@
         },
         {
             "name": "GetCurrentLocation",
-            "description": "**Description:**",
+            "description": "Get the current bot location in the world.",
             "parameters": [
                 "GetCurrentLocation",
                 "json encoded Location object",
@@ -197,7 +197,7 @@
         },
         {
             "name": "MoveToLocation",
-            "description": "**Description:**",
+            "description": "Move to a location in the world.",
             "parameters": [
                 "MoveToLocation",
                 "X",
@@ -213,7 +213,7 @@
         },
         {
             "name": "ClientIsMoving",
-            "description": "**Description:**",
+            "description": "Check if the bot is currently moving.",
             "parameters": [
                 "ClientIsMoving",
                 "LookAtLocation"
@@ -222,7 +222,7 @@
         },
         {
             "name": "LookAtLocation",
-            "description": "**Description:**",
+            "description": "Make the bot look at a specific location.",
             "parameters": [
                 "LookAtLocation",
                 "X",
@@ -234,7 +234,7 @@
         },
         {
             "name": "GetTimestamp",
-            "description": "**Description:**",
+            "description": "Get current time in `yyyy-MM-dd HH:mm:ss` format.",
             "parameters": [
                 "GetTimestamp",
                 "yyyy-MM-dd HH:mm:ss",
@@ -244,7 +244,7 @@
         },
         {
             "name": "GetServerPort",
-            "description": "**Description:**",
+            "description": "Get the current server port.",
             "parameters": [
                 "GetServerPort",
                 "GetServerHost"
@@ -253,7 +253,7 @@
         },
         {
             "name": "GetServerHost",
-            "description": "**Description:**",
+            "description": "Get the current server IPv4 address.",
             "parameters": [
                 "GetServerHost",
                 "GetUsername"
@@ -262,7 +262,7 @@
         },
         {
             "name": "GetUsername",
-            "description": "**Description:**",
+            "description": "Get current logged in account username.",
             "parameters": [
                 "GetUsername",
                 "GetGamemode"
@@ -271,7 +271,7 @@
         },
         {
             "name": "GetGamemode",
-            "description": "**Description:**",
+            "description": "Get the current game mode in which the bot is.",
             "parameters": [
                 "GetGamemode",
                 "GetYaw"
@@ -280,7 +280,7 @@
         },
         {
             "name": "GetYaw",
-            "description": "**Description:**",
+            "description": "Get current bot yaw.",
             "parameters": [
                 "GetYaw",
                 "GetPitch"
@@ -289,7 +289,7 @@
         },
         {
             "name": "GetPitch",
-            "description": "**Description:**",
+            "description": "Get the current bot pitch.",
             "parameters": [
                 "GetPitch",
                 "double",
@@ -299,7 +299,7 @@
         },
         {
             "name": "GetUserUUID",
-            "description": "**Description:**",
+            "description": "Get the UUID of the current account.",
             "parameters": [
                 "GetUserUUID",
                 "GetOnlinePlayers"
@@ -308,7 +308,7 @@
         },
         {
             "name": "GetOnlinePlayers",
-            "description": "**Description:**",
+            "description": "Get a list of online players on the server.",
             "parameters": [
                 "GetOnlinePlayers",
                 "GetOnlinePlayersWithUUID"
@@ -317,7 +317,7 @@
         },
         {
             "name": "GetOnlinePlayersWithUUID",
-            "description": "**Description:**",
+            "description": "Get a list of online players on the server with their nicknames and UUIDs.",
             "parameters": [
                 "GetOnlinePlayersWithUUID",
                 "GetServerTPS"
@@ -326,7 +326,7 @@
         },
         {
             "name": "GetServerTPS",
-            "description": "**Description:**",
+            "description": "Get the current server TPS.",
             "parameters": [
                 "GetServerTPS",
                 "InteractEntity"
@@ -335,7 +335,7 @@
         },
         {
             "name": "InteractEntity",
-            "description": "**Description:**",
+            "description": "Interact with an entity.",
             "parameters": [
                 "InteractEntity",
                 "entityId",
@@ -349,7 +349,7 @@
         },
         {
             "name": "CreativeGive",
-            "description": "**Description:**",
+            "description": "Give an item from the Creative Inventory.",
             "parameters": [
                 "CreativeGive",
                 "slot",
@@ -363,7 +363,7 @@
         },
         {
             "name": "CreativeDelete",
-            "description": "**Description:**",
+            "description": "Clear an inventory slot of items in the Creative Mode.",
             "parameters": [
                 "CreativeDelete",
                 "slot",
@@ -373,7 +373,7 @@
         },
         {
             "name": "SendAnimation",
-            "description": "**Description:**",
+            "description": "Send an animation, for example a hand swing.",
             "parameters": [
                 "SendAnimation",
                 "hand",
@@ -384,7 +384,7 @@
         },
         {
             "name": "SendPlaceBlock",
-            "description": "**Description:**",
+            "description": "Place a block somewhere in the world.",
             "parameters": [
                 "SendPlaceBlock",
                 "X",
@@ -400,7 +400,7 @@
         },
         {
             "name": "UseItemInHand",
-            "description": "**Description:**",
+            "description": "Use an item in the hand.",
             "parameters": [
                 "UseItemInHand",
                 "GetInventoryEnabled"
@@ -409,7 +409,7 @@
         },
         {
             "name": "GetInventoryEnabled",
-            "description": "**Description:**",
+            "description": "Check if the inventory is enabled.",
             "parameters": [
                 "GetInventoryEnabled",
                 "GetPlayerInventory"
@@ -418,7 +418,7 @@
         },
         {
             "name": "GetPlayerInventory",
-            "description": "**Description:**",
+            "description": "Get the items in the player inventory.",
             "parameters": [
                 "GetPlayerInventory",
                 "json encoded inventory/container object",
@@ -428,7 +428,7 @@
         },
         {
             "name": "GetInventories",
-            "description": "**Description:**",
+            "description": "Get opened inventories list and items in them.",
             "parameters": [
                 "GetInventories",
                 "json encoded array of inventory/container objects",
@@ -438,7 +438,7 @@
         },
         {
             "name": "WindowAction",
-            "description": "**Description:**",
+            "description": "Send an inventory action, for example a click.",
             "parameters": [
                 "WindowAction",
                 "windowId",
@@ -451,7 +451,7 @@
         },
         {
             "name": "ChangeSlot",
-            "description": "**Description:**",
+            "description": "Change the currently selected hot bar slot.",
             "parameters": [
                 "ChangeSlot",
                 "slotId",
@@ -461,7 +461,7 @@
         },
         {
             "name": "GetCurrentSlot",
-            "description": "**Description:**",
+            "description": "Get the currently selected hot bar slot.",
             "parameters": [
                 "GetCurrentSlot",
                 "ClearInventories"
@@ -470,7 +470,7 @@
         },
         {
             "name": "ClearInventories",
-            "description": "**Description:**",
+            "description": "Clear the list of opened inventories.",
             "parameters": [
                 "ClearInventories",
                 "UpdateSign"
@@ -479,7 +479,7 @@
         },
         {
             "name": "UpdateSign",
-            "description": "**Description:**",
+            "description": "Update the text in signs.",
             "parameters": [
                 "UpdateSign",
                 "X",
@@ -495,7 +495,7 @@
         },
         {
             "name": "SelectTrade",
-            "description": "**Description:**",
+            "description": "Select a villager trade.",
             "parameters": [
                 "SelectTrade",
                 "selectedSlot",
@@ -505,7 +505,7 @@
         },
         {
             "name": "UpdateCommandBlock",
-            "description": "**Description:**",
+            "description": "Update the command block.",
             "parameters": [
                 "UpdateCommandBlock",
                 "X",
@@ -522,7 +522,7 @@
         },
         {
             "name": "CloseInventory",
-            "description": "**Description:**",
+            "description": "Close an inventory id.",
             "parameters": [
                 "CloseInventory",
                 "windowId",
@@ -532,7 +532,7 @@
         },
         {
             "name": "GetMaxChatMessageLength",
-            "description": "**Description:**",
+            "description": "Get the max chat message length.",
             "parameters": [
                 "GetMaxChatMessageLength",
                 "Respawn"
@@ -541,7 +541,7 @@
         },
         {
             "name": "Respawn",
-            "description": "**Description:**",
+            "description": "Respawn the bot when it's dead.",
             "parameters": [
                 "Respawn",
                 "GetProtocolVersion"
