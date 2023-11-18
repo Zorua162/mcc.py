@@ -47,7 +47,7 @@ echo "Waiting $wait_time seconds for MCC Websocket server to be ready"
 sleep $wait_time
 
 # Build the Robotframework test container
-cd robot
+cd robot || exit
 podman-compose build
 # Run the Robotframework tests
 podman-compose up
