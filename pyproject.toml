@@ -7,6 +7,7 @@ authors = [
 description = "Python bindings for controlling the Minecraft Console Client Websocket bot"
 readme = "README.md"
 requires-python = ">=3.8"
+dependencies = ["websockets"]
 
 [project.urls]
 Homepage = "https://github.com/Zorua162/mcc.py"
