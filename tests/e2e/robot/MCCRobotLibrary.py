@@ -7,7 +7,7 @@ class MCCRobotLibrary:
     async def create_bot(self):
         print("testing custom library")
         client = MccPyClient(
-            host="localhost",
+            host="mcc_MCC_1",
             port=8043,
             password="wspass12345",  # pragma: allowlist secret
             # loggingEnabled="todo",

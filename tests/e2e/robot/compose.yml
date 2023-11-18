@@ -1,8 +1,7 @@
 services:
   robot_mcc_tests:
     build:
-      context: ../../../.
-      dockerfile: ./tests/e2e/robot/Containerfile
+      context: .
     image: robot_mcc_tests
     volumes:
       - "./output:/output"

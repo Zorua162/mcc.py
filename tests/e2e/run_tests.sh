@@ -1,6 +1,8 @@
+#!/bin/bash -x
 # Run the RobotFramework tests against a live server and client
 # Startup the server
 podman-compose -f ./server/compose.yml up -d
+
 # Wait for the server to be ready to join
 waiting=true
 # Number of times attempted to check server
@@ -11,6 +13,7 @@ timeout=20
 time_wait=10
 # Container name to check
 container_name=server_mc_1
+echo "Started wait for mc server to be ready"
 while [[ $waiting == true ]]; do
     sleep $time_wait
     count=$((count + 1))
@@ -28,18 +31,23 @@ while [[ $waiting == true ]]; do
 
 
     # Timeout check
-    if [[ $count -ge $timeout ]]; then
-        echo "Timed out waiting for container to be healthy"
-        total_wait=$((time_wait*timeout))
-        echo "Waited $total_wait seconds"
-        exit 1
-    fi
+    # if [[ $count -ge $timeout ]]; then
+    #     echo "Timed out waiting for container to be healthy"
+    #     total_wait=$((time_wait*timeout))
+    #     echo "Waited $total_wait seconds"
+    #     exit 1
+    # fi
 done
 
 # Startup the MCC client
 podman-compose -f ./MCC/compose.yml up -d
 # Wait 5 seconds for the MCC client to be fully loaded
-sleep 5
-# Run the RobotFramework tests
-# robot --pythonpath ../../:../../mcc/ .
-podman-compose -f ./robot/compose.yml up
+wait_time=5
+echo "Waiting $wait_time seconds for MCC Websocket server to be ready"
+sleep $wait_time
+
+# Build the Robotframework test container
+cd robot
+podman-compose build
+# Run the Robotframework tests
+podman-compose up

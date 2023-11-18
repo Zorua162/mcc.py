@@ -1,14 +1,16 @@
-FROM python:3.11
+FROM mcc.py:0.1
+
+WORKDIR /tests
 
 RUN mkdir output
 
 COPY ./requirements.txt /requirements.txt
-RUN pip install --no-cache-dir --upgrade pip
-RUN pip install --no-cache-dir -r /requirements.txt
-  # && pip install --no-cache-dir robotframework
 
-# COPY ./tests/e2e/robot ./
+RUN pip install --no-cache-dir --upgrade pip==23.3.1 \
+ && pip install --no-cache-dir -r /requirements.txt
 
-# COPY ./mcc/* /mcc/
+COPY ./MCCRobotLibrary.py ./
 
-CMD [ "python", "-m", "robot", ".", "-d", "output"]
+COPY ./TestCommands.robot ./
+
+CMD [ "python", "-m", "robot", "-d", "output", "."]
