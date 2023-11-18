@@ -1,0 +1,14 @@
+FROM python:3.11
+
+RUN mkdir output
+
+COPY ./requirements.txt /requirements.txt
+RUN pip install --no-cache-dir --upgrade pip
+RUN pip install --no-cache-dir -r /requirements.txt
+  # && pip install --no-cache-dir robotframework
+
+# COPY ./tests/e2e/robot ./
+
+# COPY ./mcc/* /mcc/
+
+CMD [ "python", "-m", "robot", ".", "-d", "output"]

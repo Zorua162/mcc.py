@@ -1,0 +1,14 @@
+services:
+  robot_mcc_tests:
+    build:
+      context: ../../../.
+      dockerfile: ./tests/e2e/robot/Containerfile
+    image: robot_mcc_tests
+    volumes:
+      - "./output:/output"
+    networks:
+      - server
+networks:
+  server:
+    external: true
+    name: server_default
