@@ -2,12 +2,16 @@ import logging
 import pytest
 
 from mcc.mcc import MccPyClient
-from unittest import mock
+from unittest.mock import patch
+
+import sys
+
+print(sys.path)
 
 logger = logging.getLogger()
 
 
-@mock.patch("mcc.mcc.MccPyClient.websockets.connect")
+@patch("mcc.mcc.websockets.connect")
 @pytest.mark.asyncio
 async def test_connect_smoke():
     client = MccPyClient(

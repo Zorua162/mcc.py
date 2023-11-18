@@ -8,7 +8,7 @@ from mcc.commands.AuthenticateCommand import AuthenticateCommand
 from mcc.commands.ChangeSessionIdCommand import ChangeSessionIdCommand
 from command import Command
 
-from ChatBot import ChatBot  # type: ignore
+from mcc.ChatBot import ChatBot  # type: ignore
 
 from typing import Optional
 
@@ -54,8 +54,8 @@ class MccPyClient:
             task.cancel()
 
     async def connect(self) -> None:
-        logger.info("Connecting to {self.host} on port {self.port} ...")
-        socket = await connect("ws://127.0.0.1:8043/mcc", logger=logger)
+        logger.info(f"Connecting to {self.host} on port {self.port} ...")
+        socket = await connect(f"ws://{self.host}:{self.port}/mcc", logger=logger)
         self._socket = socket
         logger.info(f"Successfully connected to {self.host} on port {self.port} ...")
 

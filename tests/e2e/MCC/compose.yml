@@ -5,3 +5,9 @@ services:
       - "./data:/opt/data"
     ports:
       - 8043:8043
+    networks:
+      - server
+networks:
+  server:
+    external: true
+    name: server_default
