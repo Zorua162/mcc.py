@@ -12,6 +12,9 @@ requires-python = ">=3.8"
 Homepage = "https://github.com/Zorua162/mcc.py"
 Issues = "https://github.com/Zorua162/mcc.py/issues"
 
+[tool.setuptools]
+packages = ["mcc"]
+
 [tool.pytest.ini_options]
 pythonpath = [
     ".",
