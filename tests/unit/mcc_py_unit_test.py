@@ -51,7 +51,14 @@ class FakeBackend:
                     "command": "Authenticate",
                     "result": "Successfully authenticated!",
                 }
-            # case "ChangeSessionId":
+            case "ChangeSessionId":
+                data = {
+                    "success": True,
+                    "requestId": message["requestId"],
+                    "command": "ChangeSessionId",
+                    "result": "The session ID was successfully changed to: "
+                    f'{message["parameters"][0]}',
+                }
 
         event = {"event": "OnWsCommandResponse", "data": json.dumps(data)}
         event_data = json.dumps(event)

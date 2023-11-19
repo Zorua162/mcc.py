@@ -177,9 +177,11 @@ class MccPyClient:
         return None
 
     def get_response(self, request_id: str) -> Optional[dict]:
+        # If message not found then return None
+        out_message: Optional[dict] = None
         for message in self.responses:
             logger.debug(
-                f"Checking success of message {message}, "
+                f"Checking message {message}, "
                 f"requestId is {request_id}, "
                 f"message type is {type(message)}"
             )
@@ -192,6 +194,8 @@ class MccPyClient:
                 logger.debug(
                     f"Command with requestId {request_id} was found, returning"
                 )
-                return message
-        # Message was not found, return None to signify this
-        return None
+                out_message = message
+        # If the message was found then remove it from the list of current responses
+        if out_message is not None:
+            self.responses.remove(out_message)
+        return out_message
