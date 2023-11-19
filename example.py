@@ -1,5 +1,6 @@
 from mcc.mcc import MccPyClient
-from mcc.commands.GetWorldCommand import GetWorldCommand
+
+# from mcc.commands.GetWorldCommand import GetWorldCommand
 from mcc.ChatBot import ChatBot
 import asyncio
 import logging
@@ -27,7 +28,7 @@ client = MccPyClient(
 async def main():
     await client.connect()
     # command = GetWorldCommand([])
-    await client.run_command(command)
+    # await client.run_command(command)
     await client.keep_alive()
 
 

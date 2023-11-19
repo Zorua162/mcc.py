@@ -24,3 +24,9 @@ pythonpath = [
     "mcc",
     "mcc/commands"
 ]
+log_level = "INFO"
+
+[tool.mypy]
+exclude = '''(?x)(
+    build
+)'''  # TOML's single-quoted strings do not require escaping backslashes

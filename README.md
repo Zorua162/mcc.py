@@ -32,6 +32,15 @@ be maintained in the future.
 To save time the command are auto generated from the Minecraft-Console-Client docs,
 using `generate_commands.py`.
 
+## Debugging
+
+Unit tests have been scaffolding, but still need a lot better coverage currently
+Integration tests are not currently working
+E2e tests work, but require a modified MinecraftClient binary
+
+To change the timeout of the function "wait_for_response" (used for waiting for the
+response to a command) set the environment variable "TIMEOUT".
+
 ## Useful links
 
 Documentation that proved useful:

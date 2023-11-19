@@ -1,5 +1,6 @@
 from websockets import connect
 from websockets.legacy.protocol import WebSocketCommonProtocol
+import os
 import logging
 import json
 import asyncio
@@ -65,13 +66,13 @@ class MccPyClient:
 
         if self.password != "":
             # Send authenticate event
-            command = AuthenticateCommand([self.password])
+            authenticate_command = AuthenticateCommand([self.password])
 
             logger.info("Sending authenticate command")
-            await socket.send(command.get_command_json())
+            await socket.send(authenticate_command.get_command_json())
 
             # Wait for authentication to succeed before running loops
-            response = await self.wait_for_response(command.request_id)
+            response = await self.wait_for_response(authenticate_command.request_id)
             logger.info(f"Auth response was {response}")
             # If the command was successful then break out the waiting loop
             if response is None or response["success"] is False:
@@ -81,9 +82,16 @@ class MccPyClient:
 
         if self.session_name != "":
             # Send session name command
-            await socket.send(
-                ChangeSessionIdCommand([self.session_name]).get_command_json()
-            )
+            change_session_command = ChangeSessionIdCommand([self.session_name])
+            await socket.send(change_session_command.get_command_json())
+            # Wait for response
+            response = await self.wait_for_response(change_session_command.request_id)
+            logger.info(f"Change name response was {response}")
+            if response is None or response["success"] is False:
+                # If the command failed then raise an exception
+                raise Exception("ChangeSessionId command failed")
+            logger.info("ChangeSessionId succeeded... Continuing...")
+
         logger.info("Client successfully connected")
 
     async def disconnect(self):
@@ -126,8 +134,9 @@ class MccPyClient:
 
     async def execute_chat_bot_event(self, message: dict):
         """Given the current  chat bot execute the given event"""
+        logger.debug(f"Message data {message}")
         if self.chat_bot is None:
-            logger.debug('Chat bot was none, ignoring event {message["event"]}')
+            logger.info(f'Chat bot was None, ignoring event {message["event"]}')
             return
         # Call the method on the bot
         event: str = message["event"]
@@ -135,9 +144,10 @@ class MccPyClient:
         if attribute is None:
             logger.error(f"Unsupported event {event}... Please report this error")
         # If the attribute is callable then call the event method
-        logger.info(f"Message data {message}")
+        data = json.loads(message["data"])
+        logger.debug(f"Calling attribute {attribute}, with data {data}")
         if callable(attribute):
-            attribute(message)
+            attribute(*data.values())
 
     async def consumer(self, message_data):
         """Send the message to where it needs to go"""
@@ -146,15 +156,15 @@ class MccPyClient:
         logger.debug("Received message %s", message)
         if message["event"] == "OnWsCommandResponse":
             self.responses.append(json.loads(message["data"]))
+            return
         await self.execute_chat_bot_event(message)
 
-    async def wait_for_response(
-        self, request_id, timeout=30, poll_sleep=0.5
-    ) -> Optional[dict]:
-        """Wait for command authenticate to be in the response queue,
-        Raise an error if it failed"""
+    async def wait_for_response(self, request_id, poll_sleep=0.5) -> Optional[dict]:
+        """Wait for the response to a command to be in the response queue,
+        Return None if the maximum wait time is reached, specified by TIMEOUT env var"""
+        timeout = int(os.environ.get("TIMEOUT", "30"))
         total_wait = 0
-        logger.info("Waiting for authentication to succeed...")
+        logger.info(f"Waiting for Command with requestId {request_id} to succeed...")
         while total_wait < timeout:
             logger.debug(f"total_wait is currently {total_wait}")
             message = self.get_response(request_id)
@@ -173,6 +183,11 @@ class MccPyClient:
                 f"requestId is {request_id}, "
                 f"message type is {type(message)}"
             )
+            if "requestId" not in message.keys():
+                raise Exception(
+                    "Missing data in event, "
+                    '"requestId" was not in the returned message'
+                )
             if message["requestId"] == request_id:
                 logger.debug(
                     f"Command with requestId {request_id} was found, returning"

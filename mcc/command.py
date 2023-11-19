@@ -1,5 +1,6 @@
 import uuid
 import logging
+import json
 
 logger = logging.getLogger()
 
@@ -16,16 +17,14 @@ class Command:
 
     def get_command_json(self) -> str:
         # We convert this to the names that MCC expects, such as requestId
-        command_json = str(
-            {
-                "command": self.name,
-                "requestId": self.request_id,
-                "parameters": self.parameters,
-            }
-        )
+        command_json = {
+            "command": self.name,
+            "requestId": self.request_id,
+            "parameters": self.parameters,
+        }
         logger.info("Sending command JSON: %s", command_json)
-        return command_json
+        return json.dumps(command_json)
 
 
 def random_request_id() -> str:
-    return str(uuid.uuid1())
+    return str(uuid.uuid4())
