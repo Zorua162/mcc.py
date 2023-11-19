@@ -135,6 +135,7 @@ class MccPyClient:
         if attribute is None:
             logger.error(f"Unsupported event {event}... Please report this error")
         # If the attribute is callable then call the event method
+        logger.info(f"Message data {message}")
         if callable(attribute):
             attribute(message)
 
@@ -145,7 +146,7 @@ class MccPyClient:
         logger.debug("Received message %s", message)
         if message["event"] == "OnWsCommandResponse":
             self.responses.append(json.loads(message["data"]))
-        self.execute_chat_bot_event(message)
+        await self.execute_chat_bot_event(message)
 
     async def wait_for_response(
         self, request_id, timeout=30, poll_sleep=0.5

@@ -10,7 +10,8 @@ class TestChatBot(ChatBot):
 
 
 client = MccPyClient(
-    host="127.0.0.1",
+    # host="127.0.0.1",
+    host="localhost",
     port=8043,
     password="wspass12345",  # pragma: allowlist secret
     # loggingEnabled="todo",
@@ -25,7 +26,7 @@ client = MccPyClient(
 
 async def main():
     await client.connect()
-    command = GetWorldCommand([])
+    # command = GetWorldCommand([])
     await client.run_command(command)
     await client.keep_alive()
 

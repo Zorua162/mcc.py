@@ -13,4 +13,4 @@ COPY ./MCCRobotLibrary.py ./
 
 COPY ./TestCommands.robot ./
 
-CMD [ "python", "-m", "robot", "-d", "output", "."]
+CMD [ "python", "-m", "robot", "-d", "./output", "."]

@@ -1,6 +1,8 @@
 services:
   MCC:
     image: "localhost/minecraft-console-client:latest"
+    environment:
+      MCC_SKIP_REDOWNLOAD: "true"
     volumes:
       - "./data:/opt/data"
     ports:
