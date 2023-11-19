@@ -1,9 +1,9 @@
 from websockets import connect
 from websockets.legacy.protocol import WebSocketCommonProtocol
 import os
+import asyncio
 import logging
 import json
-import asyncio
 
 from mcc.commands.AuthenticateCommand import AuthenticateCommand
 from mcc.commands.ChangeSessionIdCommand import ChangeSessionIdCommand
@@ -47,7 +47,7 @@ class MccPyClient:
         """Run the consumer and producer tasks"""
         consumer_task = asyncio.create_task(self.consumer_handler(socket))
         producer_task = asyncio.create_task(self.producer_handler(socket))
-        done, pending = await asyncio.wait(
+        _, pending = await asyncio.wait(
             [consumer_task, producer_task],
             return_when=asyncio.FIRST_COMPLETED,
         )
@@ -79,11 +79,17 @@ class MccPyClient:
                 # If the command failed then raise an exception
                 raise Exception("Authenticate command failed")
             logger.info("Authentication succeeded... Continuing...")
+        # Give the Websocket bot a moment to register
+        await asyncio.sleep(1)
 
         if self.session_name != "":
             # Send session name command
             change_session_command = ChangeSessionIdCommand([self.session_name])
+            logger.info("Sending ChangeSessionId command")
             await socket.send(change_session_command.get_command_json())
+
+            # NOTE: This required a fix to MinecraftConsoleClient, so needs the
+            # updated binary
             # Wait for response
             response = await self.wait_for_response(change_session_command.request_id)
             logger.info(f"Change name response was {response}")
@@ -109,7 +115,6 @@ class MccPyClient:
 
     async def producer(self, socket: WebSocketCommonProtocol) -> Optional[str]:
         while len(self.message_queue) == 0:
-            await asyncio.sleep(0.1)
             # If the socket is closed then return none
             if not socket.open:
                 logger.debug("Socket was closed, exiting message queue producer wait")
