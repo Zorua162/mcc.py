@@ -11,6 +11,6 @@
     "tags": [
       "smoke"
     ],
-    "documentation": "This is a test case documentation of the first one."
+    "documentation": "Smoke Test for ChangeSlotCommand"
   }
 ]
