@@ -4,7 +4,8 @@
     "arguments": {
       "${command_name}": "ChangeSlotCommand",
       "${parameters}": [1],
-      "${assert_command}": "None",
+      "${assert_command_name}": "None",
+      "${assert_command_parameters}": [],
       "${assert_output}": "None"
 
     },
@@ -17,7 +18,10 @@
     "test_case_name": "ChangeSlotCommand smoke test",
     "arguments": {
       "${command_name}": "ChangeSlotCommand",
-      "${parameters}": [1]
+      "${parameters}": [8],
+      "${assert_command_name}": "GetCurrentSlot",
+      "${assert_command_parameters}": [],
+      "${assert_output}": "None"
     },
     "tags": [
       "smoke"

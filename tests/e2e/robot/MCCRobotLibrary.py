@@ -29,6 +29,8 @@ class MCCRobotLibrary:
         await self.client.disconnect()
 
     async def run_command(self, command_name: str, parameters: list):
+        if command_name == "None":
+            return
         module = importlib.import_module("mcc.commands")
         file_ = getattr(module, command_name)
         class_ = getattr(file_, command_name)
