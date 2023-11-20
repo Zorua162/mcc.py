@@ -1,12 +1,12 @@
 repos:
 -   repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v2.3.0
+    rev: v4.5.0
     hooks:
     -   id: check-yaml
     -   id: end-of-file-fixer
     -   id: trailing-whitespace
 -   repo: https://github.com/psf/black
-    rev: 23.3.0
+    rev: 23.11.0
     hooks:
     -   id: black
 -   repo: https://github.com/Yelp/detect-secrets
@@ -16,6 +16,6 @@ repos:
         # args: ['--baseline', '.secrets.baseline']
         # exclude: package.lock.json
 -   repo: https://github.com/hadolint/hadolint
-    rev: v2.12.0
+    rev: v2.12.1-beta
     hooks:
     -   id: hadolint-docker
