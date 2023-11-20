@@ -41,6 +41,17 @@ E2e tests work, but require a modified MinecraftClient binary
 To change the timeout of the function "wait_for_response" (used for waiting for the
 response to a command) set the environment variable "TIMEOUT".
 
+## Roadmap
+
+ [ ] Write e2e Robot Framework tests for the commands
+ [ ] Test the tests
+ [ ] Setup Github pipelines to run the tests automatically
+
+### Currently undecided
+
+ [ ] Publish the package to PyPi
+ [ ] Publish the container to DockerHub
+
 ## Useful links
 
 Documentation that proved useful:
