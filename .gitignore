@@ -4,6 +4,7 @@ __pycache__
 log.html
 output.xml
 report.html
+interactive_console_output.xml
 
 # Ignore the MinecraftClient binary that gets download by the container
 MinecraftClient

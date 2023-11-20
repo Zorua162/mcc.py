@@ -10,7 +10,7 @@ class Command:
     request_id: str
     parameters: list[str]
 
-    def __init__(self, name, parameters):
+    def __init__(self, name: str, parameters: list):
         self.name = name
         self.request_id = random_request_id()
         self.parameters = parameters

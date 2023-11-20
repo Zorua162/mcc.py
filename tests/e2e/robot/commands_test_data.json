@@ -1,0 +1,27 @@
+[
+  {
+    "test_case_name": "ChangeSlotCommand smoke test",
+    "arguments": {
+      "${command_name}": "ChangeSlotCommand",
+      "${parameters}": [1],
+      "${assert_command}": "None",
+      "${assert_output}": "None"
+
+    },
+    "tags": [
+      "smoke"
+    ],
+    "documentation": "This is a test case documentation of the first one."
+  },
+  {
+    "test_case_name": "ChangeSlotCommand smoke test",
+    "arguments": {
+      "${command_name}": "ChangeSlotCommand",
+      "${parameters}": [1]
+    },
+    "tags": [
+      "smoke"
+    ],
+    "documentation": "This is a test case documentation of the first one."
+  }
+]
