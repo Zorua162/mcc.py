@@ -1,16 +1,26 @@
 [
-  {
-    "test_case_name": "ChangeSlotCommand smoke test",
-    "arguments": {
-      "${command_name}": "ChangeSlotCommand",
-      "${parameters}": [8],
-      "${assert_command_name}": "GetCurrentSlotCommand",
-      "${assert_command_parameters}": [],
-      "${expected_assert_command_result}": "8"
-    },
-    "tags": [
-      "smoke"
-    ],
-    "documentation": "Smoke Test for ChangeSlotCommand"
-  }
+    {
+        "test_case_name": "ChangeSlotCommand smoke test",
+        "arguments": {
+            "${setup_data}": {
+                "command_list": []
+            },
+            "${command_data}": {
+                "command_name": "ChangeSlotCommand",
+                "command_parameters": [
+                    8
+                ],
+                "expected_command_result": "True"
+            },
+            "${assert_data}": {
+                "command_name": "GetCurrentSlotCommand",
+                "command_parameters": [],
+                "expected_command_result": "8"
+            }
+        },
+        "tags": [
+            "smoke"
+        ],
+        "documentation": "Smoke Test for ChangeSlotCommand"
+    }
 ]

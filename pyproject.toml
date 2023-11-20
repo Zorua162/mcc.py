@@ -34,7 +34,8 @@ exclude = '''(?x)(
 [tool.robocop]
 configure = [
     "line-too-long:line_length:88",
-    "W0503:max_calls:20"
+    # "W0503:max_calls:20",
+    # "W0507:max_args:7"
 ]
 
 [tool.robotidy]
