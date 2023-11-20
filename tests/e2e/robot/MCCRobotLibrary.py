@@ -1,10 +1,12 @@
+import logging
+
+# For instantiating classes
+import importlib
+
 # from ..mcc.mcc.py import MccPyClient
 from mcc.mcc import MccPyClient  # notype
 from mcc.command import Command
 from mcc.commands.GetWorldCommand import GetWorldCommand
-
-# For instantiating classes
-import importlib
 
 
 class MCCRobotLibrary:
@@ -27,13 +29,20 @@ class MCCRobotLibrary:
 
     async def disconnect(self):
         await self.client.disconnect()
+        # Set the client to None, so that we know it was disconnected
+        self.client = None
 
-    async def run_command(self, command_name: str, parameters: list):
+    async def ensure_clean_disconnect(self):
+        if self.client is not None:
+            logging.info("Fail clean disconnect called")
+            await self.disconnect()
+
+    async def run_command(self, command_name: str, parameters: list) -> dict:
         if command_name == "None":
-            return
+            return {}
         module = importlib.import_module("mcc.commands")
         file_ = getattr(module, command_name)
         class_ = getattr(file_, command_name)
         command: Command = class_(parameters)
 
-        await self.client.run_command(command)
+        return await self.client.run_command(command)

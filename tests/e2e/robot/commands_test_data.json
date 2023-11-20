@@ -3,23 +3,8 @@
     "test_case_name": "ChangeSlotCommand smoke test",
     "arguments": {
       "${command_name}": "ChangeSlotCommand",
-      "${parameters}": [1],
-      "${assert_command_name}": "None",
-      "${assert_command_parameters}": [],
-      "${assert_output}": "None"
-
-    },
-    "tags": [
-      "smoke"
-    ],
-    "documentation": "This is a test case documentation of the first one."
-  },
-  {
-    "test_case_name": "ChangeSlotCommand smoke test",
-    "arguments": {
-      "${command_name}": "ChangeSlotCommand",
       "${parameters}": [8],
-      "${assert_command_name}": "GetCurrentSlot",
+      "${assert_command_name}": "GetCurrentSlotCommand",
       "${assert_command_parameters}": [],
       "${assert_output}": "None"
     },
