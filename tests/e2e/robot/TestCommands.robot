@@ -72,8 +72,7 @@ Run Assert Command
     Log To Console    Running assert Command ${command_name}
     ${output}    Run Command    ${command_name}    ${assert_data}[command_parameters]
 
-    Log To Console
-    ...    Checking against output of the assert command which was ${output} for
-    ...    expected result
+    Log To Console    Assert command output was ${output}
+    Log To Console    Asserting against output
     Should Be True    ${output}[success]
     Should Be Equal    '${output}[result]'    '${assert_data}[expected_command_result]'
