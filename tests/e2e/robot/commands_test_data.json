@@ -6,7 +6,7 @@
       "${parameters}": [8],
       "${assert_command_name}": "GetCurrentSlotCommand",
       "${assert_command_parameters}": [],
-      "${assert_output}": "None"
+      "${expected_assert_command_result}": "8"
     },
     "tags": [
       "smoke"

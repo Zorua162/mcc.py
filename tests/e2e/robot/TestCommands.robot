@@ -23,9 +23,10 @@ Test Command
     ...    ${parameters}
     ...    ${assert_command_name}
     ...    ${assert_command_parameters}
-    ...    ${assert_output}
+    ...    ${expected_assert_command_result}
 
     # Create the bot to test againt
+    Log To Console    Test
     Create Bot
 
     # Run the command
@@ -38,7 +39,7 @@ Test Command
     ${assert_output}    Run Command    ${assert_command_name}    ${assert_command_parameters}
 
     Should Be True    ${assert_output}[success]
-    Should Be Equal As Integers    ${assert_output}[result]    8
+    Should Be Equal    '${assert_output}[result]'    '${expected_assert_command_result}'
 
     # Disconnect the bot
     Log To Console    Disconnecting the bot
