@@ -30,3 +30,14 @@ log_level = "INFO"
 exclude = '''(?x)(
     build
 )'''  # TOML's single-quoted strings do not require escaping backslashes
+
+[tool.robocop]
+configure = [
+    "line-too-long:line_length:88",
+    "W0503:max_calls:20"
+]
+
+[tool.robotidy]
+configure = [
+    "SplitTooLongLine:line_length=88"
+]

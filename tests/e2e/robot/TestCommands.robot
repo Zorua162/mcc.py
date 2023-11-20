@@ -4,9 +4,9 @@ Documentation       Test mcc.py comands
 Library             DataDriver    file=commands_test_data.json
 Library             MCCRobotLibrary.py
 
-Test Template       Test Command
 # Ensure that the bot gets disconnected cleanly, even if the test errors
-Test Teardown    Ensure Clean Disconnect
+Test Teardown       Ensure Clean Disconnect
+Test Template       Test Command
 
 
 *** Test Cases ***
@@ -36,10 +36,14 @@ Test Command
 
     # Assert the output is correct
     Log To Console    Running assert Command ${assert_command_name}
-    ${assert_output}    Run Command    ${assert_command_name}    ${assert_command_parameters}
+    ${assert_output}    Run Command
+    ...    ${assert_command_name}
+    ...    ${assert_command_parameters}
 
     Should Be True    ${assert_output}[success]
-    Should Be Equal    '${assert_output}[result]'    '${expected_assert_command_result}'
+    Should Be Equal
+    ...    '${assert_output}[result]'
+    ...    '${expected_assert_command_result}'
 
     # Disconnect the bot
     Log To Console    Disconnecting the bot
