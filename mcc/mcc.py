@@ -1,9 +1,9 @@
 from websockets import connect
 from websockets.legacy.protocol import WebSocketCommonProtocol
 import os
-import asyncio
 import logging
 import json
+import asyncio
 
 from mcc.commands.AuthenticateCommand import AuthenticateCommand
 from mcc.commands.ChangeSessionIdCommand import ChangeSessionIdCommand
@@ -79,8 +79,6 @@ class MccPyClient:
                 # If the command failed then raise an exception
                 raise Exception("Authenticate command failed")
             logger.info("Authentication succeeded... Continuing...")
-        # Give the Websocket bot a moment to register
-        await asyncio.sleep(1)
 
         if self.session_name != "":
             # Send session name command
@@ -101,6 +99,7 @@ class MccPyClient:
         logger.info("Client successfully connected")
 
     async def disconnect(self):
+        logger.info("Disconnecting")
         await self._socket.close()
 
     async def keep_alive(self):
@@ -112,9 +111,12 @@ class MccPyClient:
             message = await self.producer(socket)
             if message is not None:
                 await socket.send(message)
+            # Wait 0.1s before getting the next message
+            await asyncio.sleep(0.1)
 
     async def producer(self, socket: WebSocketCommonProtocol) -> Optional[str]:
         while len(self.message_queue) == 0:
+            await asyncio.sleep(0.1)
             # If the socket is closed then return none
             if not socket.open:
                 logger.debug("Socket was closed, exiting message queue producer wait")
@@ -124,6 +126,10 @@ class MccPyClient:
 
     def add_message(self, message: str):
         self.message_queue.append(message)
+
+    async def send_message(self, message: str):
+        logger.info(f"Sending the string {message}")
+        self.add_message(message)
 
     async def run_command(self, command: Command) -> Optional[dict]:
         logger.info(f"Adding the command to the message queue {command.name}")
@@ -170,20 +176,23 @@ class MccPyClient:
         timeout = int(os.environ.get("TIMEOUT", "30"))
         total_wait = 0
         logger.info(f"Waiting for Command with requestId {request_id} to succeed...")
+        logger.debug(f"timeout is {timeout}")
         while total_wait < timeout:
             logger.debug(f"total_wait is currently {total_wait}")
             message = self.get_response(request_id)
             # Wait for the command response to be found
             if message is not None:
                 return message
-
+            logger.debug(f"After get_response, {poll_sleep}")
             await asyncio.sleep(poll_sleep)
+            logger.debug("After sleep")
             total_wait += poll_sleep
         return None
 
     def get_response(self, request_id: str) -> Optional[dict]:
         # If message not found then return None
         out_message: Optional[dict] = None
+        logger.debug(f"responses is {self.responses}")
         for message in self.responses:
             logger.debug(
                 f"Checking message {message}, "

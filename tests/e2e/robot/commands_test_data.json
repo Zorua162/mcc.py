@@ -1,26 +1,70 @@
 [
-    {
-        "test_case_name": "ChangeSlotCommand smoke test",
-        "arguments": {
-            "${setup_data}": {
-                "command_list": []
-            },
-            "${command_data}": {
-                "command_name": "ChangeSlotCommand",
-                "command_parameters": [
-                    8
-                ],
-                "expected_command_result": "True"
-            },
-            "${assert_data}": {
-                "command_name": "GetCurrentSlotCommand",
-                "command_parameters": [],
-                "expected_command_result": "8"
-            }
-        },
-        "tags": [
-            "smoke"
+  {
+    "test_case_name": "ChangeSlotCommand test",
+    "arguments": {
+      "${setup_data}": {
+        "command_list": []
+      },
+      "${command_data}": {
+        "command_name": "ChangeSlotCommand",
+        "command_parameters": [
+          8
         ],
-        "documentation": "Smoke Test for ChangeSlotCommand"
-    }
+        "expected_command_result": "True"
+      },
+      "${assert_data}": {
+        "command_name": "GetCurrentSlotCommand",
+        "command_parameters": [],
+        "expected_command_result": "8"
+      }
+    },
+    "tags": [
+      "smoke"
+    ],
+    "documentation": "Test for ChangeSlotCommand"
+  },
+  {
+    "test_case_name": "ClearInventories test",
+    "arguments": {
+      "${setup_data}": {
+        "command_list": [
+          {
+            "command_name": "SendMessage",
+            "command_parameters": [
+              "gamemode creative"
+            ],
+            "expected_command_result": ""
+          },
+          {
+            "command_name": "CreativeGiveCommand",
+            "command_parameters": [
+              12,
+              1,
+              64
+            ],
+            "expected_command_result": "True"
+          },
+          {
+            "command_name": "GetInventoriesCommand",
+            "command_parameters": [],
+            "expected_command_result": {}
+          }
+        ]
+      },
+      "${command_data}": {
+        "command_name": "ClearInventoriesCommand",
+        "command_parameters": [],
+        "expected_command_result": "True"
+      },
+      "${assert_data}": {
+        "command_name": "GetInventoriesCommand",
+        "command_parameters": [],
+        "expected_command_result": {}
+      }
+    },
+    "tags": [
+      "smoke"
+    ],
+    "documentation": "Smoke Test for ChangeSlotCommand"
+  }
 ]

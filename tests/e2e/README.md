@@ -1,6 +1,7 @@
 # End to end tests
 
 ## Setup
+
 Ensure your container runtime supports health-check. On WSL2 Ubuntu, I had to
 enable systemd to ensure this would work.
 
@@ -10,14 +11,19 @@ uses podman, as that is my preference, but you can change this out to be
 docker if that is what you use and everything should work the same.
 
 ## Running
+
 Change directory to `mcc.py/tests/e2e`
 
 Run the file `run_tests.sh` from this folder
 
 Wait for the tests to run
 
+If you are running the tests after a previous test run, or just wish to cleanup the
+resources that are created to run the tests then use the command
+`./cleanup_resources.sh`.
 
 ## Process
+
 Within `mcc.py/tests/e2e` are three container compose files, which orchestrate
 setting up a full end to end environment for testing this MCC bot. Therefore
 these tests are run in the exact same type of environment that they are

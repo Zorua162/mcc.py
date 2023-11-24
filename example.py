@@ -17,6 +17,7 @@ client = MccPyClient(
     password="wspass12345",  # pragma: allowlist secret
     # loggingEnabled="todo",
     log_level=logging.INFO,
+    # log_level=logging.DEBUG,
     session_name="Test Chat Bot",
     chat_bot=TestChatBot()
     # reconnect="todo",
@@ -29,7 +30,8 @@ async def main():
     await client.connect()
     command = GetWorldCommand([])
     await client.run_command(command)
-    await client.keep_alive()
+    # await client.keep_alive()
+    await client.disconnect()
 
 
 if __name__ == "__main__":

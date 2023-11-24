@@ -1,1 +1,2 @@
-podman build . -t mcc.py:0.1
+#!/bin/bash
+podman build . -t mcc.py:0.2

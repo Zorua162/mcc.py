@@ -1,4 +1,4 @@
-FROM mcc.py:0.1
+FROM mcc.py:0.2
 
 WORKDIR /tests
 
