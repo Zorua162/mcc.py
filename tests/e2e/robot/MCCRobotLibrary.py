@@ -14,6 +14,8 @@ logger = logging.getLogger("MCCRobotLibrary")
 
 
 class MCCRobotLibrary:
+    client: Optional[MccPyClient] = None
+
     def create_bot(self):
         self.client = MccPyClient(
             host="mcc_MCC_1",
