@@ -5,6 +5,10 @@ from mcc.ChatBot import ChatBot
 import asyncio
 import logging
 
+logging.basicConfig()
+
+logger = logging.getLogger("example_client")
+
 
 class TestChatBot(ChatBot):
     """An example of implementing the ChatBot"""
@@ -15,6 +19,7 @@ client = MccPyClient(
     # host="localhost",
     port=8043,
     password="wspass12345",  # pragma: allowlist secret
+    logger=logger,
     # loggingEnabled="todo",
     log_level=logging.INFO,
     # log_level=logging.DEBUG,

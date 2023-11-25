@@ -3,12 +3,14 @@ services:
     image: itzg/minecraft-server
     environment:
       EULA: "true"
-        # WHITELIST: |
-        #   tester
-        # ENABLE_WHITELIST: true
-        # EXISTING_WHITELIST_FILE: "SYNCHRONIZE"
+      WHITELIST: |
+        tester
+      ENABLE_WHITELIST: true
+      EXISTING_WHITELIST_FILE: "SYNCHRONIZE"
       VERSION: 1.20.1
       ONLINE_MODE: "FALSE"
+      MODE: "creative"
+      FORCE_GAMEMODE: "true"
     volumes:
       - ./mc-data:/data
     ports:

@@ -29,13 +29,6 @@
       "${setup_data}": {
         "command_list": [
           {
-            "command_name": "SendMessage",
-            "command_parameters": [
-              "gamemode creative"
-            ],
-            "expected_command_result": ""
-          },
-          {
             "command_name": "CreativeGiveCommand",
             "command_parameters": [
               12,

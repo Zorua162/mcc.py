@@ -23,8 +23,9 @@ Test Command
     ...    ${setup_data}
     ...    ${command_data}
     ...    ${assert_data}
-    Log To Console    Connecting
     Create Bot
+
+    Connect
 
     # Arrange
     Setup Command    ${setup_data}

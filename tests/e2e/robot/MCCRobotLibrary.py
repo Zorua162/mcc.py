@@ -4,18 +4,22 @@ import logging
 import importlib
 from typing import Optional
 
+# from robot.api import logger  # notype
+
 # from ..mcc.mcc.py import MccPyClient
-from mcc.mcc import MccPyClient  # notype
+from mcc.mcc import MccPyClient
 from mcc.command import Command
+
+logger = logging.getLogger("MCCRobotLibrary")
 
 
 class MCCRobotLibrary:
-    async def create_bot(self):
-        print("testing custom library")
+    def create_bot(self):
         self.client = MccPyClient(
             host="mcc_MCC_1",
             port=8043,
             password="wspass12345",  # pragma: allowlist secret
+            logger=logger,
             # loggingEnabled="todo",
             # LogLevels="todo",
             log_level=logging.DEBUG,
@@ -32,11 +36,6 @@ class MCCRobotLibrary:
         await self.client.disconnect()
         # Set the client to None, so that we know it was disconnected
         self.client = None
-
-    async def ensure_clean_disconnect(self):
-        if self.client is not None:
-            logging.info("Fail clean disconnect called")
-            await self.disconnect()
 
     async def run_command(self, command_name: str, parameters: list) -> Optional[dict]:
         if self.client is None:

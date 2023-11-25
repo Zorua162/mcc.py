@@ -30,6 +30,7 @@ log_level = "INFO"
 exclude = '''(?x)(
     build
 )'''  # TOML's single-quoted strings do not require escaping backslashes
+ignore_missing_imports=true
 
 [tool.robocop]
 configure = [

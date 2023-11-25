@@ -13,15 +13,13 @@ from mcc.ChatBot import ChatBot  # type: ignore
 
 from typing import Optional
 
-logging.basicConfig()
-logger = logging.getLogger(__name__)
-
 
 class MccPyClient:
     def __init__(
         self,
         host: str,
         port: int,
+        logger: logging.Logger,
         password: str = "",
         log_level: int = logging.INFO,
         session_name: str = "",
@@ -40,8 +38,11 @@ class MccPyClient:
         # Chat bot
         self.chat_bot = chat_bot
 
-        # Logging
-        logger.setLevel(log_level)
+        # if base logging library logger set Level, otherwise if robot logger then don't
+        if hasattr(logger, "setLevel"):
+            logger.setLevel(log_level)
+        self.logger = logger
+        logger.info("Bot initialization completed successfully")
 
     async def run_background_tasks(self, socket):
         """Run the consumer and producer tasks"""
@@ -55,10 +56,12 @@ class MccPyClient:
             task.cancel()
 
     async def connect(self) -> None:
-        logger.info(f"Connecting to {self.host} on port {self.port} ...")
-        socket = await connect(f"ws://{self.host}:{self.port}/mcc", logger=logger)
+        self.logger.info(f"Connecting to {self.host} on port {self.port} ...")
+        socket = await connect(f"ws://{self.host}:{self.port}/mcc", logger=self.logger)
         self._socket = socket
-        logger.info(f"Successfully connected to {self.host} on port {self.port} ...")
+        self.logger.info(
+            f"Successfully connected to {self.host} on port " f"{self.port} ..."
+        )
 
         # Python websockets doesn't provide callbacks, so implement our own:
         # https://websockets.readthedocs.io/en/stable/faq/misc.html#are-there-onopen-onmessage-onerror-and-onclose-callbacks
@@ -68,38 +71,38 @@ class MccPyClient:
             # Send authenticate event
             authenticate_command = AuthenticateCommand([self.password])
 
-            logger.info("Sending authenticate command")
+            self.logger.info("Sending authenticate command")
             await socket.send(authenticate_command.get_command_json())
 
             # Wait for authentication to succeed before running loops
             response = await self.wait_for_response(authenticate_command.request_id)
-            logger.info(f"Auth response was {response}")
+            self.logger.info(f"Auth response was {response}")
             # If the command was successful then break out the waiting loop
             if response is None or response["success"] is False:
                 # If the command failed then raise an exception
                 raise Exception("Authenticate command failed")
-            logger.info("Authentication succeeded... Continuing...")
+            self.logger.info("Authentication succeeded... Continuing...")
 
         if self.session_name != "":
             # Send session name command
             change_session_command = ChangeSessionIdCommand([self.session_name])
-            logger.info("Sending ChangeSessionId command")
+            self.logger.info("Sending ChangeSessionId command")
             await socket.send(change_session_command.get_command_json())
 
             # NOTE: This required a fix to MinecraftConsoleClient, so needs the
             # updated binary
             # Wait for response
             response = await self.wait_for_response(change_session_command.request_id)
-            logger.info(f"Change name response was {response}")
+            self.logger.info(f"Change name response was {response}")
             if response is None or response["success"] is False:
                 # If the command failed then raise an exception
                 raise Exception("ChangeSessionId command failed")
-            logger.info("ChangeSessionId succeeded... Continuing...")
+            self.logger.info("ChangeSessionId succeeded... Continuing...")
 
-        logger.info("Client successfully connected")
+        self.logger.info("Client successfully connected")
 
     async def disconnect(self):
-        logger.info("Disconnecting")
+        self.logger.info("Disconnecting")
         await self._socket.close()
 
     async def keep_alive(self):
@@ -119,24 +122,26 @@ class MccPyClient:
             await asyncio.sleep(0.1)
             # If the socket is closed then return none
             if not socket.open:
-                logger.debug("Socket was closed, exiting message queue producer wait")
+                self.logger.debug(
+                    "Socket was closed, exiting message queue producer " "wait"
+                )
                 return None
-        logger.info(f"Send message queue is currently: {self.message_queue}")
+        self.logger.info(f"Send message queue is currently: {self.message_queue}")
         return self.message_queue.pop()
 
     def add_message(self, message: str):
         self.message_queue.append(message)
 
     async def send_message(self, message: str):
-        logger.info(f"Sending the string {message}")
+        self.logger.info(f"Sending the string {message}")
         self.add_message(message)
 
     async def run_command(self, command: Command) -> Optional[dict]:
-        logger.info(f"Adding the command to the message queue {command.name}")
+        self.logger.info(f"Adding the command to the message queue {command.name}")
         self.add_message(command.get_command_json())
 
         response = await self.wait_for_response(command.request_id)
-        logger.info(f"Response was {response}")
+        self.logger.info(f"Response was {response}")
         return response
 
     async def consumer_handler(self, socket):
@@ -145,18 +150,18 @@ class MccPyClient:
 
     async def execute_chat_bot_event(self, message: dict):
         """Given the current  chat bot execute the given event"""
-        logger.debug(f"Message data {message}")
+        self.logger.debug(f"Message data {message}")
         if self.chat_bot is None:
-            logger.info(f'Chat bot was None, ignoring event {message["event"]}')
+            self.logger.info(f'Chat bot was None, ignoring event {message["event"]}')
             return
         # Call the method on the bot
         event: str = message["event"]
         attribute = getattr(self.chat_bot, event, None)
         if attribute is None:
-            logger.error(f"Unsupported event {event}... Please report this error")
+            self.logger.error(f"Unsupported event {event}... Please report this error")
         # If the attribute is callable then call the event method
         data = json.loads(message["data"])
-        logger.debug(f"Calling attribute {attribute}, with data {data}")
+        self.logger.debug(f"Calling attribute {attribute}, with data {data}")
         if callable(attribute):
             attribute(*data.values())
 
@@ -164,7 +169,7 @@ class MccPyClient:
         """Send the message to where it needs to go"""
         # Decode it
         message = json.loads(message_data)
-        logger.debug("Received message %s", message)
+        self.logger.debug("Received message %s", message)
         if message["event"] == "OnWsCommandResponse":
             self.responses.append(json.loads(message["data"]))
             return
@@ -175,26 +180,28 @@ class MccPyClient:
         Return None if the maximum wait time is reached, specified by TIMEOUT env var"""
         timeout = int(os.environ.get("TIMEOUT", "30"))
         total_wait = 0
-        logger.info(f"Waiting for Command with requestId {request_id} to succeed...")
-        logger.debug(f"timeout is {timeout}")
+        self.logger.info(
+            f"Waiting for Command with requestId {request_id} " "to succeed..."
+        )
+        self.logger.debug(f"timeout is {timeout}")
         while total_wait < timeout:
-            logger.debug(f"total_wait is currently {total_wait}")
+            self.logger.debug(f"total_wait is currently {total_wait}")
             message = self.get_response(request_id)
             # Wait for the command response to be found
             if message is not None:
                 return message
-            logger.debug(f"After get_response, {poll_sleep}")
+            self.logger.debug(f"After get_response, {poll_sleep}")
             await asyncio.sleep(poll_sleep)
-            logger.debug("After sleep")
+            self.logger.debug("After sleep")
             total_wait += poll_sleep
         return None
 
     def get_response(self, request_id: str) -> Optional[dict]:
         # If message not found then return None
         out_message: Optional[dict] = None
-        logger.debug(f"responses is {self.responses}")
+        self.logger.debug(f"responses is {self.responses}")
         for message in self.responses:
-            logger.debug(
+            self.logger.debug(
                 f"Checking message {message}, "
                 f"requestId is {request_id}, "
                 f"message type is {type(message)}"
@@ -205,7 +212,7 @@ class MccPyClient:
                     '"requestId" was not in the returned message'
                 )
             if message["requestId"] == request_id:
-                logger.debug(
+                self.logger.debug(
                     f"Command with requestId {request_id} was found, returning"
                 )
                 out_message = message
