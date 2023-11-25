@@ -7,12 +7,13 @@ Library             MCCRobotLibrary.py
 
 # Suite Setup         Create Bot
 # Suite Teardown      Disconnect
+Test Teardown    Disconnect
 Test Template       Test Command
 
 
 *** Test Cases ***
 # Empty test, so that RobotFramework notices the data driven tests
-Test Command    {}    {}    {}
+Test Command    true    {}    {}    {}
 
 
 *** Keywords ***
@@ -20,9 +21,11 @@ Test Command
     [Documentation]    Test a given command agaist a assert command,
     ...    used as a test template for data driven tests
     [Arguments]
+    ...    ${skip_test}
     ...    ${setup_data}
     ...    ${command_data}
     ...    ${assert_data}
+    Skip If     ${skip_test}
     Create Bot
 
     Connect
@@ -35,8 +38,6 @@ Test Command
 
     # Assert
     Run Assert Command    ${assert_data}
-
-    Disconnect
 
 Setup Command
     [Documentation]    Run the required setup command
@@ -60,7 +61,7 @@ Run Test Command
     [Arguments]    ${command_data}
     # Run the command
     ${command_name}    Get From Dictionary    ${command_data}    command_name
-    Log To Console    Running the command ${command_name}
+    Log To Console    Testing the command ${command_name}
     ${output}    Run Command    ${command_name}    ${command_data}[command_parameters]
     Should Not Be Equal     ${output}    ${None}
     Should Be True    ${output}[success]

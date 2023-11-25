@@ -34,6 +34,11 @@ class MCCRobotLibrary:
         await self.client.connect()
 
     async def disconnect(self):
+        logger.info("Disconnecting from the MCC Websocket")
+        if self.client is None:
+            logger.info("Client is None, skipping disconnect")
+            return
+
         await self.client.disconnect()
         # Set the client to None, so that we know it was disconnected
         self.client = None

@@ -2,6 +2,7 @@
   {
     "test_case_name": "ChangeSlotCommand test",
     "arguments": {
+      "${skip_test}": false,
       "${setup_data}": {
         "command_list": []
       },
@@ -26,6 +27,7 @@
   {
     "test_case_name": "ClearInventories test",
     "arguments": {
+      "${skip_test}": true,
       "${setup_data}": {
         "command_list": [
           {

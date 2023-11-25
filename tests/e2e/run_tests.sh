@@ -14,6 +14,7 @@ time_wait=10
 # Container name to check
 container_name=server_mc_1
 echo "Started wait for mc server to be ready"
+# Waiting set to false when server is ready
 while [[ $waiting == true ]]; do
     sleep $time_wait
     count=$((count + 1))
@@ -26,6 +27,11 @@ while [[ $waiting == true ]]; do
     if [[ $server_status == "healthy" ]]; then
         echo "Server is available to connect to so exiting"
         waiting=false
+    fi
+
+    if [[ $count -ge $timeout ]]; then
+        echo "Server failed to start in time, exiting"
+        exit 1
     fi
     echo "Server ouput was $server_status"
 
