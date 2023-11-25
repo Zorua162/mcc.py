@@ -30,6 +30,7 @@ class MCCRobotLibrary:
         )
 
     async def connect(self):
+        logger.info("Connecting to the MCC Websocket server with the client")
         await self.client.connect()
 
     async def disconnect(self):
