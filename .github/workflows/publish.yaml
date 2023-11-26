@@ -12,7 +12,7 @@ on:
 
 jobs:
   build-and-unit-test:
-    name: Build distribution 📦
+    name: Build and unit test distribution 📦
     runs-on: ubuntu-latest
 
     steps:
@@ -56,7 +56,8 @@ jobs:
         sudo apt-get update
         sudo apt-get -y install podman
         pip install podman-compose
-        ./tests/e2e/run_tests.sh
+        cd ./tests/e2e
+        ./run_tests.sh
 
   check-if-package-updated:
     runs-on: ubuntu-latest
