@@ -1,4 +1,4 @@
-FROM mcc.py:0.2
+FROM docker.io/zorua162/mcc.py:main
 
 WORKDIR /tests
 
