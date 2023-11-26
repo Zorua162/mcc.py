@@ -118,6 +118,19 @@ class TestChatBot(ChatBot):
 @pytest.mark.asyncio
 async def test_unit_consumer_event_called_on_time_update(client, caplog):
     # message = {'event': 'OnServerTpsUpdate', 'data': '{"tps":19.97199526823488}'}
+    client = MccPyClient(
+        host="127.0.0.1",
+        port=8043,
+        password="wspass12345",  # pragma: allowlist secret
+        logger=logger,
+        # loggingEnabled="todo",
+        # LogLevels="todo",
+        session_name="Test Chat Bot",
+        chat_bot=TestChatBot(),
+        # reconnect="todo",
+        # reconnectTimeout="todo",
+        # reconnectAttempts="todo",
+    )
     message = {
         "event": "OnTimeUpdate",
         "data": '{"worldAge":1181337,"timeOfDay":1181337}',
