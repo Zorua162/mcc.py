@@ -75,27 +75,8 @@ async def fake_connection(uri, logger=None):
     return FakeBackend()
 
 
-@patch("mcc.mcc.connect", new=fake_connection)
-@pytest.mark.asyncio
-async def test_unit_connect_smoke():
-    client = MccPyClient(
-        host="127.0.0.1",
-        port=8043,
-        password="wspass12345",  # pragma: allowlist secret
-        # loggingEnabled="todo",
-        # LogLevels="todo",
-        session_name="Test Chat Bot",
-        # reconnect="todo",
-        # reconnectTimeout="todo",
-        # reconnectAttempts="todo",
-    )
-    await client.connect()
-
-    await client.disconnect()
-
-
-@pytest.mark.asyncio
-async def test_unit_consumer_chat_bot_none(caplog):
+@pytest.fixture()
+def client():
     client = MccPyClient(
         host="127.0.0.1",
         port=8043,
@@ -108,6 +89,18 @@ async def test_unit_consumer_chat_bot_none(caplog):
         # reconnectTimeout="todo",
         # reconnectAttempts="todo",
     )
+
+
+@patch("mcc.mcc.connect", new=fake_connection)
+@pytest.mark.asyncio
+async def test_unit_connect_smoke(client):
+    await client.connect()
+
+    await client.disconnect()
+
+
+@pytest.mark.asyncio
+async def test_unit_consumer_chat_bot_none(client, caplog):
     message = {"event": "OnServerTpsUpdate", "data": '{"tps":19.97199526823488}'}
     await client.execute_chat_bot_event(message)
     assert "Chat bot was None, ignoring event" in caplog.text
@@ -122,20 +115,7 @@ class TestChatBot(ChatBot):
 
 
 @pytest.mark.asyncio
-async def test_unit_consumer_event_called_on_time_update(caplog):
-    client = MccPyClient(
-        host="127.0.0.1",
-        port=8043,
-        password="wspass12345",  # pragma: allowlist secret
-        logger=logger,
-        # loggingEnabled="todo",
-        log_level=logging.INFO,
-        session_name="Test Chat Bot",
-        chat_bot=TestChatBot()
-        # reconnect="todo",
-        # reconnectTimeout="todo",
-        # reconnectAttempts="todo",
-    )
+async def test_unit_consumer_event_called_on_time_update(client, caplog):
     # message = {'event': 'OnServerTpsUpdate', 'data': '{"tps":19.97199526823488}'}
     message = {
         "event": "OnTimeUpdate",
