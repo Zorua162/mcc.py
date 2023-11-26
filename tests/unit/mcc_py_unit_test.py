@@ -100,6 +100,7 @@ async def test_unit_consumer_chat_bot_none(caplog):
         host="127.0.0.1",
         port=8043,
         password="wspass12345",  # pragma: allowlist secret
+        logger=logger,
         # loggingEnabled="todo",
         # LogLevels="todo",
         session_name="Test Chat Bot",
@@ -126,6 +127,7 @@ async def test_unit_consumer_event_called_on_time_update(caplog):
         host="127.0.0.1",
         port=8043,
         password="wspass12345",  # pragma: allowlist secret
+        logger=logger,
         # loggingEnabled="todo",
         log_level=logging.INFO,
         session_name="Test Chat Bot",
