@@ -21,7 +21,7 @@ jobs:
       with:
         python-version: "3.x"
     - name: Unit test distribution 🧪
-      run: >-
+      run:
         python -m pip install .
         python -m pytest
 
