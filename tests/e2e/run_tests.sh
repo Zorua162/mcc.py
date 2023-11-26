@@ -29,6 +29,13 @@ while [[ $waiting == true ]]; do
         waiting=false
     fi
 
+    # Exit out with error if the status is empty
+    if [[ $server_status == "" ]]; then
+        echo "Server failed to start"
+        exit 1
+    fi
+
+    # Exit out if the timeout is reached
     if [[ $count -ge $timeout ]]; then
         echo "Server failed to start in time, exiting"
         exit 1
