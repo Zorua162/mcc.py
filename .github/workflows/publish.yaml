@@ -4,10 +4,10 @@ name: Publish Python 🐍 distribution 📦 to PyPI and TestPyPI
 on:
   push:
     paths:
-      - mcc
+      - mcc/*
       - pyproject.toml
       - .github/workflows/publish.yaml
-      - tests
+      - tests/*
       - requirements-dev.txt
 
 jobs:
