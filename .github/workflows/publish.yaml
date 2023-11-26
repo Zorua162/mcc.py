@@ -47,9 +47,15 @@ jobs:
     - build-and-unit-test
     steps:
     - uses: actions/checkout@v4
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: "3.x"
     - name:
       run: |
-        alias podman=docker
+        sudo apt-get update
+        sudo apt-get -y install podman
+        pip install podman-compose
         ./tests/e2e/run_tests.sh
 
   check-if-package-updated:
