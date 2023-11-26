@@ -21,3 +21,5 @@ repos:
     rev: v2.12.1-beta
     hooks:
     -   id: hadolint-docker
+ci:
+  skip: [hadolint-docker]
