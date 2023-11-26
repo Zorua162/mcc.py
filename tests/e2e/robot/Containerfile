@@ -1,8 +1,13 @@
-FROM docker.io/zorua162/mcc.py:main
+FROM python:3.11-alpine
 
 WORKDIR /tests
 
 RUN mkdir output
+
+COPY ./testpypi-requirements.txt /testpypi-requirements.txt
+
+RUN pip install --no-cache-dir -r /testpypi-requirements.txt \
+--index-url https://test.pypi.org/simple --no-deps
 
 COPY ./requirements.txt /requirements.txt
 
