@@ -1,5 +1,5 @@
 # From tutorial: https://packaging.python.org/en/latest/guides/publishing-package-distribution-releases-using-github-actions-ci-cd-workflows/
-# name: Publish Python 🐍 distribution 📦 to PyPI and TestPyPI
+name: Publish pipeline
 
 on:
   push:
@@ -51,8 +51,6 @@ jobs:
       run: |
         alias podman=docker
         ./tests/e2e/run_tests.sh
-
-
 
   check-if-package-updated:
     runs-on: ubuntu-latest
