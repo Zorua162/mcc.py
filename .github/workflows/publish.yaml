@@ -50,9 +50,7 @@ jobs:
       with:
         filters: |
           package_updated:
-            - mcc
             - pyproject.toml
-            - .github/workflows/publish.yaml
 
   publish-to-testpypi:
     name: Publish Python 🐍 distribution 📦 to TestPyPI
