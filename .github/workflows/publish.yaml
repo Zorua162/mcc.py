@@ -8,6 +8,7 @@ on:
       - pyproject.toml
       - .github/workflows/publish.yaml
       - tests
+      - requirements-dev.txt
 
 jobs:
   build:
@@ -22,6 +23,7 @@ jobs:
         python-version: "3.x"
     - name: Unit test distribution 🧪
       run: |
+        pip install -r requirements-dev.txt
         python -m pip install .
         python -m pytest
 
