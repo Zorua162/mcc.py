@@ -6,6 +6,7 @@ on:
     paths:
       - mcc
       - pyproject.toml
+      - .github/workflows/publish.yaml
 
 jobs:
   build:
