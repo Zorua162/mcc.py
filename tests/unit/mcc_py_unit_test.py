@@ -89,6 +89,7 @@ def client():
         # reconnectTimeout="todo",
         # reconnectAttempts="todo",
     )
+    return client
 
 
 @patch("mcc.mcc.connect", new=fake_connection)
