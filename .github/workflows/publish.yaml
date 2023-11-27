@@ -52,6 +52,8 @@ jobs:
         # Alias doesn't work for subshells, so create a function instead
         podman-compose() { docker-compose $@; }
         export -f podman-compose
+        podman() {docker $@; }
+        export -f podman
         cd ./tests/e2e
         ./run_tests.sh
 
