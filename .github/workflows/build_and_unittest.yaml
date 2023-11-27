@@ -1,0 +1,11 @@
+name: Build and unittest distribution
+on:
+  workflow_run:
+    workflows: ["Publish"]
+    types:
+      - completed
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
