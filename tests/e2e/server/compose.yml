@@ -5,7 +5,7 @@ services:
       EULA: "true"
       WHITELIST: |
         dd823a0cb94a369facd6ddd287e3180e
-      ENABLE_WHITELIST: true
+      ENABLE_WHITELIST: "true"
       EXISTING_WHITELIST_FILE: "SYNCHRONIZE"
       VERSION: 1.20.1
       ONLINE_MODE: "FALSE"
