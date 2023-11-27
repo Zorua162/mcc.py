@@ -58,8 +58,10 @@ jobs:
         export -f podman
         cd ./tests/e2e
         pwd
+        set -x
         ls ..
         ls ../..
+        ls ../../minecraft-console-client-source
         ls ../../minecraft-console-client-source/Docker
         ./run_tests.sh
 
