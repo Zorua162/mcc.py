@@ -53,7 +53,7 @@ while [[ $waiting == true ]]; do
 done
 
 # Startup the MCC client
-podman-compose -f ./MCC/compose.yml up -d
+podman-compose -f ./mcc/compose.yml up -d
 # Wait 5 seconds for the MCC client to be fully loaded
 wait_time=5
 echo "Waiting $wait_time seconds for MCC Websocket server to be ready"

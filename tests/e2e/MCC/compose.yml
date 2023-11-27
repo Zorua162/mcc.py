@@ -1,5 +1,5 @@
 services:
-  MCC:
+  mcc:
     # image: "localhost/minecraft-console-client:latest"
     build:
       context: ../../../minecraft-console-client-source/Docker
