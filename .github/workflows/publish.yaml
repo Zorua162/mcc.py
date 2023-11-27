@@ -52,36 +52,10 @@ jobs:
       with:
         name: python-package-distributions
         path: dist/
-  end-to-end-test:
-    timeout-minutes: 5
-    runs-on: ubuntu-latest
-    needs:
-    - build
-    steps:
-    - uses: actions/checkout@v4
-      with:
-          submodules: 'true'
-    - name:
-      run: |
-        set -x
-        # Alias doesn't work for subshells, so create a function instead
-        podman-compose() { docker-compose $@; }
-        export -f podman-compose
-        podman() { docker $@; }
-        export -f podman
-        cd ./tests/e2e
-        pwd
-        ls ..
-        ls ../..
-        ls ../../minecraft-console-client-source
-        ls ../../minecraft-console-client-source/Docker
-        ./run_tests.sh
-
-
   publish-to-testpypi:
     name: Publish Python 🐍 distribution 📦 to TestPyPI
     needs:
-    - end-to-end-test
+    - build
     runs-on: ubuntu-latest
 
     environment:
@@ -110,6 +84,27 @@ jobs:
       if: steps.filter.outputs.package_updated == 'true'
       with:
         repository-url: https://test.pypi.org/legacy/
+  end-to-end-test:
+    name: Test distribution end to end 🔚
+    timeout-minutes: 5
+    runs-on: ubuntu-latest
+    needs:
+    - publish-to-testpypi
+    steps:
+    - uses: actions/checkout@v4
+      with:
+          submodules: 'true'
+    - name:
+      run: |
+        set -x
+        # Alias doesn't work for subshells, so create a function instead
+        podman-compose() { docker-compose $@; }
+        export -f podman-compose
+        podman() { docker $@; }
+        export -f podman
+        cd ./tests/e2e
+        ./run_tests.sh
+
 
   # Enable both once I get my account setup on PyPi
   # publish-to-pypi:
