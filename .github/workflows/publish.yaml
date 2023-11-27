@@ -51,6 +51,7 @@ jobs:
           submodules: 'true'
     - name:
       run: |
+        set -x
         # Alias doesn't work for subshells, so create a function instead
         podman-compose() { docker-compose $@; }
         export -f podman-compose
@@ -58,7 +59,6 @@ jobs:
         export -f podman
         cd ./tests/e2e
         pwd
-        set -x
         ls ..
         ls ../..
         ls ../../minecraft-console-client-source
