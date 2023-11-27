@@ -17,8 +17,6 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
-      with:
-          submodules: 'true'
     - name: Set up Python
       uses: actions/setup-python@v4
       with:
@@ -49,6 +47,8 @@ jobs:
     - build-and-unit-test
     steps:
     - uses: actions/checkout@v4
+      with:
+          submodules: 'true'
     - name:
       run: |
         # Alias doesn't work for subshells, so create a function instead
