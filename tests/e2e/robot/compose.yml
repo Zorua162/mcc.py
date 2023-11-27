@@ -2,6 +2,7 @@ services:
   robot_mcc_tests:
     build:
       context: .
+      dockerfile: Containerfile
     image: robot_mcc_tests
     volumes:
       - "./output:/tests/output"
