@@ -67,21 +67,16 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
-    - uses: dorny/paths-filter@v2
-      id: filter
-      with:
-        filters: |
-          package_updated:
-            - pyproject.toml
+    - name: Bump the pre release version number in pyproject.toml
+      run: |
+        ./set_pre_release_ver.sh
     - name: Download all the dists
       uses: actions/download-artifact@v3
-      if: steps.filter.outputs.package_updated == 'true'
       with:
         name: python-package-distributions
         path: dist/
     - name: Publish distribution 📦 to TestPyPI
       uses: pypa/gh-action-pypi-publish@release/v1
-      if: steps.filter.outputs.package_updated == 'true'
       with:
         repository-url: https://test.pypi.org/legacy/
   end-to-end-test:
