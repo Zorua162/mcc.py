@@ -57,6 +57,8 @@ jobs:
         podman() { docker $@; }
         export -f podman
         cd ./tests/e2e
+        pwd
+        ls ../../minecraft-console-client-source/Docker
         ./run_tests.sh
 
   check-if-package-updated:
@@ -77,7 +79,7 @@ jobs:
     - check-if-package-updated
     runs-on: ubuntu-latest
 
-    # if: ${{ needs.check-if-package-updated.outputs.package_updated == 'true' }}
+    if: ${{ needs.check-if-package-updated.outputs.package_updated == 'true' }}
     environment:
       name: testpypi
       url: https://test.pypi.org/p/mcc.py
