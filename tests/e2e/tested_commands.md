@@ -14,12 +14,6 @@
  [F] ChangeSessionIdCommand
  [X] ChangeSlotCommand
  [S] ClearInventoriesCommand
- [ ] ClientIsMovingCommand
- [ ] CloseInventoryCommand
- [ ] CreativeDeleteCommand
- [ ] CreativeGiveCommand
- [ ] DigBlockCommand
- [ ] DisconnectAndExitCommand
  [ ] GetCurrentLocationCommand
  [ ] GetCurrentSlotCommand
  [ ] GetEntitiesCommand
@@ -42,6 +36,12 @@
  [ ] GetUsernameCommand
  [ ] GetWorldCommand
  [ ] GetYawCommand
+ [ ] ClientIsMovingCommand
+ [ ] CloseInventoryCommand
+ [ ] CreativeDeleteCommand
+ [ ] CreativeGiveCommand
+ [ ] DigBlockCommand
+ [ ] DisconnectAndExitCommand
  [ ] InteractEntityCommand
  [ ] LogDebugToConsoleCommand
  [ ] LogDebugToConsoleTranslatedCommand

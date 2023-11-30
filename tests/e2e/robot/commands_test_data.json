@@ -61,5 +61,28 @@
       "smoke"
     ],
     "documentation": "Smoke Test for ChangeSlotCommand"
+  },
+  {
+    "test_case_name": "GetCurrentLocation test",
+    "arguments": {
+      "${skip_test}": false,
+      "${setup_data}": {
+        "command_list": []
+      },
+      "${command_data}": {
+        "command_name": "GetCurrentLocationCommand",
+        "command_parameters": [],
+        "expected_command_result": "True"
+      },
+      "${assert_data}": {
+        "command_name": "GetCurrentLocationCommand",
+        "command_parameters": [],
+        "expected_command_result": {}
+      }
+    },
+    "tags": [
+      "smoke"
+    ],
+    "documentation": "Smoke Test for ChangeSlotCommand"
   }
 ]
