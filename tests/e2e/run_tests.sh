@@ -16,13 +16,14 @@ container_name=server_mc_1
 echo "Started wait for mc server to be ready"
 # Waiting set to false when server is ready
 while [[ $waiting == true ]]; do
-    sleep $time_wait
     count=$((count + 1))
 
     echo "Checking container health $count/$timeout"
 
     # Check container health
     server_status=$(podman container inspect -f "{{.State.Health.Status}}" \
+                    $container_name)
+    container_status=$(podman container inspect -f "{{.State.Status}}" \
                     $container_name)
     if [[ $server_status == "healthy" ]]; then
         echo "Server is available to connect to so exiting"
@@ -32,6 +33,13 @@ while [[ $waiting == true ]]; do
     # Exit out with error if the status is empty
     if [[ $server_status == "" ]]; then
         echo "Server failed to start"
+        exit 1
+    fi
+
+    # Exit out with error if the status is empty
+    if [[ $container_status == "exited" ]]; then
+        echo "Container exited"
+	echo $(podman logs $container_name)
         exit 1
     fi
 
@@ -50,6 +58,7 @@ while [[ $waiting == true ]]; do
     #     echo "Waited $total_wait seconds"
     #     exit 1
     # fi
+    sleep $time_wait
 done
 
 # Startup the MCC client

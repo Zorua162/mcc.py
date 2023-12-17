@@ -1,6 +1,6 @@
 services:
   mc:
-    image: itzg/minecraft-server
+    image: docker.io/itzg/minecraft-server
     environment:
       EULA: "true"
       WHITELIST: |
