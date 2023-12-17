@@ -5,8 +5,13 @@ services:
       EULA: "true"
       WHITELIST: |
         dd823a0cb94a369facd6ddd287e3180e
+        1f1e572e69c93c288242daf883110351
+      OPS: |
+        dd823a0cb94a369facd6ddd287e3180e
+        1f1e572e69c93c288242daf883110351
       ENABLE_WHITELIST: "true"
       EXISTING_WHITELIST_FILE: "SYNCHRONIZE"
+      EXISTING_OPS_FILE: "MERGE"
       VERSION: 1.20.1
       ONLINE_MODE: "FALSE"
       MODE: "creative"

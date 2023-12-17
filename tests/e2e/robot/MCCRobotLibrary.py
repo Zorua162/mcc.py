@@ -8,9 +8,18 @@ from typing import Optional
 
 # from ..mcc.mcc.py import MccPyClient
 from mcc.mcc import MccPyClient
+from mcc.ChatBot import ChatBot
 from mcc.command import Command
 
 logger = logging.getLogger("MCCRobotLibrary")
+
+
+class RobotChatBot(ChatBot):
+    def OnChatRaw(self, text, json):
+        logger.info(f"Raw message received\n    text: {text}\n   json {json}")
+
+    def OnMccCommandResponse(self, response):
+        logger.info(f"MCCCommandResponse received\n    response: {response}")
 
 
 class MCCRobotLibrary:
@@ -26,6 +35,7 @@ class MCCRobotLibrary:
             # LogLevels="todo",
             log_level=logging.DEBUG,
             session_name="Test Chat Bot",
+            chat_bot=RobotChatBot(),
             # reconnect="todo",
             # reconnectTimeout="todo",
             # reconnectAttempts="todo",
@@ -53,7 +63,7 @@ class MCCRobotLibrary:
         if command_name == "SendMessage":
             for message in parameters:
                 await self.client.send_message(message)
-            return None
+            return {"success": True, "result": "Command was run"}
         module = importlib.import_module("mcc.commands")
         file_ = getattr(module, command_name)
         class_ = getattr(file_, command_name)
