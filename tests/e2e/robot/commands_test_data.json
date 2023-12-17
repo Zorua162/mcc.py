@@ -63,16 +63,18 @@
     "documentation": "Smoke Test for ChangeSlotCommand"
   },
   {
-    "test_case_name": "GetCurrentLocation test",
+    "test_case_name": "GetCurrentLocation",
     "arguments": {
       "${skip_test}": false,
       "${setup_data}": {
         "command_list": []
       },
       "${command_data}": {
-        "command_name": "GetCurrentLocationCommand",
-        "command_parameters": [],
-        "expected_command_result": "True"
+        "command_name": "SendMessage",
+        "command_parameters": [
+          "/tp @s 0 0 0"
+        ],
+        "expected_command_result": "Command was run"
       },
       "${assert_data}": {
         "command_name": "GetCurrentLocationCommand",

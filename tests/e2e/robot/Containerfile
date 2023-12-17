@@ -7,12 +7,12 @@ RUN mkdir output
 COPY ./testpypi-requirements.txt /testpypi-requirements.txt
 
 RUN pip install --no-cache-dir -r /testpypi-requirements.txt \
---index-url https://test.pypi.org/simple --no-deps
+    --index-url https://test.pypi.org/simple --no-deps
 
 COPY ./requirements.txt /requirements.txt
 
 RUN pip install --no-cache-dir --upgrade pip==23.3.1 \
- && pip install --no-cache-dir -r /requirements.txt
+    && pip install --no-cache-dir -r /requirements.txt
 
 COPY ./MCCRobotLibrary.py ./
 
@@ -21,3 +21,4 @@ COPY ./TestCommands.robot ./
 COPY ./commands_test_data.json ./
 
 CMD [ "python", "-m", "robot", "-d", "./output", "./TestCommands.robot"]
+# CMD [ "python", "-m", "robot", "-d", "./output", "--variable", "DYNAMICTESTS:TestCommands.GetCurrentLocation", "./TestCommands.robot"]
