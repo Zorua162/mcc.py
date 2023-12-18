@@ -35,7 +35,11 @@ async def main():
     await client.connect()
     command = GetWorldCommand([])
     await client.run_command(command)
+    await client.send_message("/send /tp @s 0 0 0")
     # await client.keep_alive()
+
+    # Give the send_message and command that was run enough time to be sent
+    await asyncio.sleep(3)
     await client.disconnect()
 
 

@@ -72,14 +72,25 @@
       "${command_data}": {
         "command_name": "SendMessage",
         "command_parameters": [
-          "/tp @s 0 0 0"
+          "/send /tp @s 0 0 0"
         ],
         "expected_command_result": "Command was run"
       },
       "${assert_data}": {
         "command_name": "GetCurrentLocationCommand",
         "command_parameters": [],
-        "expected_command_result": {}
+        "expected_command_result": {
+          "X": 0.5,
+          "Y": 0.0,
+          "Z": 0.5,
+          "Status": 0,
+          "ChunkX": 0,
+          "ChunkY": 0,
+          "ChunkZ": 0,
+          "ChunkBlockX": 0,
+          "ChunkBlockY": 0,
+          "ChunkBlockZ": 0
+        }
       }
     },
     "tags": [
