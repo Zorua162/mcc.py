@@ -111,7 +111,7 @@ jobs:
       if: success() || failure()
       with:
         name: robot-test-results
-        path: ./output/robot-unit-test-results.xml
+        path: ./output/xunit.xml
 
 
   # Enable both once I get my account setup on PyPi

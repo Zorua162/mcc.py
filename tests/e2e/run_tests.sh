@@ -25,10 +25,6 @@ while [[ $waiting == true ]]; do
                     $container_name)
     container_status=$(podman container inspect -f "{{.State.Status}}" \
                     $container_name)
-    if [[ $server_status == "healthy" ]]; then
-        echo "Server is available to connect to so exiting"
-        waiting=false
-    fi
 
     # Exit out with error if the status is empty
     if [[ $server_status == "" ]]; then
@@ -50,6 +46,13 @@ while [[ $waiting == true ]]; do
     fi
     echo "Server ouput was $server_status"
 
+    if [[ $server_status == "healthy" ]]; then
+        echo "Server is available to connect to so exiting"
+        waiting=false
+    else
+        sleep $time_wait
+    fi
+
 
     # Timeout check
     # if [[ $count -ge $timeout ]]; then
@@ -58,7 +61,6 @@ while [[ $waiting == true ]]; do
     #     echo "Waited $total_wait seconds"
     #     exit 1
     # fi
-    sleep $time_wait
 done
 
 # Startup the MCC client
