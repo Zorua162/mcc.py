@@ -1,6 +1,6 @@
 [project]
 name = "mcc.py"
-version = "0.0.11-pre1"
+version = "0.0.11"
 authors = [
   { name="zorua162", email="zorua162@gmail.com" },
 ]
