@@ -76,6 +76,8 @@ jobs:
     - name: Check if version was bumped
       run: |
         ./check_new_ver.sh https://test.pypi.org/simple/mcc-py/
+        echo ${{ env.latest_ver }}
+        echo ${{ env.pyproject_ver }}
     - name: Download all the dists
       uses: actions/download-artifact@v3
       with:
