@@ -110,8 +110,8 @@ jobs:
     - uses: actions/upload-artifact@v3
       if: success() || failure()
       with:
-        name: py-unit-test-results
-        path: ./py-unit-test-results.xml
+        name: robot-test-results
+        path: ./output/robot-unit-test-results.xml
 
 
   # Enable both once I get my account setup on PyPi

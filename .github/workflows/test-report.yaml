@@ -18,3 +18,9 @@ jobs:
         name: Pytest results
         path: '*.xml'
         reporter: java-junit
+    - uses: dorny/test-reporter@v1
+      with:
+        artifact: robot-test-results
+        name: Robot results
+        path: './output/*.xml'
+        reporter: java-junit
