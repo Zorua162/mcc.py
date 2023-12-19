@@ -27,7 +27,7 @@ class MCCRobotLibrary:
 
     def create_bot(self):
         self.client = MccPyClient(
-            host="mcc_MCC_1",
+            host="mcc_mcc_1",
             port=8043,
             password="wspass12345",  # pragma: allowlist secret
             logger=logger,
