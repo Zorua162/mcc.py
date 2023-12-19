@@ -36,13 +36,14 @@ event_parameter_names = [
     for event in events_data["EventData"]
 ]
 
+parameter_is_entity_data_list = ["OnEntityMove", "OnEntitySpawn", "OnEntityDespawn"]
 event_methods = "# Event methods\n"
 for event, parameters in zip(event_method_names, event_parameter_names):
     print(event)
     print(parameters)
 
     # Overwrite OnEntityMove to accept list of arguments
-    if event == "OnEntityMove":
+    if event in parameter_is_entity_data_list:
         parameters = ["*Entity"]
 
     parameters = [parameter for parameter in parameters if parameter is not None]

@@ -111,11 +111,11 @@ class ChatBot:
         # place holder event
         pass
 
-    def OnEntitySpawn(self, Entity):
+    def OnEntitySpawn(self, *Entity):
         # place holder event
         pass
 
-    def OnEntityDespawn(self):
+    def OnEntityDespawn(self, *Entity):
         # place holder event
         pass
 
