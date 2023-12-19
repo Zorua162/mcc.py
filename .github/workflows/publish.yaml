@@ -108,12 +108,12 @@ jobs:
         cd ./tests/e2e
         ./run_tests.sh
         ls
-        ls output
+        ls robot/output
     - uses: actions/upload-artifact@v3
       if: success() || failure()
       with:
         name: robot-test-results
-        path: ./output/xunit.xml
+        path: ./robot/output/xunit.xml
 
 
   # Enable both once I get my account setup on PyPi
