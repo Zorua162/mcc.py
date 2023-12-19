@@ -24,7 +24,12 @@ jobs:
       run: |
         pip install -r requirements-dev.txt
         python -m pip install .
-        python -m pytest
+        python -m pytest --junitxml="./py-unit-test-results.xml"
+    - uses: actions/upload-artifact@v3
+      if: success() || failure()
+      with:
+        name: py-unit-test-results
+        path: ./py-unit-test-results.xml
 
   build:
     name: Build and unit test distribution 📦
