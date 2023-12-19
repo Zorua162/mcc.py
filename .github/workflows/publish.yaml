@@ -6,7 +6,9 @@ on:
     paths:
       - mcc/**
       - pyproject.toml
+      - check_new_ver.sh
       - .github/workflows/publish.yaml
+      - .github/workflows/test-report.yaml
       - tests/**
       - requirements-dev.txt
 
