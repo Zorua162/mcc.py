@@ -11,4 +11,4 @@ echo "latest_ver=$latest_ver" >> "$GITHUB_ENV"
 
 pyproject_ver=$(grep version pyproject.toml | grep -Eo '".*"' | cut -d '"' -f 2)
 echo "pyproject_version $pyproject_ver"
-echo "pyproject_version $pyproject_ver" >> "$GITHUB_ENV"
+echo "pyproject_version=$pyproject_ver" >> "$GITHUB_ENV"
