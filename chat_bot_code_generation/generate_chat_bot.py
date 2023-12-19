@@ -40,13 +40,18 @@ event_methods = "# Event methods\n"
 for event, parameters in zip(event_method_names, event_parameter_names):
     print(event)
     print(parameters)
+
+    # Overwrite OnEntityMove to accept list of arguments
+    if event == "OnEntityMove":
+        parameters = ["*Entity"]
+
     parameters = [parameter for parameter in parameters if parameter is not None]
     parameters.insert(0, "self")
     parameters_string = ", ".join(parameters)
     event_methods += (
         f"\n    def {event}({parameters_string}):"
         f"\n        # place holder event"
-        f"\n        pass"
+        f"\n        pass\n"
     )
 
 

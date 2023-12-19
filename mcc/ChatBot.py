@@ -103,7 +103,7 @@ class ChatBot:
         # place holder event
         pass
 
-    def OnEntityMove(self, Entity):
+    def OnEntityMove(self, *Entity):
         # place holder event
         pass
 

@@ -13,9 +13,9 @@
  [F] AuthenticateCommand
  [F] ChangeSessionIdCommand
  [X] ChangeSlotCommand
- [S] ClearInventoriesCommand
- [ ] GetCurrentLocationCommand
- [ ] GetCurrentSlotCommand
+ [S] ClearInventoriesCommand - Seems to not work as expected, clears "Opened" inventories
+ [X] GetCurrentLocationCommand
+ [X] GetCurrentSlotCommand
  [ ] GetEntitiesCommand
  [ ] GetEntityHandlingEnabledCommand
  [ ] GetGamemodeCommand

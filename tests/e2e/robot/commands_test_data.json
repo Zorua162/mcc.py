@@ -1,6 +1,6 @@
 [
   {
-    "test_case_name": "ChangeSlotCommand test",
+    "test_case_name": "ChangeSlotCommand",
     "arguments": {
       "${skip_test}": false,
       "${setup_data}": {
@@ -25,7 +25,7 @@
     "documentation": "Test for ChangeSlotCommand"
   },
   {
-    "test_case_name": "ClearInventories test",
+    "test_case_name": "ClearInventories",
     "arguments": {
       "${skip_test}": true,
       "${setup_data}": {
@@ -42,7 +42,26 @@
           {
             "command_name": "GetInventoriesCommand",
             "command_parameters": [],
-            "expected_command_result": {}
+            "expected_command_result": {
+              "0": {
+                "ID": 0,
+                "Type": 24,
+                "Title": "Player Inventory",
+                "StateID": 1,
+                "Items": {
+                  "12": {
+                    "Type": 1,
+                    "Count": 64,
+                    "NBT": {},
+                    "IsEmpty": false,
+                    "DisplayName": null,
+                    "Lores": null,
+                    "Damage": 0
+                  }
+                },
+                "Properties": {}
+              }
+            }
           }
         ]
       },
@@ -54,7 +73,16 @@
       "${assert_data}": {
         "command_name": "GetInventoriesCommand",
         "command_parameters": [],
-        "expected_command_result": {}
+        "expected_command_result": {
+          "0": {
+            "ID": 0,
+            "Type": 24,
+            "Title": "Player Inventory",
+            "StateID": 0,
+            "Items": {},
+            "Properties": {}
+          }
+        }
       }
     },
     "tags": [
@@ -96,6 +124,31 @@
     "tags": [
       "smoke"
     ],
-    "documentation": "Smoke Test for ChangeSlotCommand"
+    "documentation": "Smoke Test for GetCurrentLocationCommand"
+  },
+  {
+    "test_case_name": "GetEntities",
+    "arguments": {
+      "${skip_test}": false,
+      "${setup_data}": {
+        "command_list": []
+      },
+      "${command_data}": {
+        "command_name": "SendMessage",
+        "command_parameters": [
+          "/send /summon sheep"
+        ],
+        "expected_command_result": "Command was run"
+      },
+      "${assert_data}": {
+        "command_name": "GetEntitiesCommand",
+        "command_parameters": [],
+        "expected_command_result": {}
+      }
+    },
+    "tags": [
+      "smoke"
+    ],
+    "documentation": "Smoke Test for GetEntities"
   }
 ]
