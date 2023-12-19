@@ -77,9 +77,13 @@ jobs:
     - uses: actions/checkout@v4
     - name: Check if version was bumped
       run: |
-        ./check_new_ver.sh https://test.pypi.org/simple/mcc-py/
-        echo ${{ env.latest_ver }}
-        echo ${{ env.pyproject_ver }}
+        source ./check_new_ver.sh https://test.pypi.org/simple/mcc-py/
+        echo latest_ver is $latest_ver
+        echo pyproject_ver is $pyproject_ver
+
+        echo env.latest_ver is ${{ env.latest_ver }}
+        echo env.pyproject_ver is ${{ env.pyproject_ver }}
+        echo "$GITHUB_ENV"
     - name: Download all the dists
       uses: actions/download-artifact@v3
       with:
@@ -113,6 +117,7 @@ jobs:
         ./run_tests.sh
         ls
         ls robot/output
+        pwd
     - uses: actions/upload-artifact@v3
       if: success() || failure()
       with:
