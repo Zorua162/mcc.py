@@ -7,9 +7,8 @@ latest_package=$(curl "$1" | sed 's/<[^>]*>//g' | tail -n 3 | head -n 1)
 echo "Extract the version"
 latest_ver=$(echo "$latest_package" | sed 's/mcc.py-//g' | sed 's/.tar.gz//g')
 echo "latest_ver $latest_ver"
-export latest_ver
-# sed -i -E 's/version = "(.*?)"/version = "'"$dev_ver"'"/g' pyproject.toml
+echo "latest_ver=$latest_ver" >> "$GITHUB_ENV"
 
-pyproject_ver=$(cat pyproject.toml | grep version | grep -Eo '".*"' | cut -d '"' -f 2)
+pyproject_ver=$(grep version pyproject.toml | grep -Eo '".*"' | cut -d '"' -f 2)
 echo "pyproject_version $pyproject_ver"
-export pyproject_ver
+echo "pyproject_version $pyproject_ver" >> "$GITHUB_ENV"
