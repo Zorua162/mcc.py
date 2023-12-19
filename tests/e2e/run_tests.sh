@@ -1,5 +1,13 @@
 #!/bin/bash -x
 # Run the RobotFramework tests against a live server and client
+
+# Cleanup old tests
+# (Comment out if speed needed, but could cause some settings to not be updated)
+podman-compose -f ./server/compose.yml down
+podman-compose -f ./mcc/compose.yml down
+podman-compose -f ./robot/compose.yml down
+
+
 # Startup the server
 podman-compose -f ./server/compose.yml up -d
 
