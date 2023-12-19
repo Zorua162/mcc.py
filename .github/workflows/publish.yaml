@@ -67,15 +67,16 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
-    - name: Bump the pre release version number in pyproject.toml
+    - name: Check if version was bumped
       run: |
-        ./set_pre_release_ver.sh
+        ./check_new_ver.sh
     - name: Download all the dists
       uses: actions/download-artifact@v3
       with:
         name: python-package-distributions
         path: dist/
     - name: Publish distribution 📦 to TestPyPI
+      if: env.latest_ver != env.pyproject_ver
       uses: pypa/gh-action-pypi-publish@release/v1
       with:
         repository-url: https://test.pypi.org/legacy/
