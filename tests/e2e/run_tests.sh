@@ -39,7 +39,7 @@ while [[ $waiting == true ]]; do
     # Exit out with error if the status is empty
     if [[ $container_status == "exited" ]]; then
         echo "Container exited"
-	echo $(podman logs $container_name)
+	podman logs $container_name
         exit 1
     fi
 
