@@ -107,6 +107,8 @@ jobs:
         export -f podman
         cd ./tests/e2e
         ./run_tests.sh
+        ls
+        ls output
     - uses: actions/upload-artifact@v3
       if: success() || failure()
       with:
