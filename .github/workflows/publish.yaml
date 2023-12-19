@@ -78,6 +78,7 @@ jobs:
     - name: Check if version was bumped
       run: |
         ./check_new_ver.sh https://test.pypi.org/simple/mcc-py/
+        echo latest_ver is $latest_ver
         echo env.latest_ver is ${{ env.latest_ver }}
         echo env.pyproject_ver is ${{ env.pyproject_ver }}
         echo "$GITHUB_ENV"
