@@ -16,16 +16,16 @@
  [S] ClearInventoriesCommand - Seems to not work as expected, clears "Opened" inventories
  [X] GetCurrentLocationCommand
  [X] GetCurrentSlotCommand
- [ ] GetEntitiesCommand
- [ ] GetEntityHandlingEnabledCommand
- [ ] GetGamemodeCommand
+ [S] GetEntitiesCommand
+ [X] GetEntityHandlingEnabledCommand
+ [X] GetGamemodeCommand
  [ ] GetInventoriesCommand
- [ ] GetInventoryEnabledCommand
- [ ] GetMaxChatMessageLengthCommand
- [ ] GetOnlinePlayersCommand
- [ ] GetOnlinePlayersWithUUIDCommand
- [ ] GetPitchCommand
- [ ] GetPlayerInventoryCommand
+ [X] GetInventoryEnabledCommand
+ [X] GetMaxChatMessageLengthCommand
+ [X] GetOnlinePlayersCommand
+ [X] GetOnlinePlayersWithUUIDCommand
+ [X] GetPitchCommand
+ [X] GetPlayerInventoryCommand
  [ ] GetPlayersLatencyCommand
  [ ] GetServerHostCommand
  [ ] GetServerPortCommand
@@ -63,3 +63,7 @@
  [ ] UpdateSignCommand
  [ ] UseItemInHandCommand
  [ ] WindowActionCommand
+
+## Future test improvements
+
+ [ ] GetPlayerInventoryCommand: Test whether the inventory can be moved etc

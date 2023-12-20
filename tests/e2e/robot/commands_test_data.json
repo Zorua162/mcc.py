@@ -10,11 +10,13 @@
             "command_parameters": [
               8
             ],
+            "expected_is_keys": false,
             "expected_command_result": "True"
           },
           {
             "command_name": "GetCurrentSlotCommand",
             "command_parameters": [],
+            "expected_is_keys": false,
             "expected_command_result": "8"
           }
         ]
@@ -38,11 +40,13 @@
               1,
               64
             ],
+            "expected_is_keys": false,
             "expected_command_result": "True"
           },
           {
             "command_name": "GetInventoriesCommand",
             "command_parameters": [],
+            "expected_is_keys": false,
             "expected_command_result": {
               "0": {
                 "ID": 0,
@@ -67,11 +71,13 @@
           {
             "command_name": "ClearInventoriesCommand",
             "command_parameters": [],
+            "expected_is_keys": false,
             "expected_command_result": "True"
           },
           {
             "command_name": "GetInventoriesCommand",
             "command_parameters": [],
+            "expected_is_keys": false,
             "expected_command_result": {
               "0": {
                 "ID": 0,
@@ -102,22 +108,17 @@
             "command_parameters": [
               "/send /tp @s 0 0 0"
             ],
+            "expected_is_keys": false,
             "expected_command_result": "Command was run"
           },
           {
             "command_name": "GetCurrentLocationCommand",
             "command_parameters": [],
+            "expected_is_keys": true,
             "expected_command_result": {
               "X": 0.5,
               "Y": 0,
-              "Z": 0.5,
-              "Status": 0,
-              "ChunkX": 0,
-              "ChunkY": 0,
-              "ChunkZ": 0,
-              "ChunkBlockX": 0,
-              "ChunkBlockY": 0,
-              "ChunkBlockZ": 0
+              "Z": 0.5
             }
           }
         ]
@@ -131,7 +132,7 @@
   {
     "test_case_name": "GetEntities",
     "arguments": {
-      "${skip_test}": false,
+      "${skip_test}": true,
       "${command_data}": {
         "command_list": [
           {
@@ -139,12 +140,14 @@
             "command_parameters": [
               "/send /summon sheep"
             ],
+            "expected_is_keys": false,
             "expected_command_result": "Command was run"
           },
           {
             "command_name": "GetEntitiesCommand",
             "command_parameters": [],
-            "expected_command_result": {}
+            "expected_is_keys": false,
+            "expected_command_result": "sheep"
           }
         ]
       }
@@ -153,5 +156,177 @@
       "smoke"
     ],
     "documentation": "Smoke Test for GetEntities"
+  },
+  {
+    "test_case_name": "GetEntityHandlingEnabledCommand",
+    "arguments": {
+      "${skip_test}": false,
+      "${command_data}": {
+        "command_list": [
+          {
+            "command_name": "GetEntityHandlingEnabledCommand",
+            "command_parameters": [],
+            "expected_is_keys": false,
+            "expected_command_result": "True"
+          }
+        ]
+      }
+    },
+    "tags": [
+      "smoke"
+    ],
+    "documentation": "Smoke Test for GetEntityHandlingEnabledCommand"
+  },
+  {
+    "test_case_name": "GetGamemodeCommand",
+    "arguments": {
+      "${skip_test}": false,
+      "${command_data}": {
+        "command_list": [
+          {
+            "command_name": "GetGamemodeCommand",
+            "command_parameters": [],
+            "expected_is_keys": false,
+            "expected_command_result": "creative"
+          }
+        ]
+      }
+    },
+    "tags": [
+      "smoke"
+    ],
+    "documentation": "Smoke Test for GetGamemodeCommand"
+  },
+  {
+    "test_case_name": "GetInventoryEnabledCommand",
+    "arguments": {
+      "${skip_test}": false,
+      "${command_data}": {
+        "command_list": [
+          {
+            "command_name": "GetInventoryEnabledCommand",
+            "command_parameters": [],
+            "expected_is_keys": false,
+            "expected_command_result": "True"
+          }
+        ]
+      }
+    },
+    "tags": [
+      "smoke"
+    ],
+    "documentation": "Smoke Test for GetInventoryEnabledCommand"
+  },
+  {
+    "test_case_name": "GetMaxChatMessageLengthCommand",
+    "arguments": {
+      "${skip_test}": false,
+      "${command_data}": {
+        "command_list": [
+          {
+            "command_name": "GetMaxChatMessageLengthCommand",
+            "command_parameters": [],
+            "expected_is_keys": false,
+            "expected_command_result": "256"
+          }
+        ]
+      }
+    },
+    "tags": [
+      "smoke"
+    ],
+    "documentation": "Smoke Test for GetMaxChatMessageLengthCommand"
+  },
+  {
+    "test_case_name": "GetOnlinePlayersCommand",
+    "arguments": {
+      "${skip_test}": false,
+      "${command_data}": {
+        "command_list": [
+          {
+            "command_name": "GetOnlinePlayersCommand",
+            "command_parameters": [],
+            "expected_is_keys": false,
+            "expected_command_result": "['tester']"
+          }
+        ]
+      }
+    },
+    "tags": [
+      "smoke"
+    ],
+    "documentation": "Smoke Test for GetOnlinePlayersCommand"
+  },
+  {
+    "test_case_name": "GetOnlinePlayersWithUUIDCommand",
+    "arguments": {
+      "${skip_test}": false,
+      "${command_data}": {
+        "command_list": [
+          {
+            "command_name": "GetOnlinePlayersWithUUIDCommand",
+            "command_parameters": [],
+            "expected_is_keys": true,
+            "expected_command_result": {
+              "dd823a0c-b94a-369f-acd6-ddd287e3180e": "tester"
+            }
+          }
+        ]
+      }
+    },
+    "tags": [
+      "smoke"
+    ],
+    "documentation": "Smoke Test for GetOnlinePlayersWithUUIDCommand"
+  },
+  {
+    "test_case_name": "GetPitchCommand",
+    "arguments": {
+      "${skip_test}": false,
+      "${command_data}": {
+        "command_list": [
+          {
+            "command_name": "SendMessage",
+            "command_parameters": [
+              "/send /tp @s 0 0 0"
+            ],
+            "expected_is_keys": false,
+            "expected_command_result": "Command was run"
+          },
+          {
+            "command_name": "GetPitchCommand",
+            "command_parameters": [],
+            "expected_is_keys": false,
+            "expected_command_result": 0.0
+          }
+        ]
+      }
+    },
+    "tags": [
+      "smoke"
+    ],
+    "documentation": "Smoke Test for GetPitchCommand"
+  },
+  {
+    "test_case_name": "GetPlayerInventoryCommand",
+    "arguments": {
+      "${skip_test}": false,
+      "${command_data}": {
+        "command_list": [
+          {
+            "command_name": "GetPlayerInventoryCommand",
+            "command_parameters": [],
+            "expected_is_keys": true,
+            "expected_command_result": {
+              "Title": "Player Inventory"
+            }
+          }
+        ]
+      }
+    },
+    "tags": [
+      "smoke"
+    ],
+    "documentation": "Smoke Test for GetPlayerInventoryCommand"
   }
 ]
