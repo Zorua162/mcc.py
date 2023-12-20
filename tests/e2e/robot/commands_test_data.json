@@ -328,5 +328,27 @@
       "smoke"
     ],
     "documentation": "Smoke Test for GetPlayerInventoryCommand"
+  },
+  {
+    "test_case_name": "GetPlayersLatencyCommand",
+    "arguments": {
+      "${skip_test}": false,
+      "${command_data}": {
+        "command_list": [
+          {
+            "command_name": "GetPlayersLatencyCommand",
+            "command_parameters": [],
+            "expected_is_keys": false,
+            "expected_command_result": {
+              "Title": "Player Inventory"
+            }
+          }
+        ]
+      }
+    },
+    "tags": [
+      "smoke"
+    ],
+    "documentation": "Smoke Test for GetPlayersLatencyCommand"
   }
 ]
