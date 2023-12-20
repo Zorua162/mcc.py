@@ -86,7 +86,7 @@ jobs:
         echo "$GITHUB_ENV"
     - name: Download all the dists
       if: env.latest_ver != env.pyproject_ver
-      uses: actions/download-artifact@v3
+      uses: actions/download-artifact@v4
       with:
         name: python-package-distributions
         path: dist/
@@ -142,7 +142,7 @@ jobs:
       id-token: write  # IMPORTANT: mandatory for trusted publishing
     steps:
     - name: Download all the dists
-      uses: actions/download-artifact@v3
+      uses: actions/download-artifact@v4
       with:
         name: python-package-distributions
         path: dist/
@@ -163,7 +163,7 @@ jobs:
 
     steps:
     - name: Download all the dists
-      uses: actions/download-artifact@v3
+      uses: actions/download-artifact@v4
       with:
         name: python-package-distributions
         path: dist/
