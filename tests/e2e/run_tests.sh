@@ -1,5 +1,6 @@
 #!/bin/bash -x
 # Run the RobotFramework tests against a live server and client
+start=$(date +%s)
 
 # Cleanup old tests
 # (Comment out if speed needed, but could cause some settings to not be updated)
@@ -83,3 +84,9 @@ cd robot || exit
 podman-compose build
 # Run the Robotframework tests
 podman-compose up
+
+end=$(date +%s)
+
+runtime=$((end-start))
+runtime_out=$(date -d@$runtime -u +%H:%M:%S)
+echo Total runtime was "$runtime_out" seconds

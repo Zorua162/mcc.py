@@ -10,13 +10,13 @@
             "command_parameters": [
               8
             ],
-            "expected_is_keys": false,
+            "expected_type": "exact",
             "expected_command_result": "True"
           },
           {
             "command_name": "GetCurrentSlotCommand",
             "command_parameters": [],
-            "expected_is_keys": false,
+            "expected_type": "exact",
             "expected_command_result": "8"
           }
         ]
@@ -40,13 +40,13 @@
               1,
               64
             ],
-            "expected_is_keys": false,
+            "expected_type": "exact",
             "expected_command_result": "True"
           },
           {
             "command_name": "GetInventoriesCommand",
             "command_parameters": [],
-            "expected_is_keys": false,
+            "expected_type": "exact",
             "expected_command_result": {
               "0": {
                 "ID": 0,
@@ -71,13 +71,13 @@
           {
             "command_name": "ClearInventoriesCommand",
             "command_parameters": [],
-            "expected_is_keys": false,
+            "expected_type": "exact",
             "expected_command_result": "True"
           },
           {
             "command_name": "GetInventoriesCommand",
             "command_parameters": [],
-            "expected_is_keys": false,
+            "expected_type": "exact",
             "expected_command_result": {
               "0": {
                 "ID": 0,
@@ -108,13 +108,13 @@
             "command_parameters": [
               "/send /tp @s 0 0 0"
             ],
-            "expected_is_keys": false,
+            "expected_type": "exact",
             "expected_command_result": "Command was run"
           },
           {
             "command_name": "GetCurrentLocationCommand",
             "command_parameters": [],
-            "expected_is_keys": true,
+            "expected_type": "keys",
             "expected_command_result": {
               "X": 0.5,
               "Y": 0,
@@ -140,13 +140,13 @@
             "command_parameters": [
               "/send /summon sheep"
             ],
-            "expected_is_keys": false,
+            "expected_type": "exact",
             "expected_command_result": "Command was run"
           },
           {
             "command_name": "GetEntitiesCommand",
             "command_parameters": [],
-            "expected_is_keys": false,
+            "expected_type": "exact",
             "expected_command_result": "sheep"
           }
         ]
@@ -166,7 +166,7 @@
           {
             "command_name": "GetEntityHandlingEnabledCommand",
             "command_parameters": [],
-            "expected_is_keys": false,
+            "expected_type": "exact",
             "expected_command_result": "True"
           }
         ]
@@ -186,7 +186,7 @@
           {
             "command_name": "GetGamemodeCommand",
             "command_parameters": [],
-            "expected_is_keys": false,
+            "expected_type": "exact",
             "expected_command_result": "creative"
           }
         ]
@@ -206,7 +206,7 @@
           {
             "command_name": "GetInventoryEnabledCommand",
             "command_parameters": [],
-            "expected_is_keys": false,
+            "expected_type": "exact",
             "expected_command_result": "True"
           }
         ]
@@ -226,7 +226,7 @@
           {
             "command_name": "GetMaxChatMessageLengthCommand",
             "command_parameters": [],
-            "expected_is_keys": false,
+            "expected_type": "exact",
             "expected_command_result": "256"
           }
         ]
@@ -246,7 +246,7 @@
           {
             "command_name": "GetOnlinePlayersCommand",
             "command_parameters": [],
-            "expected_is_keys": false,
+            "expected_type": "exact",
             "expected_command_result": "['tester']"
           }
         ]
@@ -266,7 +266,7 @@
           {
             "command_name": "GetOnlinePlayersWithUUIDCommand",
             "command_parameters": [],
-            "expected_is_keys": true,
+            "expected_type": "keys",
             "expected_command_result": {
               "dd823a0c-b94a-369f-acd6-ddd287e3180e": "tester"
             }
@@ -290,13 +290,13 @@
             "command_parameters": [
               "/send /tp @s 0 0 0"
             ],
-            "expected_is_keys": false,
+            "expected_type": "exact",
             "expected_command_result": "Command was run"
           },
           {
             "command_name": "GetPitchCommand",
             "command_parameters": [],
-            "expected_is_keys": false,
+            "expected_type": "exact",
             "expected_command_result": 0.0
           }
         ]
@@ -316,7 +316,7 @@
           {
             "command_name": "GetPlayerInventoryCommand",
             "command_parameters": [],
-            "expected_is_keys": true,
+            "expected_type": "keys",
             "expected_command_result": {
               "Title": "Player Inventory"
             }
@@ -338,9 +338,9 @@
           {
             "command_name": "GetPlayersLatencyCommand",
             "command_parameters": [],
-            "expected_is_keys": false,
+            "expected_type": "type_match",
             "expected_command_result": {
-              "Title": "Player Inventory"
+              "tester": "INTEGER"
             }
           }
         ]

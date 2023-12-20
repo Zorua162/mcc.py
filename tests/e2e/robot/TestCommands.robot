@@ -5,6 +5,7 @@ Library             Collections
 Library             OperatingSystem
 Library             DataDriver    file=commands_test_data.json
 Library             MCCRobotLibrary.py
+Library             matcher_utils.py
 
 # Suite Setup    Create Bot
 # Suite Teardown    Disconnect
@@ -48,8 +49,12 @@ Run Commands
         ...    ${command}[command_parameters]
         Should Not Be Equal    ${command_output}    ${None}
         Should Be True    ${command_output}[success]
-        IF    ${command}[expected_is_keys]
+        IF    "${command}[expected_type]" == "keys"
             Check All Keys In Dict
+            ...    ${command_output}[result]
+            ...    ${command}[expected_command_result]
+        ELSE IF    "${command}[expected_type]" == "type_match"
+            Check Type Match
             ...    ${command_output}[result]
             ...    ${command}[expected_command_result]
         ELSE
@@ -66,4 +71,12 @@ Check All Keys In Dict
     FOR    ${expected_item_key}    ${expected_item_value}    IN    &{expected_items}
         Log    ${expected_item_key}
         Should Be Equal    ${result}[${expected_item_key}]    ${expected_item_value}
+    END
+
+Check Type Match
+    [Documentation]    Check the type given for all the given keys matches their values
+    [Arguments]    ${result}    ${expected_items}
+    FOR    ${expected_item_key}    ${expected_value_type}    IN    &{expected_items}
+        Log    Checking type of key ${expected_item_key}
+        Check Type    ${result}[${expected_item_key}]    ${expected_value_type}
     END

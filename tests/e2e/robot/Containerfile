@@ -16,6 +16,8 @@ RUN pip install --no-cache-dir --upgrade pip==23.3.1 \
 
 COPY ./MCCRobotLibrary.py ./
 
+COPY ./matcher_utils.py ./
+
 COPY ./TestCommands.robot ./
 
 COPY ./commands_test_data.json ./
