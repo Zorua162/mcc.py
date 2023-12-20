@@ -1,4 +1,4 @@
-possible_types = {"INTEGER": int}
+possible_types = {"INTEGER": int, "FLOAT": float}
 
 
 def check_type(value: str, expected_type: str) -> bool:

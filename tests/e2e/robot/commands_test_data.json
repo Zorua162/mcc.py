@@ -338,7 +338,7 @@
           {
             "command_name": "GetPlayersLatencyCommand",
             "command_parameters": [],
-            "expected_type": "type_match",
+            "expected_type": "type_match_keys",
             "expected_command_result": {
               "tester": "INTEGER"
             }
@@ -350,5 +350,168 @@
       "smoke"
     ],
     "documentation": "Smoke Test for GetPlayersLatencyCommand"
+  },
+  {
+    "test_case_name": "GetServerHostCommand",
+    "arguments": {
+      "${skip_test}": false,
+      "${command_data}": {
+        "command_list": [
+          {
+            "command_name": "GetServerHostCommand",
+            "command_parameters": [],
+            "expected_type": "exact",
+            "expected_command_result": "server_mc_1"
+          }
+        ]
+      }
+    },
+    "tags": [
+      "smoke"
+    ],
+    "documentation": "Smoke Test for GetServerHostCommand"
+  },
+  {
+    "test_case_name": "GetServerPortCommand",
+    "arguments": {
+      "${skip_test}": false,
+      "${command_data}": {
+        "command_list": [
+          {
+            "command_name": "GetServerPortCommand",
+            "command_parameters": [],
+            "expected_type": "exact",
+            "expected_command_result": "25565"
+          }
+        ]
+      }
+    },
+    "tags": [
+      "smoke"
+    ],
+    "documentation": "Smoke Test for GetServerPortCommand"
+  },
+  {
+    "test_case_name": "GetServerTPSCommand",
+    "arguments": {
+      "${skip_test}": false,
+      "${command_data}": {
+        "command_list": [
+          {
+            "command_name": "GetServerTPSCommand",
+            "command_parameters": [],
+            "expected_type": "type_match",
+            "expected_command_result": "FLOAT"
+          }
+        ]
+      }
+    },
+    "tags": [
+      "smoke"
+    ],
+    "documentation": "Smoke Test for GetServerTPSCommand"
+  },
+  {
+    "test_case_name": "GetTerrainEnabledCommand",
+    "arguments": {
+      "${skip_test}": false,
+      "${command_data}": {
+        "command_list": [
+          {
+            "command_name": "GetTerrainEnabledCommand",
+            "command_parameters": [],
+            "expected_type": "exact",
+            "expected_command_result": "True"
+          }
+        ]
+      }
+    },
+    "tags": [
+      "smoke"
+    ],
+    "documentation": "Smoke Test for GetTerrainEnabledCommand"
+  },
+  {
+    "test_case_name": "GetTimestampCommand",
+    "arguments": {
+      "${skip_test}": false,
+      "${command_data}": {
+        "command_list": [
+          {
+            "command_name": "GetTimestampCommand",
+            "command_parameters": [],
+            "expected_type": "contains",
+            "expected_command_result": "20"
+          }
+        ]
+      }
+    },
+    "tags": [
+      "smoke"
+    ],
+    "documentation": "Smoke Test for GetTimestampCommand"
+  },
+  {
+    "test_case_name": "GetUserUUIDCommand",
+    "arguments": {
+      "${skip_test}": false,
+      "${command_data}": {
+        "command_list": [
+          {
+            "command_name": "GetUserUUIDCommand",
+            "command_parameters": [],
+            "expected_type": "exact",
+            "expected_command_result": "dd823a0cb94a369facd6ddd287e3180e"
+          }
+        ]
+      }
+    },
+    "tags": [
+      "smoke"
+    ],
+    "documentation": "Smoke Test for GetUserUUIDCommand"
+  },
+  {
+    "test_case_name": "GetUsernameCommand",
+    "arguments": {
+      "${skip_test}": false,
+      "${command_data}": {
+        "command_list": [
+          {
+            "command_name": "GetUsernameCommand",
+            "command_parameters": [],
+            "expected_type": "exact",
+            "expected_command_result": "tester"
+          }
+        ]
+      }
+    },
+    "tags": [
+      "smoke"
+    ],
+    "documentation": "Smoke Test for GetUsernameCommand"
+  },
+  {
+    "test_case_name": "GetWorldCommand",
+    "arguments": {
+      "${skip_test}": false,
+      "${command_data}": {
+        "command_list": [
+          {
+            "command_name": "GetWorldCommand",
+            "command_parameters": [],
+            "expected_type": "type_match_keys",
+            "expected_command_result": {
+              "chunkCnt": "INTEGER",
+              "chunkLoadNotCompleted": "INTEGER"
+            }
+          }
+        ]
+      }
+    },
+    "tags": [
+      "smoke"
+    ],
+    "documentation": "Smoke Test for GetWorldCommand"
   }
 ]

@@ -26,14 +26,14 @@
  [X] GetOnlinePlayersWithUUIDCommand
  [X] GetPitchCommand
  [X] GetPlayerInventoryCommand
- [ ] GetPlayersLatencyCommand
- [ ] GetServerHostCommand
- [ ] GetServerPortCommand
- [ ] GetServerTPSCommand
- [ ] GetTerrainEnabledCommand
- [ ] GetTimestampCommand
- [ ] GetUserUUIDCommand
- [ ] GetUsernameCommand
+ [X] GetPlayersLatencyCommand
+ [X] GetServerHostCommand
+ [X] GetServerPortCommand
+ [X] GetServerTPSCommand
+ [X] GetTerrainEnabledCommand
+ [X] GetTimestampCommand
+ [X] GetUserUUIDCommand
+ [X] GetUsernameCommand
  [ ] GetWorldCommand
  [ ] GetYawCommand
  [ ] ClientIsMovingCommand

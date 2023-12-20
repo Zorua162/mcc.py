@@ -53,8 +53,16 @@ Run Commands
             Check All Keys In Dict
             ...    ${command_output}[result]
             ...    ${command}[expected_command_result]
+        ELSE IF    "${command}[expected_type]" == "type_match_keys"
+            Check Type Match Keys
+            ...    ${command_output}[result]
+            ...    ${command}[expected_command_result]
         ELSE IF    "${command}[expected_type]" == "type_match"
             Check Type Match
+            ...    ${command_output}[result]
+            ...    ${command}[expected_command_result]
+        ELSE IF    "${command}[expected_type]" == "contains"
+            Should Contain
             ...    ${command_output}[result]
             ...    ${command}[expected_command_result]
         ELSE
@@ -73,10 +81,16 @@ Check All Keys In Dict
         Should Be Equal    ${result}[${expected_item_key}]    ${expected_item_value}
     END
 
-Check Type Match
+Check Type Match Keys
     [Documentation]    Check the type given for all the given keys matches their values
     [Arguments]    ${result}    ${expected_items}
     FOR    ${expected_item_key}    ${expected_value_type}    IN    &{expected_items}
         Log    Checking type of key ${expected_item_key}
         Check Type    ${result}[${expected_item_key}]    ${expected_value_type}
     END
+
+Check Type Match
+    [Documentation]    Check the type given for all the given keys matches their values
+    [Arguments]    ${result}    ${expected_type}
+    Log    Checking type of key ${expected_type}
+    Check Type    ${result}    ${expected_type}

@@ -22,5 +22,5 @@ COPY ./TestCommands.robot ./
 
 COPY ./commands_test_data.json ./
 
-CMD [ "python", "-m", "robot", "-x", "xunit.xml", "-d", "./output", "./TestCommands.robot"]
-# CMD [ "python", "-m", "robot", "-d", "./output", "--variable", "DYNAMICTESTS:TestCommands.GetPlayersLatencyCommand", "./TestCommands.robot"]
+# CMD [ "python", "-m", "robot", "-x", "xunit.xml", "-d", "./output", "./TestCommands.robot"]
+CMD [ "python", "-m", "robot", "-d", "./output", "--variable", "DYNAMICTESTS:TestCommands.GetWorldCommand", "./TestCommands.robot"]
