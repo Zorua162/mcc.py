@@ -70,7 +70,7 @@ class FakeBackend:
         logging.info("Closed fake connection")
 
 
-async def fake_connection(uri, logger=None):
+async def fake_connection(uri, logger=None, close_timeout=10):
     print(f"Creating fake connection with uri {uri} and logger {logger}")
     return FakeBackend()
 
