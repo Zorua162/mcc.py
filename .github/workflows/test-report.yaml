@@ -22,5 +22,5 @@ jobs:
       with:
         artifact: robot-test-results
         name: Robot results
-        path: ./tests/e2e/robot/output/xunit.xml
+        path: '*.xml'
         reporter: java-junit

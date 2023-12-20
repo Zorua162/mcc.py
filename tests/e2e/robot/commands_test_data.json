@@ -3,20 +3,21 @@
     "test_case_name": "ChangeSlotCommand",
     "arguments": {
       "${skip_test}": false,
-      "${setup_data}": {
-        "command_list": []
-      },
       "${command_data}": {
-        "command_name": "ChangeSlotCommand",
-        "command_parameters": [
-          8
-        ],
-        "expected_command_result": "True"
-      },
-      "${assert_data}": {
-        "command_name": "GetCurrentSlotCommand",
-        "command_parameters": [],
-        "expected_command_result": "8"
+        "command_list": [
+          {
+            "command_name": "ChangeSlotCommand",
+            "command_parameters": [
+              8
+            ],
+            "expected_command_result": "True"
+          },
+          {
+            "command_name": "GetCurrentSlotCommand",
+            "command_parameters": [],
+            "expected_command_result": "8"
+          }
+        ]
       }
     },
     "tags": [
@@ -28,7 +29,7 @@
     "test_case_name": "ClearInventories",
     "arguments": {
       "${skip_test}": true,
-      "${setup_data}": {
+      "${command_data}": {
         "command_list": [
           {
             "command_name": "CreativeGiveCommand",
@@ -62,27 +63,27 @@
                 "Properties": {}
               }
             }
+          },
+          {
+            "command_name": "ClearInventoriesCommand",
+            "command_parameters": [],
+            "expected_command_result": "True"
+          },
+          {
+            "command_name": "GetInventoriesCommand",
+            "command_parameters": [],
+            "expected_command_result": {
+              "0": {
+                "ID": 0,
+                "Type": 24,
+                "Title": "Player Inventory",
+                "StateID": 0,
+                "Items": {},
+                "Properties": {}
+              }
+            }
           }
         ]
-      },
-      "${command_data}": {
-        "command_name": "ClearInventoriesCommand",
-        "command_parameters": [],
-        "expected_command_result": "True"
-      },
-      "${assert_data}": {
-        "command_name": "GetInventoriesCommand",
-        "command_parameters": [],
-        "expected_command_result": {
-          "0": {
-            "ID": 0,
-            "Type": 24,
-            "Title": "Player Inventory",
-            "StateID": 0,
-            "Items": {},
-            "Properties": {}
-          }
-        }
       }
     },
     "tags": [
@@ -94,31 +95,32 @@
     "test_case_name": "GetCurrentLocation",
     "arguments": {
       "${skip_test}": false,
-      "${setup_data}": {
-        "command_list": []
-      },
       "${command_data}": {
-        "command_name": "SendMessage",
-        "command_parameters": [
-          "/send /tp @s 0 0 0"
-        ],
-        "expected_command_result": "Command was run"
-      },
-      "${assert_data}": {
-        "command_name": "GetCurrentLocationCommand",
-        "command_parameters": [],
-        "expected_command_result": {
-          "X": 0.5,
-          "Y": 0.0,
-          "Z": 0.5,
-          "Status": 0,
-          "ChunkX": 0,
-          "ChunkY": 0,
-          "ChunkZ": 0,
-          "ChunkBlockX": 0,
-          "ChunkBlockY": 0,
-          "ChunkBlockZ": 0
-        }
+        "command_list": [
+          {
+            "command_name": "SendMessage",
+            "command_parameters": [
+              "/send /tp @s 0 0 0"
+            ],
+            "expected_command_result": "Command was run"
+          },
+          {
+            "command_name": "GetCurrentLocationCommand",
+            "command_parameters": [],
+            "expected_command_result": {
+              "X": 0.5,
+              "Y": 0,
+              "Z": 0.5,
+              "Status": 0,
+              "ChunkX": 0,
+              "ChunkY": 0,
+              "ChunkZ": 0,
+              "ChunkBlockX": 0,
+              "ChunkBlockY": 0,
+              "ChunkBlockZ": 0
+            }
+          }
+        ]
       }
     },
     "tags": [
@@ -130,20 +132,21 @@
     "test_case_name": "GetEntities",
     "arguments": {
       "${skip_test}": false,
-      "${setup_data}": {
-        "command_list": []
-      },
       "${command_data}": {
-        "command_name": "SendMessage",
-        "command_parameters": [
-          "/send /summon sheep"
-        ],
-        "expected_command_result": "Command was run"
-      },
-      "${assert_data}": {
-        "command_name": "GetEntitiesCommand",
-        "command_parameters": [],
-        "expected_command_result": {}
+        "command_list": [
+          {
+            "command_name": "SendMessage",
+            "command_parameters": [
+              "/send /summon sheep"
+            ],
+            "expected_command_result": "Command was run"
+          },
+          {
+            "command_name": "GetEntitiesCommand",
+            "command_parameters": [],
+            "expected_command_result": {}
+          }
+        ]
       }
     },
     "tags": [
