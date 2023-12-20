@@ -15,7 +15,7 @@ repos:
     rev: v1.4.0
     hooks:
     -   id: detect-secrets
-        # args: ['--baseline', '.secrets.baseline']
+        args: ['--baseline', '.secrets.baseline']
         exclude: tests/e2e/mcc/data/MinecraftClient.ini
 -   repo: https://github.com/hadolint/hadolint
     rev: v2.12.1-beta
