@@ -34,9 +34,9 @@
  [X] GetTimestampCommand
  [X] GetUserUUIDCommand
  [X] GetUsernameCommand
- [ ] GetWorldCommand
- [ ] GetYawCommand
- [ ] ClientIsMovingCommand
+ [X] GetWorldCommand
+ [X] GetYawCommand
+ [S] ClientIsMovingCommand
  [ ] CloseInventoryCommand
  [ ] CreativeDeleteCommand
  [ ] CreativeGiveCommand
