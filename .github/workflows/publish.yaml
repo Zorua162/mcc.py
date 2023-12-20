@@ -123,7 +123,7 @@ jobs:
       if: success() || failure()
       with:
         name: robot-test-results
-        path: ./tests/e2e/robot/output/xunit.xml
+        path: ./tests/e2e/robot/output/*
 
 
   # Enable both once I get my account setup on PyPi
