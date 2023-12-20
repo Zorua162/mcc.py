@@ -21,8 +21,8 @@ client = MccPyClient(
     password="wspass12345",  # pragma: allowlist secret
     logger=logger,
     # loggingEnabled="todo",
-    log_level=logging.INFO,
-    # log_level=logging.DEBUG,
+    # log_level=logging.INFO,
+    log_level=logging.DEBUG,
     session_name="Test Chat Bot",
     chat_bot=TestChatBot()
     # reconnect="todo",
@@ -39,7 +39,7 @@ async def main():
     # await client.keep_alive()
 
     # Give the send_message and command that was run enough time to be sent
-    await asyncio.sleep(3)
+    # await asyncio.sleep(3)
     await client.disconnect()
 
 

@@ -57,7 +57,9 @@ class MccPyClient:
 
     async def connect(self) -> None:
         self.logger.info(f"Connecting to {self.host} on port {self.port} ...")
-        socket = await connect(f"ws://{self.host}:{self.port}/mcc", logger=self.logger)
+        socket = await connect(
+            f"ws://{self.host}:{self.port}/mcc", logger=self.logger, close_timeout=1
+        )
         self._socket = socket
         self.logger.info(
             f"Successfully connected to {self.host} on port " f"{self.port} ..."
@@ -116,6 +118,7 @@ class MccPyClient:
                 await socket.send(message)
             # Wait 0.1s before getting the next message
             await asyncio.sleep(0.1)
+        self.logger.debug("Socket was closed, producer exited")
 
     async def producer(self, socket: WebSocketCommonProtocol) -> Optional[str]:
         while len(self.message_queue) == 0:
@@ -146,7 +149,21 @@ class MccPyClient:
 
     async def consumer_handler(self, socket):
         async for message in socket:
+            if not socket.open:
+                self.logger.debug("Consumer exited, as socket is closed")
+                return
             await self.consumer(message)
+        self.logger.debug("Consumer exited")
+
+    async def consumer(self, message_data):
+        """Send the message to where it needs to go"""
+        # Decode it
+        message = json.loads(message_data)
+        self.logger.debug("Received message %s", message)
+        if message["event"] == "OnWsCommandResponse":
+            self.responses.append(json.loads(message["data"]))
+            return
+        await self.execute_chat_bot_event(message)
 
     async def execute_chat_bot_event(self, message: dict):
         """Given the current  chat bot execute the given event"""
@@ -164,16 +181,6 @@ class MccPyClient:
         self.logger.debug(f"Calling attribute {attribute}, with data {data}")
         if callable(attribute):
             attribute(*data.values())
-
-    async def consumer(self, message_data):
-        """Send the message to where it needs to go"""
-        # Decode it
-        message = json.loads(message_data)
-        self.logger.debug("Received message %s", message)
-        if message["event"] == "OnWsCommandResponse":
-            self.responses.append(json.loads(message["data"]))
-            return
-        await self.execute_chat_bot_event(message)
 
     async def wait_for_response(self, request_id, poll_sleep=0.5) -> Optional[dict]:
         """Wait for the response to a command to be in the response queue,
