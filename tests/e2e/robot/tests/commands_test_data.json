@@ -112,6 +112,10 @@
             "expected_command_result": "Command was run"
           },
           {
+            "command_name": "Sleep",
+            "command_parameters": 1
+          },
+          {
             "command_name": "GetCurrentLocationCommand",
             "command_parameters": [],
             "expected_type": "keys",
