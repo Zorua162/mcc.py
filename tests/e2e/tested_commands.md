@@ -36,7 +36,7 @@
  [X] GetUsernameCommand
  [X] GetWorldCommand
  [X] GetYawCommand
- [S] ClientIsMovingCommand
+ [X] ClientIsMovingCommand
  [ ] CloseInventoryCommand
  [ ] CreativeDeleteCommand
  [ ] CreativeGiveCommand

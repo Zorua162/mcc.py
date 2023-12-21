@@ -42,6 +42,11 @@ Run Commands
     [Arguments]    ${commands_data}
     # Run command
     FOR    ${command}    IN    @{commands_data}[command_list]
+        IF    "${command}[command_name]" == "Sleep"
+            Log To Console    Sleeping for ${command}[command_parameters] seconds
+            Sleep    ${command}[command_parameters]
+            CONTINUE
+        END
         ${command_name}    Get From Dictionary    ${command}    command_name
         Log To Console    Running command ${command_name}
         ${command_output}    Run Command
@@ -49,27 +54,32 @@ Run Commands
         ...    ${command}[command_parameters]
         Should Not Be Equal    ${command_output}    ${None}
         Should Be True    ${command_output}[success]
-        IF    "${command}[expected_type]" == "keys"
-            Check All Keys In Dict
-            ...    ${command_output}[result]
-            ...    ${command}[expected_command_result]
-        ELSE IF    "${command}[expected_type]" == "type_match_keys"
-            Check Type Match Keys
-            ...    ${command_output}[result]
-            ...    ${command}[expected_command_result]
-        ELSE IF    "${command}[expected_type]" == "type_match"
-            Check Type Match
-            ...    ${command_output}[result]
-            ...    ${command}[expected_command_result]
-        ELSE IF    "${command}[expected_type]" == "contains"
-            Should Contain
-            ...    ${command_output}[result]
-            ...    ${command}[expected_command_result]
-        ELSE
-            Should Be Equal
-            ...    '${command_output}[result]'
-            ...    '${command}[expected_command_result]'
-        END
+        Handle Assert    ${command}    ${command_output}
+    END
+
+Handle Assert
+    [Documentation]    Handles the assertation on the command output
+    [Arguments]    ${command}    ${command_output}
+    IF    "${command}[expected_type]" == "keys"
+        Check All Keys In Dict
+        ...    ${command_output}[result]
+        ...    ${command}[expected_command_result]
+    ELSE IF    "${command}[expected_type]" == "type_match_keys"
+        Check Type Match Keys
+        ...    ${command_output}[result]
+        ...    ${command}[expected_command_result]
+    ELSE IF    "${command}[expected_type]" == "type_match"
+        Check Type Match
+        ...    ${command_output}[result]
+        ...    ${command}[expected_command_result]
+    ELSE IF    "${command}[expected_type]" == "contains"
+        Should Contain
+        ...    ${command_output}[result]
+        ...    ${command}[expected_command_result]
+    ELSE
+        Should Be Equal
+        ...    '${command_output}[result]'
+        ...    '${command}[expected_command_result]'
     END
 
 Check All Keys In Dict

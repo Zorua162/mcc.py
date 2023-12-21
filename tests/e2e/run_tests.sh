@@ -86,7 +86,6 @@ podman-compose build
 podman-compose up
 
 end=$(date +%s)
-
 runtime=$((end-start))
 runtime_out=$(date -d@$runtime -u +%H:%M:%S)
 echo Total runtime was "$runtime_out" seconds

@@ -536,9 +536,39 @@
   {
     "test_case_name": "ClientIsMovingCommand",
     "arguments": {
-      "${skip_test}": true,
+      "${skip_test}": false,
       "${command_data}": {
         "command_list": [
+          {
+            "command_name": "SendMessage",
+            "command_parameters": [
+              "/send /fill 10 250 10 0 250 0 stone"
+            ],
+            "expected_type": "exact",
+            "expected_command_result": "Command was run"
+          },
+          {
+            "command_name": "Sleep",
+            "command_parameters": 1
+          },
+          {
+            "command_name": "SendMessage",
+            "command_parameters": [
+              "/send /tp @s 10 251 10"
+            ],
+            "expected_type": "exact",
+            "expected_command_result": "Command was run"
+          },
+          {
+            "command_name": "MoveToLocationCommand",
+            "command_parameters": [
+              0,
+              251,
+              0
+            ],
+            "expected_type": "exact",
+            "expected_command_result": "True"
+          },
           {
             "command_name": "ClientIsMovingCommand",
             "command_parameters": [],
