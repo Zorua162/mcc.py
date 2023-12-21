@@ -113,7 +113,7 @@
           },
           {
             "command_name": "Sleep",
-            "command_parameters": 1
+            "command_parameters": 3
           },
           {
             "command_name": "GetCurrentLocationCommand",
