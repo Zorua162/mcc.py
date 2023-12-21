@@ -10,59 +10,80 @@
 
 ## Commands
 
+### Misc
+
  [F] AuthenticateCommand
  [F] ChangeSessionIdCommand
- [X] ChangeSlotCommand
- [S] ClearInventoriesCommand - Seems to not work as expected, clears "Opened" inventories
- [X] GetCurrentLocationCommand
- [X] GetCurrentSlotCommand
- [S] GetEntitiesCommand
- [X] GetEntityHandlingEnabledCommand
- [X] GetGamemodeCommand
- [ ] GetInventoriesCommand
- [X] GetInventoryEnabledCommand
- [X] GetMaxChatMessageLengthCommand
- [X] GetOnlinePlayersCommand
- [X] GetOnlinePlayersWithUUIDCommand
- [X] GetPitchCommand
- [X] GetPlayerInventoryCommand
- [X] GetPlayersLatencyCommand
- [X] GetServerHostCommand
- [X] GetServerPortCommand
- [X] GetServerTPSCommand
- [X] GetTerrainEnabledCommand
  [X] GetTimestampCommand
- [X] GetUserUUIDCommand
- [X] GetUsernameCommand
- [X] GetWorldCommand
- [X] GetYawCommand
- [X] ClientIsMovingCommand
- [ ] CloseInventoryCommand
- [ ] CreativeDeleteCommand
- [ ] CreativeGiveCommand
- [ ] DigBlockCommand
  [S] DisconnectAndExitCommand
- [ ] InteractEntityCommand
- [ ] LogDebugToConsoleCommand
+ [S] ReconnectToTheServerCommand
+ [X] LogDebugToConsoleCommand
  [ ] LogDebugToConsoleTranslatedCommand
  [ ] LogToConsoleCommand
  [ ] LogToConsoleTranslatedCommand
- [ ] LookAtLocationCommand
- [F] MoveToLocationCommand
- [S] ReconnectToTheServerCommand
- [ ] RespawnCommand
  [ ] RunScriptCommand
- [ ] SelectTradeCommand
+ [ ] WindowActionCommand
  [ ] SendAnimationCommand
- [ ] SendEntityActionCommand
- [ ] SendPlaceBlockCommand
+
+### Inventory
+
+ [X] ChangeSlotCommand
+ [S] ClearInventoriesCommand - Seems to not work as expected, clears "Opened" inventories
+ [X] GetCurrentSlotCommand
+ [ ] GetInventoriesCommand
+ [X] GetInventoryEnabledCommand
+ [X] GetPlayerInventoryCommand
+ [ ] CloseInventoryCommand
+ [ ] CreativeDeleteCommand
+ [ ] CreativeGiveCommand
  [ ] SetSlotCommand
+
+### Entities
+
+ [S] GetEntitiesCommand
+ [X] GetEntityHandlingEnabledCommand
+ [ ] InteractEntityCommand
+ [ ] SelectTradeCommand
+ [ ] SendEntityActionCommand
+
+### Player
+
+ [X] GetGamemodeCommand
+ [X] GetPlayersLatencyCommand
+ [X] GetUserUUIDCommand
+ [X] GetUsernameCommand
+ [ ] RespawnCommand
+
+### Server
+
+ [X] GetMaxChatMessageLengthCommand
+ [X] GetOnlinePlayersCommand
+ [X] GetOnlinePlayersWithUUIDCommand
+ [X] GetServerHostCommand
+ [X] GetServerPortCommand
+ [X] GetServerTPSCommand
+
+### World
+
+ [X] GetTerrainEnabledCommand
+ [X] GetWorldCommand
+ [X] GetYawCommand
+ [ ] DigBlockCommand
+ [ ] SendPlaceBlockCommand
+ [ ] UpdateSignCommand
+ [ ] UpdateCommandBlockCommand
+
+### Movement
+
+ [X] ClientIsMovingCommand
+ [F] MoveToLocationCommand
+ [X] GetCurrentLocationCommand
+ [X] GetPitchCommand
+ [ ] LookAtLocationCommand
  [ ] SetTerrainEnabledCommand
  [ ] SneakCommand
- [ ] UpdateCommandBlockCommand
- [ ] UpdateSignCommand
  [ ] UseItemInHandCommand
- [ ] WindowActionCommand
+
 
 ## Future test improvements
 
