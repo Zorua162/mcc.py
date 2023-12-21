@@ -1,8 +1,8 @@
 FROM python:3.11-alpine
 
-WORKDIR /tests
+WORKDIR /
 
-RUN mkdir output
+VOLUME [ "/tests" ]
 
 COPY ./testpypi-requirements.txt /testpypi-requirements.txt
 
@@ -18,9 +18,9 @@ COPY ./MCCRobotLibrary.py ./
 
 COPY ./matcher_utils.py ./
 
-COPY ./TestCommands.robot ./
+# COPY ./tests/TestCommands.robot ./
 
-COPY ./commands_test_data.json ./
+# COPY ./tests/commands_test_data.json ./
 
-CMD [ "python", "-m", "robot", "-x", "xunit.xml", "-d", "./output", "./TestCommands.robot"]
-# CMD [ "python", "-m", "robot", "-d", "./output", "--variable", "DYNAMICTESTS:TestCommands.ClientIsMovingCommand", "./TestCommands.robot"]
+# CMD [ "python", "-m", "robot", "-x", "xunit.xml", "-d", "./output", "./tests/TestCommands.robot"]
+CMD [ "python", "-m", "robot", "-d", "./output", "--variable", "DYNAMICTESTS:TestCommands.ClientIsMovingCommand", "./tests/TestCommands.robot"]
