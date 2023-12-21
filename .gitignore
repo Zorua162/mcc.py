@@ -12,6 +12,8 @@ server.properties
 usercache.json
 tests/e2e/server/mc-data/ops.json
 tests/e2e/server/mc-data/whitelist.json
+tests/e2e/server/mc-data/banned-players.json
+tests/e2e/server/mc-data/banned-ips.json
 tests/e2e/server/mc-data/world/stats
 # - Fix end of files
 tests/e2e/server/mc-data/logs
