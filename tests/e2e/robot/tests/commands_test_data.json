@@ -514,26 +514,6 @@
     "documentation": "Smoke Test for GetWorldCommand"
   },
   {
-    "test_case_name": "GetYawCommand",
-    "arguments": {
-      "${skip_test}": false,
-      "${command_data}": {
-        "command_list": [
-          {
-            "command_name": "GetYawCommand",
-            "command_parameters": [],
-            "expected_type": "exact",
-            "expected_command_result": "0.0"
-          }
-        ]
-      }
-    },
-    "tags": [
-      "smoke"
-    ],
-    "documentation": "Smoke Test for GetYawCommand"
-  },
-  {
     "test_case_name": "ClientIsMovingCommand",
     "arguments": {
       "${skip_test}": false,
@@ -570,5 +550,99 @@
       "smoke"
     ],
     "documentation": "Smoke Test for ClientIsMovingCommand"
+  },
+  {
+    "test_case_name": "LogDebugToConsoleCommand",
+    "arguments": {
+      "${skip_test}": false,
+      "${command_data}": {
+        "command_list": [
+          {
+            "command_name": "GetYawCommand",
+            "command_parameters": [],
+            "expected_type": "exact",
+            "expected_command_result": "0.0"
+          }
+        ]
+      }
+    },
+    "tags": [
+      "smoke"
+    ],
+    "documentation": "Smoke Test for GetYawCommand"
+  },
+  {
+    "test_case_name": "DisconnectAndExitCommand_and_ReconnectToTheServerCommand",
+    "arguments": {
+      "${skip_test}": true,
+      "${command_data}": {
+        "command_list": [
+          {
+            "command_name": "DisconnectAndExitCommand",
+            "command_parameters": [],
+            "expected_type": "exact",
+            "expected_command_result": "True"
+          },
+          {
+            "command_name": "ReconnectToTheServerCommand",
+            "command_parameters": [],
+            "expected_type": "exact",
+            "expected_command_result": "True"
+          }
+        ]
+      }
+    },
+    "tags": [
+      "smoke"
+    ],
+    "documentation": "Smoke Test for GetYawCommand"
+  },
+  {
+    "test_case_name": "RespawnCommand",
+    "arguments": {
+      "${skip_test}": false,
+      "${command_data}": {
+        "command_list": [
+          {
+            "command_name": "SendMessage",
+            "command_parameters": [
+              "/send /gamerule doImmediateRespawn false"
+            ],
+            "expected_type": "exact",
+            "expected_command_result": "Command was run"
+          },
+          {
+            "command_name": "SendMessage",
+            "command_parameters": [
+              "/send /kill tester"
+            ],
+            "expected_type": "exact",
+            "expected_command_result": "Command was run"
+          },
+          {
+            "command_name": "Sleep",
+            "command_parameters": 3
+          },
+          {
+            "command_name": "RespawnCommand",
+            "command_parameters": [],
+            "expected_type": "exact",
+            "expected_command_result": "True"
+          },
+          {
+            "command_name": "SendMessage",
+            "command_parameters": [
+              "/send /gamerule doImmediateRespawn true"
+            ],
+            "expected_type": "exact",
+            "expected_command_result": "Command was run"
+          }
+        ]
+      }
+    },
+    "tags": [
+      "smoke"
+    ],
+    "documentation": "Smoke Test for RespawnCommand"
   }
 ]

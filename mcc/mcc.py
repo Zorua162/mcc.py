@@ -177,7 +177,10 @@ class MccPyClient:
         if attribute is None:
             self.logger.error(f"Unsupported event {event}... Please report this error")
         # If the attribute is callable then call the event method
-        data = json.loads(message["data"])
+        if not message["data"]:
+            data = {}
+        else:
+            data = json.loads(message["data"])
         self.logger.debug(f"Calling attribute {attribute}, with data {data}")
         if callable(attribute):
             attribute(*data.values())

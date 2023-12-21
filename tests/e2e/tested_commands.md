@@ -41,15 +41,15 @@
  [ ] CreativeDeleteCommand
  [ ] CreativeGiveCommand
  [ ] DigBlockCommand
- [ ] DisconnectAndExitCommand
+ [S] DisconnectAndExitCommand
  [ ] InteractEntityCommand
  [ ] LogDebugToConsoleCommand
  [ ] LogDebugToConsoleTranslatedCommand
  [ ] LogToConsoleCommand
  [ ] LogToConsoleTranslatedCommand
  [ ] LookAtLocationCommand
- [ ] MoveToLocationCommand
- [ ] ReconnectToTheServerCommand
+ [F] MoveToLocationCommand
+ [S] ReconnectToTheServerCommand
  [ ] RespawnCommand
  [ ] RunScriptCommand
  [ ] SelectTradeCommand

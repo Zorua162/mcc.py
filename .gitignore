@@ -4,9 +4,20 @@ __pycache__
 output
 interactive_console_output.xml
 
-# Server files password that shouldn't be given
+# Server files that cause issues with pre-commits
+#  - passwords that shouldn't be given
 .rcon-cli.env
 server.properties
+#  - Json files that can't be formatted
+usercache.json
+tests/e2e/server/mc-data/world/stats
+# - Fix end of files
+tests/e2e/server/mc-data/logs
+
+# Misc other folders that aren't wanted
+tests/e2e/server/mc-data/advancements
+tests/e2e/server/mc-data/playerdata
+
 
 # Ignore the MinecraftClient binary that gets download by the container
 MinecraftClient

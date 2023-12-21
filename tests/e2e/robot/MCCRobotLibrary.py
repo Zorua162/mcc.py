@@ -1,4 +1,5 @@
 import logging
+from logging import FileHandler
 
 # For instantiating classes
 import importlib
@@ -11,7 +12,11 @@ from mcc.mcc import MccPyClient
 from mcc.ChatBot import ChatBot
 from mcc.command import Command
 
+# logging.basicConfig(filename='/output/MCCRobotLibrary.log')
+
 logger = logging.getLogger("MCCRobotLibrary")
+
+logger.addHandler(FileHandler("/output/MCCRobotLibrary.log"))
 
 
 class RobotChatBot(ChatBot):
