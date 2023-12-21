@@ -120,7 +120,7 @@ jobs:
       if: success() || failure()
       with:
         name: robot-test-results
-        path: ./tests/e2e/robot/output/*
+        path: ./tests/e2e/robot/tests/output/*
 
 
   # Enable both once I get my account setup on PyPi
