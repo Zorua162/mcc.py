@@ -558,10 +558,12 @@
       "${command_data}": {
         "command_list": [
           {
-            "command_name": "GetYawCommand",
-            "command_parameters": [],
+            "command_name": "LogDebugToConsoleCommand",
+            "command_parameters": [
+              "Debug"
+            ],
             "expected_type": "exact",
-            "expected_command_result": "0.0"
+            "expected_command_result": "True"
           }
         ]
       }
@@ -569,7 +571,7 @@
     "tags": [
       "smoke"
     ],
-    "documentation": "Smoke Test for GetYawCommand"
+    "documentation": "Smoke Test for LogDebugToConsoleCommand"
   },
   {
     "test_case_name": "DisconnectAndExitCommand_and_ReconnectToTheServerCommand",
@@ -595,7 +597,7 @@
     "tags": [
       "smoke"
     ],
-    "documentation": "Smoke Test for GetYawCommand"
+    "documentation": "Smoke Test for DisconnectAndExitCommand and ReconnectToTheServerCommand"
   },
   {
     "test_case_name": "RespawnCommand",

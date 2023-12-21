@@ -119,6 +119,8 @@ jobs:
         pwd
         ls robot
         ls robot/output
+        exit $exit_status
+
     - uses: actions/upload-artifact@v3
       if: success() || failure()
       with:

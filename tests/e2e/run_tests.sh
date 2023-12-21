@@ -85,6 +85,9 @@ podman-compose build
 # Run the Robotframework tests
 podman-compose up
 
+podman logs mcc_mcc_1 > ./output/mcc_mcc_1.log
+podman logs server_mc_1 > ./output/server_mc_1.log
+
 end=$(date +%s)
 runtime=$((end-start))
 runtime_out=$(date -d@$runtime -u +%H:%M:%S)
