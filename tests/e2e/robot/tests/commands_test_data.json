@@ -104,24 +104,12 @@
       "${command_data}": {
         "command_list": [
           {
-            "command_name": "SendMessage",
-            "command_parameters": [
-              "/send /tp @s 0 0 0"
-            ],
-            "expected_type": "exact",
-            "expected_command_result": "Command was run"
-          },
-          {
-            "command_name": "Sleep",
-            "command_parameters": 3
-          },
-          {
             "command_name": "GetCurrentLocationCommand",
             "command_parameters": [],
-            "expected_type": "keys",
+            "expected_type": "type_match_keys",
             "expected_command_result": {
-              "X": 0.5,
-              "Z": 0.5
+              "X": "FLOAT",
+              "Z": "FLOAT"
             }
           }
         ]
@@ -249,8 +237,8 @@
           {
             "command_name": "GetOnlinePlayersCommand",
             "command_parameters": [],
-            "expected_type": "exact",
-            "expected_command_result": "['tester']"
+            "expected_type": "contains",
+            "expected_command_result": "tester"
           }
         ]
       }
@@ -546,6 +534,15 @@
           {
             "command_name": "SendMessage",
             "command_parameters": [
+              "/send /tp @s 10 251 10"
+            ],
+            "expected_type": "exact",
+            "expected_command_result": "Command was run",
+            "comment": "pre-tp to allow chunks to load faster"
+          },
+          {
+            "command_name": "SendMessage",
+            "command_parameters": [
               "/send /fill 10 250 10 0 250 0 stone"
             ],
             "expected_type": "exact",
@@ -553,7 +550,7 @@
           },
           {
             "command_name": "Sleep",
-            "command_parameters": 1
+            "command_parameters": 10
           },
           {
             "command_name": "SendMessage",

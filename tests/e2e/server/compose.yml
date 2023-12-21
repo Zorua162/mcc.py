@@ -16,7 +16,7 @@ services:
       ONLINE_MODE: "FALSE"
       MODE: "creative"
       FORCE_GAMEMODE: "true"
-    volumes:
-      - ./mc-data:/data
+    # volumes:
+    #   - ./mc-data:/data
     ports:
       - "25565:25565"
