@@ -10,6 +10,8 @@ interactive_console_output.xml
 server.properties
 #  - Json files that can't be formatted
 usercache.json
+tests/e2e/server/mc-data/ops.json
+tests/e2e/server/mc-data/whitelist.json
 tests/e2e/server/mc-data/world/stats
 # - Fix end of files
 tests/e2e/server/mc-data/logs
