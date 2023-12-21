@@ -118,12 +118,12 @@ jobs:
         ./run_tests.sh
         pwd
         ls robot
-        ls robot/tests/output
+        ls robot/output
     - uses: actions/upload-artifact@v3
       if: success() || failure()
       with:
         name: robot-test-results
-        path: ./tests/e2e/robot/tests/output/*
+        path: ./tests/e2e/robot/output/*
 
 
   # Enable both once I get my account setup on PyPi

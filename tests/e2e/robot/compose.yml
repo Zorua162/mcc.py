@@ -6,6 +6,7 @@ services:
     image: robot_mcc_tests
     volumes:
       - "./tests:/tests"
+      - "./output:/output"
     networks:
       - server
 networks:
