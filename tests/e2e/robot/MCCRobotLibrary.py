@@ -67,7 +67,7 @@ class MCCRobotLibrary:
             return {}
         if command_name == "SendMessage":
             for message in parameters:
-                await self.client.send_message(message)
+                await self.client.send_message(message, None)
             return {"success": True, "result": "Command was run"}
         module = importlib.import_module("mcc.commands")
         file_ = getattr(module, command_name)
