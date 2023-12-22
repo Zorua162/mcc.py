@@ -84,7 +84,6 @@
  [ ] SneakCommand
  [ ] UseItemInHandCommand
 
-
 ## Future test improvements
 
  [ ] GetPlayerInventoryCommand: Test whether the inventory can be moved etc
