@@ -650,5 +650,71 @@
       "smoke"
     ],
     "documentation": "Smoke Test for RespawnCommand"
+  },
+  {
+    "test_case_name": "LogDebugToConsoleTranslatedCommand",
+    "arguments": {
+      "${skip_test}": false,
+      "${command_data}": {
+        "command_list": [
+          {
+            "command_name": "LogDebugToConsoleTranslatedCommand",
+            "command_parameters": [
+              "Debug"
+            ],
+            "expected_type": "exact",
+            "expected_command_result": "True"
+          }
+        ]
+      }
+    },
+    "tags": [
+      "smoke"
+    ],
+    "documentation": "Smoke Test for LogDebugToConsoleTranslatedCommand"
+  },
+  {
+    "test_case_name": "LogToConsoleCommand",
+    "arguments": {
+      "${skip_test}": false,
+      "${command_data}": {
+        "command_list": [
+          {
+            "command_name": "LogToConsoleCommand",
+            "command_parameters": [
+              "Debug"
+            ],
+            "expected_type": "exact",
+            "expected_command_result": "True"
+          }
+        ]
+      }
+    },
+    "tags": [
+      "smoke"
+    ],
+    "documentation": "Smoke Test for LogToConsoleCommand"
+  },
+  {
+    "test_case_name": "LogToConsoleTranslatedCommand",
+    "arguments": {
+      "${skip_test}": false,
+      "${command_data}": {
+        "command_list": [
+          {
+            "command_name": "LogToConsoleTranslatedCommand",
+            "command_parameters": [
+              "Debug"
+            ],
+            "expected_type": "exact",
+            "expected_command_result": "True"
+          }
+        ]
+      }
+    },
+    "tags": [
+      "smoke"
+    ],
+    "documentation": "Smoke Test for LogToConsoleTranslatedCommand"
   }
 ]

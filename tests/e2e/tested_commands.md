@@ -18,9 +18,9 @@
  [S] DisconnectAndExitCommand
  [S] ReconnectToTheServerCommand
  [X] LogDebugToConsoleCommand
- [ ] LogDebugToConsoleTranslatedCommand
- [ ] LogToConsoleCommand
- [ ] LogToConsoleTranslatedCommand
+ [X] LogDebugToConsoleTranslatedCommand
+ [X] LogToConsoleCommand
+ [X] LogToConsoleTranslatedCommand
  [ ] RunScriptCommand
  [ ] WindowActionCommand
  [ ] SendAnimationCommand
