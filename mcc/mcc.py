@@ -221,8 +221,6 @@ class MccPyClient:
             total_wait += poll_sleep
         return None
 
-        return {}
-
     async def wait_for_response(self, request_id, poll_sleep=0.5) -> Optional[dict]:
         """Wait for the response to a command to be in the response queue,
         Return None if the maximum wait time is reached, specified by TIMEOUT env var"""

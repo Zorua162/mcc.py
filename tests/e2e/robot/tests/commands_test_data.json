@@ -112,6 +112,14 @@
             "expected_command_result": "Command was run"
           },
           {
+            "command_name": "ExpectMessage",
+            "command_parameters": [
+              "Teleported tester"
+            ],
+            "expected_type": "exact",
+            "expected_command_result": "Command was run"
+          },
+          {
             "command_name": "Sleep",
             "command_parameters": 10
           },
