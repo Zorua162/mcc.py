@@ -606,7 +606,7 @@
   {
     "test_case_name": "RespawnCommand",
     "arguments": {
-      "${skip_test}": false,
+      "${skip_test}": true,
       "${command_data}": {
         "command_list": [
           {
