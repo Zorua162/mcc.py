@@ -116,8 +116,8 @@
             "command_parameters": [
               "Teleported tester"
             ],
-            "expected_type": "exact",
-            "expected_command_result": "Command was run"
+            "expected_type": "contains",
+            "expected_command_result": "Teleported tester to 0.500000, -60.000000, 0.500000"
           },
           {
             "command_name": "Sleep",
