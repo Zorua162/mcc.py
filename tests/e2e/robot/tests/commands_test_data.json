@@ -104,6 +104,12 @@
       "${command_data}": {
         "command_list": [
           {
+            "command_name": "ClearMessageHistory",
+            "command_parameters": [],
+            "expected_type": "exact",
+            "expected_command_result": "History cleared"
+          },
+          {
             "command_name": "SendMessage",
             "command_parameters": [
               "/send /tp @s 0 -60 0"
@@ -116,7 +122,7 @@
             "command_parameters": [
               "Teleported tester"
             ],
-            "expected_type": "contains",
+            "expected_type": "list_contains",
             "expected_command_result": "Teleported tester to 0.500000, -60.000000, 0.500000"
           },
           {

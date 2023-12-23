@@ -63,17 +63,20 @@ class MCCRobotLibrary:
     async def run_command(self, command_name: str, parameters: list) -> Optional[dict]:
         if self.client is None:
             raise Exception("MCC Client not created")
-        if command_name == "None":
+        elif command_name == "None":
             return {}
-        if command_name == "SendMessage":
+        elif command_name == "SendMessage":
             for message in parameters:
                 await self.client.send_message(message)
             return {"success": True, "result": "Command was run"}
-        if command_name == "ExpectMessage":
+        elif command_name == "ExpectMessage":
             out_list = [
                 await self.client.expect_chat_message(message) for message in parameters
             ]
             return {"success": True, "result": out_list}
+        elif command_name == "ClearMessageHistory":
+            self.client.clear_message_history()
+            return {"success": True, "result": "History cleared"}
         module = importlib.import_module("mcc.commands")
         file_ = getattr(module, command_name)
         class_ = getattr(file_, command_name)

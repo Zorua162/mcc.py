@@ -76,6 +76,10 @@ Handle Assert
         Should Contain
         ...    ${command_output}[result]
         ...    ${command}[expected_command_result]
+    ELSE IF    "${command}[expected_type]" == "list_contains"
+        List Contains
+        ...    ${command_output}[result]
+        ...    ${command}[expected_command_result]
     ELSE
         Should Be Equal
         ...    '${command_output}[result]'
