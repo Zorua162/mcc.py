@@ -16,7 +16,7 @@ from mcc.command import Command
 
 logger = logging.getLogger("MCCRobotLibrary")
 
-logger.addHandler(FileHandler("/output/MCCRobotLibrary.log"))
+logger.addHandler(FileHandler("./output/MCCRobotLibrary.log"))
 
 
 class RobotChatBot(ChatBot):
