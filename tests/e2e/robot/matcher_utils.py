@@ -2,7 +2,11 @@ possible_types = {"INTEGER": int, "FLOAT": float, "STRING": str}
 
 
 def check_type(value: str, expected_type: str):
-    if not isinstance(value, possible_types[expected_type]):
+    try:
+        # Convert the value to the type
+        # If there is no type error then the check type passes
+        possible_types[expected_type](value)
+    except ValueError:
         raise Exception(f"Type error {value} is not type {expected_type}")
 
 
