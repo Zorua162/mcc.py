@@ -5,14 +5,31 @@ A Python module for controlling Minecraft Console Client Webhook bots
 
 ## Getting started
 
-Currently an example script is provided as "example.py", it has very limited usage
-currently and is only able to send commands and receive their responses
+Beforehand note that this library only provides bindings/ for the Minecraft Console
+Client WebSocket bot, it does not provide the functionality to connect to a minecraft
+server on its own.
+
+You will need to have Minecraft Console Client setup with the "Websocket" bot enabled.
+[Installation](https://mccteam.github.io/guide/installation.html)
+[Usage](https://mccteam.github.io/guide/usage.html)
+It is recommended to run MCC without config, so that the default config file gets
+created where you can then set the server ip that you want, and enable the Websocket bot
+(at the bottom of the config).
+
+Install this module via pip: `pip install mcc.py`
+
+An example of the usage of this library can be found in the file `example.py`.
+
+For more advanced usage, there are a number of scenarios in the `tests` folder,
+including end to end tests which show server, Minecraft Console Client and a Robot
+Framework library, which uses mcc.py to control a player on the server that is hosted.
+These are run on Github Actions.
 
 ## Design
 
 Interface roughly based on [MCC.JS](https://github.com/milutinke/MCC.js)
 
-### Dealing with concurrency
+### Additions to the base design
 
 There are effectively two queues, one for sending messages and one for receiving them
 They are not designed to be directly accessed, and have methods to allow for
@@ -23,34 +40,6 @@ interacting with them in a way that is easier to use.
 This library is currently purely experimental, as it relies on experimental
 features of Minecraft Console Client. It may break with no warning due to
 changes that are not under the control of the maintainer.
-
-My main goal is to play with the technologies and ideas, so this repo may not
-be maintained in the future.
-
-## Commands
-
-To save time the command are auto generated from the Minecraft-Console-Client docs,
-using `generate_commands.py`.
-
-## Debugging
-
-Unit tests have been scaffolding, but still need a lot better coverage currently
-Integration tests are not currently working
-E2e tests work, but require a modified MinecraftClient binary
-
-To change the timeout of the function "wait_for_response" (used for waiting for the
-response to a command) set the environment variable "TIMEOUT".
-
-## Roadmap
-
- [ ] Write e2e Robot Framework tests for the commands
- [ ] Test the tests
- [ ] Setup Github pipelines to run the tests automatically
-
-### Currently undecided
-
- [ ] Publish the package to PyPi
- [ ] Publish the container to DockerHub
 
 ## Useful links
 
