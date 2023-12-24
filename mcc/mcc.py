@@ -24,6 +24,7 @@ class MccPyClient:
         log_level: int = logging.INFO,
         session_name: str = "",
         chat_bot: Optional[ChatBot] = None,
+        max_saved_chat_messages: int = 100,
     ):
         # self._socket: Optional[WebSocketCommonProtocol] = None
         self.host: str = host
@@ -31,9 +32,13 @@ class MccPyClient:
         self.password: str = password
         self.session_name: str = session_name
 
-        # Message queue
+        # Message queues
         self.message_queue: list = []
         self.responses: list = []
+
+        # Chat
+        self.chat_messages: list = []
+        self.max_saved_chat_messages = max_saved_chat_messages
 
         # Chat bot
         self.chat_bot = chat_bot
@@ -162,7 +167,10 @@ class MccPyClient:
         self.logger.debug("Received message %s", message)
         if message["event"] == "OnWsCommandResponse":
             self.responses.append(json.loads(message["data"]))
-            return
+        if message["event"] == "OnChatRaw":
+            self.chat_messages.append(json.loads(message["data"]))
+            if len(self.chat_messages) > self.max_saved_chat_messages:
+                self.chat_messages = self.chat_messages[1:]
         await self.execute_chat_bot_event(message)
 
     async def execute_chat_bot_event(self, message: dict):
@@ -185,6 +193,37 @@ class MccPyClient:
         if callable(attribute):
             attribute(*data.values())
 
+    def find_chat_message(self, expected_msg: str) -> Optional[dict]:
+        for message in self.chat_messages:
+            if expected_msg in message["text"]:
+                return message
+        return None
+
+    async def expect_chat_message(
+        self, expected_msg: str, poll_sleep=0.5
+    ) -> Optional[dict]:
+        """Wait for chat message"""
+        timeout = int(os.environ.get("TIMEOUT", "30"))
+        total_wait = 0
+        self.logger.info(
+            f"Waiting for chat message with which contains {expected_msg} "
+        )
+        self.logger.debug(f"timeout is {timeout}")
+        while total_wait < timeout:
+            self.logger.debug(f"total_wait is currently {total_wait}")
+            message = self.find_chat_message(expected_msg)
+            # Wait for the command response to be found
+            if message is not None:
+                return message
+            self.logger.debug(f"After get_response, {poll_sleep}")
+            await asyncio.sleep(poll_sleep)
+            self.logger.debug("After sleep")
+            total_wait += poll_sleep
+        return None
+
+    def clear_message_history(self):
+        self.chat_messages = []
+
     async def wait_for_response(self, request_id, poll_sleep=0.5) -> Optional[dict]:
         """Wait for the response to a command to be in the response queue,
         Return None if the maximum wait time is reached, specified by TIMEOUT env var"""
@@ -206,7 +245,7 @@ class MccPyClient:
             total_wait += poll_sleep
         return None
 
-    def get_response(self, request_id: str) -> Optional[dict]:
+    def get_response(self, request_id: str, expected_msg=None) -> Optional[dict]:
         # If message not found then return None
         out_message: Optional[dict] = None
         self.logger.debug(f"responses is {self.responses}")
