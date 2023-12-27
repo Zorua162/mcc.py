@@ -21,9 +21,8 @@
  [X] LogDebugToConsoleTranslatedCommand
  [X] LogToConsoleCommand
  [X] LogToConsoleTranslatedCommand
- [ ] RunScriptCommand
- [ ] WindowActionCommand
- [ ] SendAnimationCommand
+ [X] RunScriptCommand
+ [X] SendAnimationCommand
 
 ### Inventory
 
@@ -37,6 +36,7 @@
  [ ] CreativeDeleteCommand
  [ ] CreativeGiveCommand
  [ ] SetSlotCommand
+ [ ] WindowActionCommand
 
 ### Entities
 

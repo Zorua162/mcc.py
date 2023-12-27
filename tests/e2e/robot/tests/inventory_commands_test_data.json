@@ -1,0 +1,142 @@
+[
+  {
+    "test_case_name": "ChangeSlotCommand",
+    "arguments": {
+      "${skip_test}": false,
+      "${command_data}": {
+        "command_list": [
+          {
+            "command_name": "ChangeSlotCommand",
+            "command_parameters": [
+              8
+            ],
+            "expected_type": "exact",
+            "expected_command_result": "True"
+          },
+          {
+            "command_name": "GetCurrentSlotCommand",
+            "command_parameters": [],
+            "expected_type": "exact",
+            "expected_command_result": "8"
+          }
+        ]
+      }
+    },
+    "tags": [
+      "smoke"
+    ],
+    "documentation": "Test for ChangeSlotCommand"
+  },
+  {
+    "test_case_name": "ClearInventories",
+    "arguments": {
+      "${skip_test}": true,
+      "${command_data}": {
+        "command_list": [
+          {
+            "command_name": "CreativeGiveCommand",
+            "command_parameters": [
+              12,
+              1,
+              64
+            ],
+            "expected_type": "exact",
+            "expected_command_result": "True"
+          },
+          {
+            "command_name": "GetInventoriesCommand",
+            "command_parameters": [],
+            "expected_type": "exact",
+            "expected_command_result": {
+              "0": {
+                "ID": 0,
+                "Type": 24,
+                "Title": "Player Inventory",
+                "StateID": 1,
+                "Items": {
+                  "12": {
+                    "Type": 1,
+                    "Count": 64,
+                    "NBT": {},
+                    "IsEmpty": false,
+                    "DisplayName": null,
+                    "Lores": null,
+                    "Damage": 0
+                  }
+                },
+                "Properties": {}
+              }
+            }
+          },
+          {
+            "command_name": "ClearInventoriesCommand",
+            "command_parameters": [],
+            "expected_type": "exact",
+            "expected_command_result": "True"
+          },
+          {
+            "command_name": "GetInventoriesCommand",
+            "command_parameters": [],
+            "expected_type": "exact",
+            "expected_command_result": {
+              "0": {
+                "ID": 0,
+                "Type": 24,
+                "Title": "Player Inventory",
+                "StateID": 0,
+                "Items": {},
+                "Properties": {}
+              }
+            }
+          }
+        ]
+      }
+    },
+    "tags": [
+      "smoke"
+    ],
+    "documentation": "Smoke Test for ClearInventories"
+  },
+  {
+    "test_case_name": "GetInventoryEnabledCommand",
+    "arguments": {
+      "${skip_test}": false,
+      "${command_data}": {
+        "command_list": [
+          {
+            "command_name": "GetInventoryEnabledCommand",
+            "command_parameters": [],
+            "expected_type": "exact",
+            "expected_command_result": "True"
+          }
+        ]
+      }
+    },
+    "tags": [
+      "smoke"
+    ],
+    "documentation": "Smoke Test for GetInventoryEnabledCommand"
+  },
+  {
+    "test_case_name": "GetPlayerInventoryCommand",
+    "arguments": {
+      "${skip_test}": false,
+      "${command_data}": {
+        "command_list": [
+          {
+            "command_name": "GetPlayerInventoryCommand",
+            "command_parameters": [],
+            "expected_type": "keys",
+            "expected_command_result": {
+              "Title": "Player Inventory"
+            }
+          }
+        ]
+      }
+    },
+    "tags": [
+      "smoke"
+    ],
+    "documentation": "Smoke Test for GetPlayerInventoryCommand"
+  }
+]

@@ -1,21 +1,10 @@
 *** Settings ***
-Documentation       Test mcc.py comands
+Documentation       Resources for testing mcc.py comands
 
 Library             Collections
 Library             OperatingSystem
-Library             DataDriver    file=commands_test_data.json
 Library             MCCRobotLibrary.py
 Library             matcher_utils.py
-
-# Suite Setup    Create Bot
-# Suite Teardown    Disconnect
-Test Teardown       Disconnect
-Test Template       Test Command
-
-
-*** Test Cases ***
-# Empty test, so that RobotFramework notices the data driven tests
-Test Command    true    {}
 
 
 *** Keywords ***

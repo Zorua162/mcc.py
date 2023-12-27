@@ -4,8 +4,8 @@ start=$(date +%s)
 
 # Cleanup old tests
 # (Comment out if speed needed, but could cause some settings to not be updated)
-podman-compose -f ./server/compose.yml down
-podman-compose -f ./mcc/compose.yml down
+podman-compose -f ./server/compose.yml down -t 1
+podman-compose -f ./mcc/compose.yml down -t 1
 podman-compose -f ./robot/compose.yml down
 
 

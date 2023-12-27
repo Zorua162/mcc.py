@@ -1,0 +1,190 @@
+[
+  {
+    "test_case_name": "GetTimestampCommand",
+    "arguments": {
+      "${skip_test}": false,
+      "${command_data}": {
+        "command_list": [
+          {
+            "command_name": "GetTimestampCommand",
+            "command_parameters": [],
+            "expected_type": "contains",
+            "expected_command_result": "20"
+          }
+        ]
+      }
+    },
+    "tags": [
+      "smoke"
+    ],
+    "documentation": "Smoke Test for GetTimestampCommand"
+  },
+  {
+    "test_case_name": "DisconnectAndExitCommand_and_ReconnectToTheServerCommand",
+    "arguments": {
+      "${skip_test}": true,
+      "${command_data}": {
+        "command_list": [
+          {
+            "command_name": "DisconnectAndExitCommand",
+            "command_parameters": [],
+            "expected_type": "exact",
+            "expected_command_result": "True"
+          },
+          {
+            "command_name": "ReconnectToTheServerCommand",
+            "command_parameters": [],
+            "expected_type": "exact",
+            "expected_command_result": "True"
+          }
+        ]
+      }
+    },
+    "tags": [
+      "smoke"
+    ],
+    "documentation": "Smoke Test for DisconnectAndExitCommand and ReconnectToTheServerCommand"
+  },
+  {
+    "test_case_name": "LogDebugToConsoleCommand",
+    "arguments": {
+      "${skip_test}": false,
+      "${command_data}": {
+        "command_list": [
+          {
+            "command_name": "LogDebugToConsoleCommand",
+            "command_parameters": [
+              "Debug"
+            ],
+            "expected_type": "exact",
+            "expected_command_result": "True"
+          }
+        ]
+      }
+    },
+    "tags": [
+      "smoke"
+    ],
+    "documentation": "Smoke Test for LogDebugToConsoleCommand"
+  },
+  {
+    "test_case_name": "LogDebugToConsoleTranslatedCommand",
+    "arguments": {
+      "${skip_test}": false,
+      "${command_data}": {
+        "command_list": [
+          {
+            "command_name": "LogDebugToConsoleTranslatedCommand",
+            "command_parameters": [
+              "Debug"
+            ],
+            "expected_type": "exact",
+            "expected_command_result": "True"
+          }
+        ]
+      }
+    },
+    "tags": [
+      "smoke"
+    ],
+    "documentation": "Smoke Test for LogDebugToConsoleTranslatedCommand"
+  },
+  {
+    "test_case_name": "LogToConsoleCommand",
+    "arguments": {
+      "${skip_test}": false,
+      "${command_data}": {
+        "command_list": [
+          {
+            "command_name": "LogToConsoleCommand",
+            "command_parameters": [
+              "Debug"
+            ],
+            "expected_type": "exact",
+            "expected_command_result": "True"
+          }
+        ]
+      }
+    },
+    "tags": [
+      "smoke"
+    ],
+    "documentation": "Smoke Test for LogToConsoleCommand"
+  },
+  {
+    "test_case_name": "LogToConsoleTranslatedCommand",
+    "arguments": {
+      "${skip_test}": false,
+      "${command_data}": {
+        "command_list": [
+          {
+            "command_name": "LogToConsoleTranslatedCommand",
+            "command_parameters": [
+              "Debug"
+            ],
+            "expected_type": "exact",
+            "expected_command_result": "True"
+          }
+        ]
+      }
+    },
+    "tags": [
+      "smoke"
+    ],
+    "documentation": "Smoke Test for LogToConsoleTranslatedCommand"
+  },
+  {
+    "test_case_name": "RunScript",
+    "arguments": {
+      "${skip_test}": false,
+      "${command_data}": {
+        "command_list": [
+          {
+            "command_name": "RunScriptCommand",
+            "command_parameters": [
+              "sample_script.txt"
+            ],
+            "expected_type": "exact",
+            "expected_command_result": "True"
+          },
+          {
+            "command_name": "Sleep",
+            "command_parameters": 10
+          },
+          {
+            "command_name": "ExpectMessage",
+            "command_parameters": [
+              "Hello World!"
+            ],
+            "expected_type": "list_contains",
+            "expected_command_result": "Hello World! I'm a bot scripted using Minecraft Console Client."
+          }
+        ]
+      }
+    },
+    "tags": [
+      "smoke"
+    ],
+    "documentation": "Smoke Test for RunScript"
+  },
+  {
+    "test_case_name": "SendAnimation",
+    "arguments": {
+      "${skip_test}": false,
+      "${command_data}": {
+        "command_list": [
+          {
+            "command_name": "SendAnimationCommand",
+            "command_parameters": [],
+            "expected_type": "exact",
+            "expected_command_result": "True"
+          }
+        ]
+      }
+    },
+    "tags": [
+      "smoke"
+    ],
+    "documentation": "Smoke Test for SendAnimationCommand"
+  }
+]

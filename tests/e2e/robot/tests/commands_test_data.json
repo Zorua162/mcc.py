@@ -1,103 +1,5 @@
 [
   {
-    "test_case_name": "ChangeSlotCommand",
-    "arguments": {
-      "${skip_test}": false,
-      "${command_data}": {
-        "command_list": [
-          {
-            "command_name": "ChangeSlotCommand",
-            "command_parameters": [
-              8
-            ],
-            "expected_type": "exact",
-            "expected_command_result": "True"
-          },
-          {
-            "command_name": "GetCurrentSlotCommand",
-            "command_parameters": [],
-            "expected_type": "exact",
-            "expected_command_result": "8"
-          }
-        ]
-      }
-    },
-    "tags": [
-      "smoke"
-    ],
-    "documentation": "Test for ChangeSlotCommand"
-  },
-  {
-    "test_case_name": "ClearInventories",
-    "arguments": {
-      "${skip_test}": true,
-      "${command_data}": {
-        "command_list": [
-          {
-            "command_name": "CreativeGiveCommand",
-            "command_parameters": [
-              12,
-              1,
-              64
-            ],
-            "expected_type": "exact",
-            "expected_command_result": "True"
-          },
-          {
-            "command_name": "GetInventoriesCommand",
-            "command_parameters": [],
-            "expected_type": "exact",
-            "expected_command_result": {
-              "0": {
-                "ID": 0,
-                "Type": 24,
-                "Title": "Player Inventory",
-                "StateID": 1,
-                "Items": {
-                  "12": {
-                    "Type": 1,
-                    "Count": 64,
-                    "NBT": {},
-                    "IsEmpty": false,
-                    "DisplayName": null,
-                    "Lores": null,
-                    "Damage": 0
-                  }
-                },
-                "Properties": {}
-              }
-            }
-          },
-          {
-            "command_name": "ClearInventoriesCommand",
-            "command_parameters": [],
-            "expected_type": "exact",
-            "expected_command_result": "True"
-          },
-          {
-            "command_name": "GetInventoriesCommand",
-            "command_parameters": [],
-            "expected_type": "exact",
-            "expected_command_result": {
-              "0": {
-                "ID": 0,
-                "Type": 24,
-                "Title": "Player Inventory",
-                "StateID": 0,
-                "Items": {},
-                "Properties": {}
-              }
-            }
-          }
-        ]
-      }
-    },
-    "tags": [
-      "smoke"
-    ],
-    "documentation": "Smoke Test for ChangeSlotCommand"
-  },
-  {
     "test_case_name": "GetCurrentLocation",
     "arguments": {
       "${skip_test}": false,
@@ -215,26 +117,6 @@
     "documentation": "Smoke Test for GetGamemodeCommand"
   },
   {
-    "test_case_name": "GetInventoryEnabledCommand",
-    "arguments": {
-      "${skip_test}": false,
-      "${command_data}": {
-        "command_list": [
-          {
-            "command_name": "GetInventoryEnabledCommand",
-            "command_parameters": [],
-            "expected_type": "exact",
-            "expected_command_result": "True"
-          }
-        ]
-      }
-    },
-    "tags": [
-      "smoke"
-    ],
-    "documentation": "Smoke Test for GetInventoryEnabledCommand"
-  },
-  {
     "test_case_name": "GetMaxChatMessageLengthCommand",
     "arguments": {
       "${skip_test}": false,
@@ -323,28 +205,6 @@
       "smoke"
     ],
     "documentation": "Smoke Test for GetPitchCommand"
-  },
-  {
-    "test_case_name": "GetPlayerInventoryCommand",
-    "arguments": {
-      "${skip_test}": false,
-      "${command_data}": {
-        "command_list": [
-          {
-            "command_name": "GetPlayerInventoryCommand",
-            "command_parameters": [],
-            "expected_type": "keys",
-            "expected_command_result": {
-              "Title": "Player Inventory"
-            }
-          }
-        ]
-      }
-    },
-    "tags": [
-      "smoke"
-    ],
-    "documentation": "Smoke Test for GetPlayerInventoryCommand"
   },
   {
     "test_case_name": "GetPlayersLatencyCommand",
@@ -449,26 +309,6 @@
     "documentation": "Smoke Test for GetTerrainEnabledCommand"
   },
   {
-    "test_case_name": "GetTimestampCommand",
-    "arguments": {
-      "${skip_test}": false,
-      "${command_data}": {
-        "command_list": [
-          {
-            "command_name": "GetTimestampCommand",
-            "command_parameters": [],
-            "expected_type": "contains",
-            "expected_command_result": "20"
-          }
-        ]
-      }
-    },
-    "tags": [
-      "smoke"
-    ],
-    "documentation": "Smoke Test for GetTimestampCommand"
-  },
-  {
     "test_case_name": "GetUserUUIDCommand",
     "arguments": {
       "${skip_test}": false,
@@ -570,54 +410,6 @@
     "documentation": "Smoke Test for ClientIsMovingCommand"
   },
   {
-    "test_case_name": "LogDebugToConsoleCommand",
-    "arguments": {
-      "${skip_test}": false,
-      "${command_data}": {
-        "command_list": [
-          {
-            "command_name": "LogDebugToConsoleCommand",
-            "command_parameters": [
-              "Debug"
-            ],
-            "expected_type": "exact",
-            "expected_command_result": "True"
-          }
-        ]
-      }
-    },
-    "tags": [
-      "smoke"
-    ],
-    "documentation": "Smoke Test for LogDebugToConsoleCommand"
-  },
-  {
-    "test_case_name": "DisconnectAndExitCommand_and_ReconnectToTheServerCommand",
-    "arguments": {
-      "${skip_test}": true,
-      "${command_data}": {
-        "command_list": [
-          {
-            "command_name": "DisconnectAndExitCommand",
-            "command_parameters": [],
-            "expected_type": "exact",
-            "expected_command_result": "True"
-          },
-          {
-            "command_name": "ReconnectToTheServerCommand",
-            "command_parameters": [],
-            "expected_type": "exact",
-            "expected_command_result": "True"
-          }
-        ]
-      }
-    },
-    "tags": [
-      "smoke"
-    ],
-    "documentation": "Smoke Test for DisconnectAndExitCommand and ReconnectToTheServerCommand"
-  },
-  {
     "test_case_name": "RespawnCommand",
     "arguments": {
       "${skip_test}": true,
@@ -664,71 +456,5 @@
       "smoke"
     ],
     "documentation": "Smoke Test for RespawnCommand"
-  },
-  {
-    "test_case_name": "LogDebugToConsoleTranslatedCommand",
-    "arguments": {
-      "${skip_test}": false,
-      "${command_data}": {
-        "command_list": [
-          {
-            "command_name": "LogDebugToConsoleTranslatedCommand",
-            "command_parameters": [
-              "Debug"
-            ],
-            "expected_type": "exact",
-            "expected_command_result": "True"
-          }
-        ]
-      }
-    },
-    "tags": [
-      "smoke"
-    ],
-    "documentation": "Smoke Test for LogDebugToConsoleTranslatedCommand"
-  },
-  {
-    "test_case_name": "LogToConsoleCommand",
-    "arguments": {
-      "${skip_test}": false,
-      "${command_data}": {
-        "command_list": [
-          {
-            "command_name": "LogToConsoleCommand",
-            "command_parameters": [
-              "Debug"
-            ],
-            "expected_type": "exact",
-            "expected_command_result": "True"
-          }
-        ]
-      }
-    },
-    "tags": [
-      "smoke"
-    ],
-    "documentation": "Smoke Test for LogToConsoleCommand"
-  },
-  {
-    "test_case_name": "LogToConsoleTranslatedCommand",
-    "arguments": {
-      "${skip_test}": false,
-      "${command_data}": {
-        "command_list": [
-          {
-            "command_name": "LogToConsoleTranslatedCommand",
-            "command_parameters": [
-              "Debug"
-            ],
-            "expected_type": "exact",
-            "expected_command_result": "True"
-          }
-        ]
-      }
-    },
-    "tags": [
-      "smoke"
-    ],
-    "documentation": "Smoke Test for LogToConsoleTranslatedCommand"
   }
 ]
