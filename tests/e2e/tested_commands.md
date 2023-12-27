@@ -52,7 +52,7 @@
  [X] GetPlayersLatencyCommand
  [X] GetUserUUIDCommand
  [X] GetUsernameCommand
- [ ] RespawnCommand
+ [S] RespawnCommand
 
 ### Server
 
@@ -67,7 +67,6 @@
 
  [X] GetTerrainEnabledCommand
  [X] GetWorldCommand
- [X] GetYawCommand
  [ ] DigBlockCommand
  [ ] SendPlaceBlockCommand
  [ ] UpdateSignCommand
@@ -79,6 +78,7 @@
  [F] MoveToLocationCommand
  [X] GetCurrentLocationCommand
  [X] GetPitchCommand
+ [X] GetYawCommand
  [ ] LookAtLocationCommand
  [ ] SetTerrainEnabledCommand
  [ ] SneakCommand

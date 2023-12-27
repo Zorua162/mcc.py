@@ -1,0 +1,50 @@
+[
+  {
+    "test_case_name": "GetEntities",
+    "arguments": {
+      "${skip_test}": true,
+      "${command_data}": {
+        "command_list": [
+          {
+            "command_name": "SendMessage",
+            "command_parameters": [
+              "/send /summon sheep"
+            ],
+            "expected_type": "exact",
+            "expected_command_result": "Command was run"
+          },
+          {
+            "command_name": "GetEntitiesCommand",
+            "command_parameters": [],
+            "expected_type": "exact",
+            "expected_command_result": "sheep"
+          }
+        ]
+      }
+    },
+    "tags": [
+      "smoke"
+    ],
+    "documentation": "Smoke Test for GetEntities"
+  },
+  {
+    "test_case_name": "GetEntityHandlingEnabledCommand",
+    "arguments": {
+      "${skip_test}": false,
+      "${command_data}": {
+        "command_list": [
+          {
+            "command_name": "GetEntityHandlingEnabledCommand",
+            "command_parameters": [],
+            "expected_type": "exact",
+            "expected_command_result": "True"
+          }
+        ]
+      }
+    },
+    "tags": [
+      "smoke"
+    ],
+    "documentation": "Smoke Test for GetEntityHandlingEnabledCommand"
+  }
+]
