@@ -23,4 +23,4 @@ jobs:
         artifact: robot-test-results
         name: Robot results
         path: 'xunit.xml'
-        reporter: swift-xunit
+        reporter: jest-junit
