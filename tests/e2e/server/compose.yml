@@ -16,7 +16,8 @@ services:
       ONLINE_MODE: "FALSE"
       MODE: "creative"
       FORCE_GAMEMODE: "true"
+      WORLD: "/world"
     volumes:
-      - ./mc-data:/data
+      - ./world:/world:ro
     ports:
       - "25565:25565"
