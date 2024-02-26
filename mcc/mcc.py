@@ -195,6 +195,9 @@ class MccPyClient:
 
     def find_chat_message(self, expected_msg: str) -> Optional[dict]:
         for message in self.chat_messages:
+            self.logger.info(
+                f"find_chat_message looking for {expected_msg} in " f"{message}"
+            )
             if expected_msg in message["text"]:
                 return message
         return None
