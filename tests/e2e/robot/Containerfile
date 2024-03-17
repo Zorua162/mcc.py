@@ -23,4 +23,4 @@ COPY ./matcher_utils.py ./
 # COPY ./tests/commands_test_data.json ./
 
 CMD [ "python", "-m", "robot", "-x", "xunit.xml", "-d", "./output", "./tests"]
-# CMD [ "python", "-m", "robot", "-d", "./output", "--variable", "DYNAMICTESTS:TestMiscCommands.SendAnimation", "./tests"]
+# CMD [ "python", "-m", "robot", "-d", "./output", "--variable", "DYNAMICTESTS:TestMovementCommands.GetCurrentLocation", "./tests"]

@@ -3,8 +3,8 @@ services:
     # image: "localhost/minecraft-console-client:latest"
     build:
       context: ../../../minecraft-console-client-source/Docker
-    environment:
-      MCC_SKIP_REDOWNLOAD: "true"
+        # environment:
+        # MCC_SKIP_REDOWNLOAD: "true"
     volumes:
       - "./data:/opt/data"
     ports:
