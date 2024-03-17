@@ -12,7 +12,7 @@ services:
       ENABLE_WHITELIST: "true"
       EXISTING_WHITELIST_FILE: "SYNCHRONIZE"
       EXISTING_OPS_FILE: "MERGE"
-      VERSION: 1.20.2
+      VERSION: 1.20.4
       ONLINE_MODE: "FALSE"
       MODE: "creative"
       FORCE_GAMEMODE: "true"

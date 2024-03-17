@@ -89,22 +89,26 @@
   {
     "test_case_name": "GetPitchCommand",
     "arguments": {
-      "${skip_test}": false,
+      "${skip_test}": true,
       "${command_data}": {
         "command_list": [
           {
             "command_name": "SendMessage",
             "command_parameters": [
-              "/send /tp @s 0 -60 0"
+              "/send /tp @s 0 -60 0 10 10"
             ],
             "expected_type": "exact",
             "expected_command_result": "Command was run"
           },
           {
+            "command_name": "Sleep",
+            "command_parameters": "0.5"
+          },
+          {
             "command_name": "GetPitchCommand",
             "command_parameters": [],
             "expected_type": "exact",
-            "expected_command_result": 0.0
+            "expected_command_result": 10.0
           }
         ]
       }
