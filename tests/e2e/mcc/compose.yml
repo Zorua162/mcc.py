@@ -3,7 +3,7 @@ services:
     # image: "localhost/minecraft-console-client:latest"
     # build:
     #   context: ../../../minecraft-console-client-source/Docker
-    image: zorua162/docker-minecraft-console-client:localhost
+    image: zorua162/docker-minecraft-console-client:latest
         # environment:
         # MCC_SKIP_REDOWNLOAD: "true"
     volumes:
