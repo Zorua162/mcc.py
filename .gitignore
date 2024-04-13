@@ -25,6 +25,7 @@ tests/e2e/server/mc-data/world/DIM-1
 tests/e2e/server/mc-data/world/DIM1
 tests/e2e/server/mc-data/world/playerdata
 tests/e2e/server/mc-data/world/session.lock
+tests/e2e/server/mc-data
 
 
 # Ignore the MinecraftClient binary that gets download by the container
