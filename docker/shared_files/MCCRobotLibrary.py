@@ -26,6 +26,10 @@ class RobotChatBot(ChatBot):
     def OnMccCommandResponse(self, response):
         logger.info(f"MCCCommandResponse received\n    response: {response}")
 
+    def OnPlayerProperty(self, *prop):
+        """Try to catch the error"""
+        logger.info(f"OnPlayerProperty called, prop is {prop}")
+
 
 class MCCRobotLibrary:
     client: Optional[MccPyClient] = None

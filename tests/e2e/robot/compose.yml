@@ -3,7 +3,7 @@ services:
     build:
       context: .
       dockerfile: Containerfile
-    image: robot_mcc_tests
+    image: zorua162/docker-mcc-py-robot-framework:test
     volumes:
       - "./tests:/tests"
       - "./output:/output"

@@ -96,6 +96,35 @@ jobs:
       with:
         repository-url: https://test.pypi.org/legacy/
 
+  docker-test:
+    runs-on: ubuntu-latest
+    steps:
+      -
+        name: Checkout
+        uses: actions/checkout@v4
+        with:
+          submodules: 'true'
+      -
+        name: Set up QEMU
+        uses: docker/setup-qemu-action@v3
+      -
+        name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+      -
+        name: Login to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+      -
+        name: Build and push
+        uses: docker/build-push-action@v5
+        with:
+          context: ./docker
+          platforms: linux/amd64,linux/arm64
+          push: true
+          tags: zorua162/docker-mcc-py-robot-framework:test
+
   end-to-end-test:
     name: End to end test 🔚
     timeout-minutes: 10
@@ -193,3 +222,32 @@ jobs:
         gh release upload
         '${{ github.ref_name }}' dist/**
         --repo '${{ github.repository }}'
+  docker:
+    if: startsWith(github.ref, 'refs/tags/')  # only publish to Dockerhub on tag pushes
+    runs-on: ubuntu-latest
+    steps:
+      -
+        name: Checkout
+        uses: actions/checkout@v4
+        with:
+          submodules: 'true'
+      -
+        name: Set up QEMU
+        uses: docker/setup-qemu-action@v3
+      -
+        name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+      -
+        name: Login to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+      -
+        name: Build and push
+        uses: docker/build-push-action@v5
+        with:
+          context: ./docker
+          platforms: linux/amd64,linux/arm64
+          push: true
+          tags: zorua162/docker-mcc-py-robot-framework:latest
