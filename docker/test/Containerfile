@@ -14,9 +14,9 @@ COPY ./requirements.txt /requirements.txt
 RUN pip install --no-cache-dir --upgrade pip==23.3.1 \
     && pip install --no-cache-dir -r /requirements.txt
 
-COPY ./MCCRobotLibrary.py ./
+COPY ../shared_files/MCCRobotLibrary.py ./
 
-COPY ./matcher_utils.py ./
+COPY ../shared_files/matcher_utils.py ./
 
 # COPY ./tests/TestCommands.robot ./
 

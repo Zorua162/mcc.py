@@ -9,8 +9,8 @@ COPY ./requirements.txt /requirements.txt
 RUN pip install --no-cache-dir --upgrade pip==23.3.1 \
     && pip install --no-cache-dir -r /requirements.txt
 
-COPY ../tests/e2e/robot/MCCRobotLibrary.py ./
+COPY ../shared_files/MCCRobotLibrary.py ./
 
-COPY ../tests/e2e/robot/matcher_utils.py ./
+COPY ../shared_files/matcher_utils.py ./
 
 CMD [ "python", "-m", "robot", "-x", "xunit.xml", "-d", "./output", "./tests/TestCommands.robot"]
