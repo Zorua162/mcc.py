@@ -123,7 +123,7 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           context: ./docker/test
-          file: Containerfile
+          file: ./docker/test/Containerfile
           platforms: linux/amd64,linux/arm64
           push: true
           tags: zorua162/docker-mcc-py-robot-framework:test
@@ -252,7 +252,7 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           context: ./docker/latest
-          file: Containerfile
+          file: ./docker/latest/Containerfile
           platforms: linux/amd64,linux/arm64
           push: true
           tags: zorua162/docker-mcc-py-robot-framework:latest
