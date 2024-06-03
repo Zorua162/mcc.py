@@ -1,0 +1,26 @@
+FROM python:3.11-alpine
+
+WORKDIR /
+
+VOLUME [ "/tests", "/output" ]
+
+COPY ./test/testpypi-requirements.txt /testpypi-requirements.txt
+
+RUN pip install --no-cache-dir -r /testpypi-requirements.txt \
+    --index-url https://test.pypi.org/simple --no-deps
+
+COPY ./test/requirements.txt /requirements.txt
+
+RUN pip install --no-cache-dir --upgrade pip==23.3.1 \
+    && pip install --no-cache-dir -r /requirements.txt
+
+COPY ./shared_files/MCCRobotLibrary.py ./
+
+COPY ./shared_files/matcher_utils.py ./
+
+# COPY ./tests/TestCommands.robot ./
+
+# COPY ./tests/commands_test_data.json ./
+
+CMD [ "python", "-m", "robot", "-x", "xunit.xml", "-d", "./output", "./tests"]
+# CMD [ "python", "-m", "robot", "-d", "./output", "--variable", "DYNAMICTESTS:TestMovementCommands.GetCurrentLocation", "./tests"]
