@@ -10,6 +10,7 @@ on:
       - .github/workflows/publish.yaml
       - .github/workflows/test-report.yaml
       - tests/**
+      - docker/**
       - requirements-dev.txt
 
 jobs:
