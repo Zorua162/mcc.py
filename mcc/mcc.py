@@ -173,7 +173,7 @@ class MccPyClient:
                 self.chat_messages = self.chat_messages[1:]
             self.logger.debug(
                 "Message added to chat_messages, chat_messages is now "
-                + self.chat_messages
+                + f"{self.chat_messages}"
             )
         await self.execute_chat_bot_event(message)
 
