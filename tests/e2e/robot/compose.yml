@@ -1,9 +1,6 @@
 services:
   robot_mcc_tests:
-    build:
-      context: .
-      dockerfile: Containerfile
-    image: zorua162/docker-mcc-py-robot-framework:test
+    image: docker.io/zorua162/docker-mcc-py-robot-framework:test
     volumes:
       - "./tests:/tests"
       - "./output:/output"
