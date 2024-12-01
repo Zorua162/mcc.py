@@ -1,0 +1,25 @@
+repos:
+-   repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.5.0
+    hooks:
+    -   id: check-yaml
+    # -   id: end-of-file-fixer
+    -   id: trailing-whitespace
+    -   id: pretty-format-json
+        args: ['--autofix', '--no-sort-keys']
+-   repo: https://github.com/psf/black
+    rev: 23.12.0
+    hooks:
+    -   id: black
+-   repo: https://github.com/Yelp/detect-secrets
+    rev: v1.4.0
+    hooks:
+    -   id: detect-secrets
+        args: ['--baseline', '.secrets.baseline']
+        exclude: tests/e2e/mcc/data/MinecraftClient.ini
+-   repo: https://github.com/hadolint/hadolint
+    rev: v2.12.1-beta
+    hooks:
+    -   id: hadolint-docker
+ci:
+  skip: [hadolint-docker]

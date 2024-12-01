@@ -1,0 +1,262 @@
+# From tutorial: https://packaging.python.org/en/latest/guides/publishing-package-distribution-releases-using-github-actions-ci-cd-workflows/
+name: Publish
+
+on:
+  push:
+    paths:
+      - mcc/**
+      - pyproject.toml
+      - check_new_ver.sh
+      - .github/workflows/publish.yaml
+      - .github/workflows/test-report.yaml
+      - tests/**
+      - docker/**
+      - requirements-dev.txt
+
+jobs:
+  unit-test:
+    name: Unit test distribution 🧪
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: "3.x"
+    - name: Run Unit tests
+      run: |
+        pip install -r requirements-dev.txt
+        python -m pip install .
+        python -m pytest --junitxml="./py-unit-test-results.xml"
+    - uses: actions/upload-artifact@v3
+      if: success() || failure()
+      with:
+        name: py-unit-test-results
+        path: ./py-unit-test-results.xml
+
+  build:
+    name: Build and unit test distribution 📦
+    runs-on: ubuntu-latest
+    needs:
+    - unit-test
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: "3.x"
+
+    - name: Install pypa/build
+      run: >-
+        python3 -m
+        pip install
+        build
+        --user
+    - name: Build a binary wheel and a source tarball
+      run: python3 -m build
+    - name: Store the distribution packages
+      uses: actions/upload-artifact@v3
+      with:
+        name: python-package-distributions
+        path: dist/
+
+  publish-to-testpypi:
+    name: Publish To TestPypi 🐍
+    needs:
+    - build
+    runs-on: ubuntu-latest
+
+    environment:
+      name: testpypi
+      url: https://test.pypi.org/p/mcc.py
+
+    permissions:
+      id-token: write  # IMPORTANT: mandatory for trusted publishing
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: Check if version was bumped
+      run: |
+        source ./check_new_ver.sh https://test.pypi.org/simple/mcc-py/
+        echo latest_ver is $latest_ver
+        echo pyproject_ver is $pyproject_ver
+
+        echo env.latest_ver is ${{ env.latest_ver }}
+        echo env.pyproject_ver is ${{ env.pyproject_ver }}
+        echo "$GITHUB_ENV"
+    - name: Download all the dists
+      if: env.latest_ver != env.pyproject_ver
+      uses: actions/download-artifact@v3
+      with:
+        name: python-package-distributions
+        path: dist/
+    - name: Publish distribution 📦 to TestPyPI
+      if: env.latest_ver != env.pyproject_ver
+      uses: pypa/gh-action-pypi-publish@release/v1
+      with:
+        repository-url: https://test.pypi.org/legacy/
+
+  docker-test:
+    needs:
+    - publish-to-testpypi
+    runs-on: ubuntu-latest
+    steps:
+      -
+        name: Checkout
+        uses: actions/checkout@v4
+        with:
+          submodules: 'true'
+      -
+        name: Set up QEMU
+        uses: docker/setup-qemu-action@v3
+      -
+        name: Give pypi 30 seconds to display the new version
+        run: sleep 30
+      -
+        name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+      -
+        name: Login to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+      -
+        name: Build and push
+        uses: docker/build-push-action@v5
+        with:
+          context: ./docker
+          file: ./docker/test-Containerfile
+          platforms: linux/amd64,linux/arm64
+          push: true
+          tags: zorua162/docker-mcc-py-robot-framework:test
+
+  end-to-end-test:
+    name: End to end test 🔚
+    timeout-minutes: 10
+    runs-on: ubuntu-latest
+    needs:
+    - docker-test
+    steps:
+    - uses: actions/checkout@v4
+      with:
+          submodules: 'true'
+    - name:
+      run: |
+        set -x
+        # Alias doesn't work for subshells, so create a function instead
+        podman-compose() { docker-compose $@; }
+        export -f podman-compose
+        podman() { docker $@; }
+        export -f podman
+        cd ./tests/e2e
+        ./run_tests.sh
+        pwd
+        ls robot
+        ls robot/output
+        exit $exit_status
+
+    - uses: actions/upload-artifact@v3
+      if: success() || failure()
+      with:
+        name: robot-test-results
+        path: ./tests/e2e/robot/output/*
+
+
+  # Enable both once I get my account setup on PyPi
+  publish-to-pypi:
+    name: >-
+      Publish Python 🐍 distribution 📦 to PyPI
+    if: startsWith(github.ref, 'refs/tags/')  # only publish to PyPI on tag pushes
+    needs:
+    - build
+    - end-to-end-test
+    runs-on: ubuntu-latest
+    environment:
+      name: pypi
+      url: https://pypi.org/p/mcc.py
+    permissions:
+      id-token: write  # IMPORTANT: mandatory for trusted publishing
+    steps:
+    - name: Download all the dists
+      uses: actions/download-artifact@v3
+      with:
+        name: python-package-distributions
+        path: dist/
+    - name: Publish distribution 📦 to PyPI
+      uses: pypa/gh-action-pypi-publish@release/v1
+
+  github-release:
+    name: >-
+      Sign the Python 🐍 distribution 📦 with Sigstore
+      and upload them to GitHub Release
+    needs:
+    - publish-to-pypi
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write  # IMPORTANT: mandatory for making GitHub Releases
+      id-token: write  # IMPORTANT: mandatory for sigstore
+
+    steps:
+    - name: Download all the dists
+      uses: actions/download-artifact@v3
+      with:
+        name: python-package-distributions
+        path: dist/
+    - name: Sign the dists with Sigstore
+      uses: sigstore/gh-action-sigstore-python@v2.1.1
+      with:
+        inputs: >-
+          ./dist/*.tar.gz
+          ./dist/*.whl
+    - name: Create GitHub Release
+      env:
+        GITHUB_TOKEN: ${{ github.token }}
+      run: >-
+        gh release create
+        '${{ github.ref_name }}'
+        --repo '${{ github.repository }}'
+        --notes ""
+    - name: Upload artifact signatures to GitHub Release
+      env:
+        GITHUB_TOKEN: ${{ github.token }}
+      # Upload to GitHub Release using the `gh` CLI.
+      # `dist/` contains the built packages, and the
+      # sigstore-produced signatures and certificates.
+      run: >-
+        gh release upload
+        '${{ github.ref_name }}' dist/**
+        --repo '${{ github.repository }}'
+  docker:
+    needs:
+    - publish-to-pypi
+    runs-on: ubuntu-latest
+    steps:
+      -
+        name: Checkout
+        uses: actions/checkout@v4
+        with:
+          submodules: 'true'
+      -
+        name: Set up QEMU
+        uses: docker/setup-qemu-action@v3
+      -
+        name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+      -
+        name: Login to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+      -
+        name: Build and push
+        uses: docker/build-push-action@v5
+        with:
+          context: ./docker
+          file: ./docker/latest-Containerfile
+          platforms: linux/amd64,linux/arm64
+          push: true
+          tags: zorua162/docker-mcc-py-robot-framework:latest

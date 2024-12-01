@@ -1,0 +1,132 @@
+[
+  {
+    "test_case_name": "GetGamemodeCommand",
+    "arguments": {
+      "${skip_test}": false,
+      "${command_data}": {
+        "command_list": [
+          {
+            "command_name": "GetGamemodeCommand",
+            "command_parameters": [],
+            "expected_type": "exact",
+            "expected_command_result": "creative"
+          }
+        ]
+      }
+    },
+    "tags": [
+      "smoke"
+    ],
+    "documentation": "Smoke Test for GetGamemodeCommand"
+  },
+  {
+    "test_case_name": "GetPlayersLatencyCommand",
+    "arguments": {
+      "${skip_test}": false,
+      "${command_data}": {
+        "command_list": [
+          {
+            "command_name": "GetPlayersLatencyCommand",
+            "command_parameters": [],
+            "expected_type": "type_match_keys",
+            "expected_command_result": {
+              "tester": "INTEGER"
+            }
+          }
+        ]
+      }
+    },
+    "tags": [
+      "smoke"
+    ],
+    "documentation": "Smoke Test for GetPlayersLatencyCommand"
+  },
+  {
+    "test_case_name": "GetUserUUIDCommand",
+    "arguments": {
+      "${skip_test}": false,
+      "${command_data}": {
+        "command_list": [
+          {
+            "command_name": "GetUserUUIDCommand",
+            "command_parameters": [],
+            "expected_type": "exact",
+            "expected_command_result": "dd823a0cb94a369facd6ddd287e3180e"
+          }
+        ]
+      }
+    },
+    "tags": [
+      "smoke"
+    ],
+    "documentation": "Smoke Test for GetUserUUIDCommand"
+  },
+  {
+    "test_case_name": "GetUsernameCommand",
+    "arguments": {
+      "${skip_test}": false,
+      "${command_data}": {
+        "command_list": [
+          {
+            "command_name": "GetUsernameCommand",
+            "command_parameters": [],
+            "expected_type": "exact",
+            "expected_command_result": "tester"
+          }
+        ]
+      }
+    },
+    "tags": [
+      "smoke"
+    ],
+    "documentation": "Smoke Test for GetUsernameCommand"
+  },
+  {
+    "test_case_name": "RespawnCommand",
+    "arguments": {
+      "${skip_test}": true,
+      "${command_data}": {
+        "command_list": [
+          {
+            "command_name": "SendMessage",
+            "command_parameters": [
+              "/send /gamerule doImmediateRespawn false"
+            ],
+            "expected_type": "exact",
+            "expected_command_result": "Command was run"
+          },
+          {
+            "command_name": "SendMessage",
+            "command_parameters": [
+              "/send /kill tester"
+            ],
+            "expected_type": "exact",
+            "expected_command_result": "Command was run"
+          },
+          {
+            "command_name": "Sleep",
+            "command_parameters": 20
+          },
+          {
+            "command_name": "RespawnCommand",
+            "command_parameters": [],
+            "expected_type": "exact",
+            "expected_command_result": "True"
+          },
+          {
+            "command_name": "SendMessage",
+            "command_parameters": [
+              "/send /gamerule doImmediateRespawn true"
+            ],
+            "expected_type": "exact",
+            "expected_command_result": "Command was run"
+          }
+        ]
+      }
+    },
+    "tags": [
+      "smoke"
+    ],
+    "documentation": "Smoke Test for RespawnCommand"
+  }
+]

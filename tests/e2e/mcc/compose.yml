@@ -1,0 +1,18 @@
+services:
+  mcc:
+    # image: "localhost/minecraft-console-client:latest"
+    # build:
+    #   context: ../../../minecraft-console-client-source/Docker
+    image: zorua162/docker-minecraft-console-client:latest
+        # environment:
+        # MCC_SKIP_REDOWNLOAD: "true"
+    volumes:
+      - "./data:/opt/data"
+    ports:
+      - 8043:8043
+    networks:
+      - server
+networks:
+  server:
+    external: true
+    name: server_default

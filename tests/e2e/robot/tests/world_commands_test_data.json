@@ -1,0 +1,45 @@
+[
+  {
+    "test_case_name": "GetTerrainEnabledCommand",
+    "arguments": {
+      "${skip_test}": false,
+      "${command_data}": {
+        "command_list": [
+          {
+            "command_name": "GetTerrainEnabledCommand",
+            "command_parameters": [],
+            "expected_type": "exact",
+            "expected_command_result": "True"
+          }
+        ]
+      }
+    },
+    "tags": [
+      "smoke"
+    ],
+    "documentation": "Smoke Test for GetTerrainEnabledCommand"
+  },
+  {
+    "test_case_name": "GetWorldCommand",
+    "arguments": {
+      "${skip_test}": false,
+      "${command_data}": {
+        "command_list": [
+          {
+            "command_name": "GetWorldCommand",
+            "command_parameters": [],
+            "expected_type": "type_match_keys",
+            "expected_command_result": {
+              "chunkCnt": "INTEGER",
+              "chunkLoadNotCompleted": "INTEGER"
+            }
+          }
+        ]
+      }
+    },
+    "tags": [
+      "smoke"
+    ],
+    "documentation": "Smoke Test for GetWorldCommand"
+  }
+]

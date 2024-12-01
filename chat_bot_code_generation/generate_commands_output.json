@@ -1,0 +1,552 @@
+{
+  "CommandData": [
+    {
+      "name": "Authenticate",
+      "description": "This command is used to authenticate if there is a password set in the Web Socket chat bot settings.",
+      "parameters": [],
+      "return_type": null
+    },
+    {
+      "name": "ChangeSessionId",
+      "description": "This command is used to change the name/alias/id of a session.",
+      "parameters": [
+        "LogToConsole"
+      ],
+      "return_type": null
+    },
+    {
+      "name": "LogToConsole",
+      "description": "Log stuff in to the MCC console.",
+      "parameters": [
+        "LogToConsole",
+        "message",
+        "LogDebugToConsole"
+      ],
+      "return_type": "boolean"
+    },
+    {
+      "name": "LogDebugToConsole",
+      "description": "Log stuff in to the MCC debug console channel.",
+      "parameters": [
+        "LogDebugToConsole",
+        "message",
+        "LogToConsoleTranslated"
+      ],
+      "return_type": "boolean"
+    },
+    {
+      "name": "LogToConsoleTranslated",
+      "description": "Log a translated string in to the MCC console.",
+      "parameters": [
+        "LogToConsoleTranslated",
+        "message",
+        "LogDebugToConsoleTranslated"
+      ],
+      "return_type": "boolean"
+    },
+    {
+      "name": "LogDebugToConsoleTranslated",
+      "description": "Log a translated string in to the MCC debug console channel.",
+      "parameters": [
+        "LogDebugToConsoleTranslated",
+        "message",
+        "ReconnectToTheServer"
+      ],
+      "return_type": "boolean"
+    },
+    {
+      "name": "ReconnectToTheServer",
+      "description": "Reconnect to the server the MCC is connected to.",
+      "parameters": [
+        "ReconnectToTheServer",
+        "extraAttempts",
+        "delaySeconds",
+        "DisconnectAndExit"
+      ],
+      "return_type": "boolean"
+    },
+    {
+      "name": "DisconnectAndExit",
+      "description": "Disconnect MCC from the server and close the program.",
+      "parameters": [
+        "DisconnectAndExit",
+        "RunScript"
+      ],
+      "return_type": null
+    },
+    {
+      "name": "RunScript",
+      "description": "Run a MCC C# script.",
+      "parameters": [
+        "RunScript",
+        "scriptName",
+        "GetTerrainEnabled"
+      ],
+      "return_type": "boolean"
+    },
+    {
+      "name": "GetTerrainEnabled",
+      "description": "Check if the Terrain Handling is enabled.",
+      "parameters": [
+        "GetTerrainEnabled",
+        "SetTerrainEnabled"
+      ],
+      "return_type": "boolean"
+    },
+    {
+      "name": "SetTerrainEnabled",
+      "description": "Try enabling the Terrain Handling.",
+      "parameters": [
+        "SetTerrainEnabled",
+        "enabled",
+        "GetEntityHandlingEnabled"
+      ],
+      "return_type": "boolean"
+    },
+    {
+      "name": "GetEntityHandlingEnabled",
+      "description": "Check if the Entity Handling is enabled.",
+      "parameters": [
+        "GetEntityHandlingEnabled",
+        "Sneak"
+      ],
+      "return_type": "boolean"
+    },
+    {
+      "name": "Sneak",
+      "description": "Toggle sneak.",
+      "parameters": [
+        "Sneak",
+        "toggle",
+        "SendEntityAction"
+      ],
+      "return_type": "boolean"
+    },
+    {
+      "name": "SendEntityAction",
+      "description": "Send an entity action.",
+      "parameters": [
+        "SendEntityAction",
+        "actionType",
+        "EntityActionType",
+        "DigBlock"
+      ],
+      "return_type": "boolean"
+    },
+    {
+      "name": "DigBlock",
+      "description": "Dig a block in the world.",
+      "parameters": [
+        "DigBlock",
+        "X",
+        "Y",
+        "Z",
+        "swingArms",
+        "lookAtBlock",
+        "SetSlot"
+      ],
+      "return_type": "boolean"
+    },
+    {
+      "name": "SetSlot",
+      "description": "Set the current active hot bar slot.",
+      "parameters": [
+        "SetSlot",
+        "slotId",
+        "GetWorld"
+      ],
+      "return_type": "boolean"
+    },
+    {
+      "name": "GetWorld",
+      "description": "Get world info.",
+      "parameters": [
+        "GetWorld",
+        "json encoded object with world info",
+        "GetEntities"
+      ],
+      "return_type": "json encoded object with world info"
+    },
+    {
+      "name": "GetEntities",
+      "description": "Get a list of entities around the player.",
+      "parameters": [
+        "GetEntities",
+        "GetPlayersLatency"
+      ],
+      "return_type": "json encoded array of Entity"
+    },
+    {
+      "name": "GetPlayersLatency",
+      "description": "Get a list of players and their latencies.",
+      "parameters": [
+        "GetPlayersLatency",
+        "GetCurrentLocation"
+      ],
+      "return_type": "json encoded array of player object with { \"<nick>\": <latency> }"
+    },
+    {
+      "name": "GetCurrentLocation",
+      "description": "Get the current bot location in the world.",
+      "parameters": [
+        "GetCurrentLocation",
+        "json encoded Location object",
+        "MoveToLocation"
+      ],
+      "return_type": "json encoded Location object"
+    },
+    {
+      "name": "MoveToLocation",
+      "description": "Move to a location in the world.",
+      "parameters": [
+        "MoveToLocation",
+        "X",
+        "Y",
+        "Z",
+        "allowUnsafe",
+        "allowDirectTeleport",
+        "maxOffset",
+        "minOfset",
+        "ClientIsMoving"
+      ],
+      "return_type": "boolean"
+    },
+    {
+      "name": "ClientIsMoving",
+      "description": "Check if the bot is currently moving.",
+      "parameters": [
+        "ClientIsMoving",
+        "LookAtLocation"
+      ],
+      "return_type": "boolean"
+    },
+    {
+      "name": "LookAtLocation",
+      "description": "Make the bot look at a specific location.",
+      "parameters": [
+        "LookAtLocation",
+        "X",
+        "Y",
+        "Z",
+        "GetTimestamp"
+      ],
+      "return_type": "boolean"
+    },
+    {
+      "name": "GetTimestamp",
+      "description": "Get current time in `yyyy-MM-dd HH:mm:ss` format.",
+      "parameters": [
+        "GetTimestamp",
+        "yyyy-MM-dd HH:mm:ss",
+        "GetServerPort"
+      ],
+      "return_type": "string"
+    },
+    {
+      "name": "GetServerPort",
+      "description": "Get the current server port.",
+      "parameters": [
+        "GetServerPort",
+        "GetServerHost"
+      ],
+      "return_type": "int"
+    },
+    {
+      "name": "GetServerHost",
+      "description": "Get the current server IPv4 address.",
+      "parameters": [
+        "GetServerHost",
+        "GetUsername"
+      ],
+      "return_type": "string"
+    },
+    {
+      "name": "GetUsername",
+      "description": "Get current logged in account username.",
+      "parameters": [
+        "GetUsername",
+        "GetGamemode"
+      ],
+      "return_type": "string"
+    },
+    {
+      "name": "GetGamemode",
+      "description": "Get the current game mode in which the bot is.",
+      "parameters": [
+        "GetGamemode",
+        "GetYaw"
+      ],
+      "return_type": "string"
+    },
+    {
+      "name": "GetYaw",
+      "description": "Get current bot yaw.",
+      "parameters": [
+        "GetYaw",
+        "GetPitch"
+      ],
+      "return_type": "double"
+    },
+    {
+      "name": "GetPitch",
+      "description": "Get the current bot pitch.",
+      "parameters": [
+        "GetPitch",
+        "double",
+        "GetUserUUID"
+      ],
+      "return_type": "double"
+    },
+    {
+      "name": "GetUserUUID",
+      "description": "Get the UUID of the current account.",
+      "parameters": [
+        "GetUserUUID",
+        "GetOnlinePlayers"
+      ],
+      "return_type": "string"
+    },
+    {
+      "name": "GetOnlinePlayers",
+      "description": "Get a list of online players on the server.",
+      "parameters": [
+        "GetOnlinePlayers",
+        "GetOnlinePlayersWithUUID"
+      ],
+      "return_type": "json encoded array of string"
+    },
+    {
+      "name": "GetOnlinePlayersWithUUID",
+      "description": "Get a list of online players on the server with their nicknames and UUIDs.",
+      "parameters": [
+        "GetOnlinePlayersWithUUID",
+        "GetServerTPS"
+      ],
+      "return_type": "json encoded array of object in the following format: { \"<uuid string>\": \"<name string>\" }"
+    },
+    {
+      "name": "GetServerTPS",
+      "description": "Get the current server TPS.",
+      "parameters": [
+        "GetServerTPS",
+        "InteractEntity"
+      ],
+      "return_type": "integer"
+    },
+    {
+      "name": "InteractEntity",
+      "description": "Interact with an entity.",
+      "parameters": [
+        "InteractEntity",
+        "entityId",
+        "interactionType",
+        "InteractType",
+        "hand",
+        "Hand",
+        "CreativeGive"
+      ],
+      "return_type": "boolean"
+    },
+    {
+      "name": "CreativeGive",
+      "description": "Give an item from the Creative Inventory.",
+      "parameters": [
+        "CreativeGive",
+        "slot",
+        "itemType",
+        "ItemType",
+        "count",
+        "nbt",
+        "CreativeDelete"
+      ],
+      "return_type": "boolean"
+    },
+    {
+      "name": "CreativeDelete",
+      "description": "Clear an inventory slot of items in the Creative Mode.",
+      "parameters": [
+        "CreativeDelete",
+        "slot",
+        "SendAnimation"
+      ],
+      "return_type": "boolean"
+    },
+    {
+      "name": "SendAnimation",
+      "description": "Send an animation, for example a hand swing.",
+      "parameters": [
+        "SendAnimation",
+        "hand",
+        "Hand",
+        "SendPlaceBlock"
+      ],
+      "return_type": "boolean"
+    },
+    {
+      "name": "SendPlaceBlock",
+      "description": "Place a block somewhere in the world.",
+      "parameters": [
+        "SendPlaceBlock",
+        "X",
+        "Y",
+        "Z",
+        "direction",
+        "Direction",
+        "hand",
+        "Hand",
+        "UseItemInHand"
+      ],
+      "return_type": "boolean"
+    },
+    {
+      "name": "UseItemInHand",
+      "description": "Use an item in the hand.",
+      "parameters": [
+        "UseItemInHand",
+        "GetInventoryEnabled"
+      ],
+      "return_type": "boolean"
+    },
+    {
+      "name": "GetInventoryEnabled",
+      "description": "Check if the inventory is enabled.",
+      "parameters": [
+        "GetInventoryEnabled",
+        "GetPlayerInventory"
+      ],
+      "return_type": "boolean"
+    },
+    {
+      "name": "GetPlayerInventory",
+      "description": "Get the items in the player inventory.",
+      "parameters": [
+        "GetPlayerInventory",
+        "json encoded inventory/container object",
+        "GetInventories"
+      ],
+      "return_type": "json encoded inventory/container object"
+    },
+    {
+      "name": "GetInventories",
+      "description": "Get opened inventories list and items in them.",
+      "parameters": [
+        "GetInventories",
+        "json encoded array of inventory/container objects",
+        "WindowAction"
+      ],
+      "return_type": "json encoded array of inventory/container objects"
+    },
+    {
+      "name": "WindowAction",
+      "description": "Send an inventory action, for example a click.",
+      "parameters": [
+        "WindowAction",
+        "windowId",
+        "slotId",
+        "windowActionType",
+        "WindowActionType",
+        "ChangeSlot"
+      ],
+      "return_type": "boolean"
+    },
+    {
+      "name": "ChangeSlot",
+      "description": "Change the currently selected hot bar slot.",
+      "parameters": [
+        "ChangeSlot",
+        "slotId",
+        "GetCurrentSlot"
+      ],
+      "return_type": "boolean"
+    },
+    {
+      "name": "GetCurrentSlot",
+      "description": "Get the currently selected hot bar slot.",
+      "parameters": [
+        "GetCurrentSlot",
+        "ClearInventories"
+      ],
+      "return_type": "integer"
+    },
+    {
+      "name": "ClearInventories",
+      "description": "Clear the list of opened inventories.",
+      "parameters": [
+        "ClearInventories",
+        "UpdateSign"
+      ],
+      "return_type": "boolean"
+    },
+    {
+      "name": "UpdateSign",
+      "description": "Update the text in signs.",
+      "parameters": [
+        "UpdateSign",
+        "X",
+        "Y",
+        "Z",
+        "line1",
+        "line2",
+        "line3",
+        "line4",
+        "SelectTrade"
+      ],
+      "return_type": "boolean"
+    },
+    {
+      "name": "SelectTrade",
+      "description": "Select a villager trade.",
+      "parameters": [
+        "SelectTrade",
+        "selectedSlot",
+        "UpdateCommandBlock"
+      ],
+      "return_type": "boolean"
+    },
+    {
+      "name": "UpdateCommandBlock",
+      "description": "Update the command block.",
+      "parameters": [
+        "UpdateCommandBlock",
+        "X",
+        "Y",
+        "Z",
+        "command",
+        "mode",
+        "CommandBlockMode",
+        "flags",
+        "CommandBlockFlags",
+        "CloseInventory"
+      ],
+      "return_type": "boolean"
+    },
+    {
+      "name": "CloseInventory",
+      "description": "Close an inventory id.",
+      "parameters": [
+        "CloseInventory",
+        "windowId",
+        "GetMaxChatMessageLength"
+      ],
+      "return_type": "boolean"
+    },
+    {
+      "name": "GetMaxChatMessageLength",
+      "description": "Get the max chat message length.",
+      "parameters": [
+        "GetMaxChatMessageLength",
+        "Respawn"
+      ],
+      "return_type": "integer"
+    },
+    {
+      "name": "Respawn",
+      "description": "Respawn the bot when it's dead.",
+      "parameters": [
+        "Respawn",
+        "GetProtocolVersion"
+      ],
+      "return_type": "boolean"
+    }
+  ]
+}

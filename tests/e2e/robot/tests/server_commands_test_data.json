@@ -1,0 +1,124 @@
+[
+  {
+    "test_case_name": "GetMaxChatMessageLengthCommand",
+    "arguments": {
+      "${skip_test}": false,
+      "${command_data}": {
+        "command_list": [
+          {
+            "command_name": "GetMaxChatMessageLengthCommand",
+            "command_parameters": [],
+            "expected_type": "exact",
+            "expected_command_result": "256"
+          }
+        ]
+      }
+    },
+    "tags": [
+      "smoke"
+    ],
+    "documentation": "Smoke Test for GetMaxChatMessageLengthCommand"
+  },
+  {
+    "test_case_name": "GetOnlinePlayersCommand",
+    "arguments": {
+      "${skip_test}": false,
+      "${command_data}": {
+        "command_list": [
+          {
+            "command_name": "GetOnlinePlayersCommand",
+            "command_parameters": [],
+            "expected_type": "contains",
+            "expected_command_result": "tester"
+          }
+        ]
+      }
+    },
+    "tags": [
+      "smoke"
+    ],
+    "documentation": "Smoke Test for GetOnlinePlayersCommand"
+  },
+  {
+    "test_case_name": "GetOnlinePlayersWithUUIDCommand",
+    "arguments": {
+      "${skip_test}": false,
+      "${command_data}": {
+        "command_list": [
+          {
+            "command_name": "GetOnlinePlayersWithUUIDCommand",
+            "command_parameters": [],
+            "expected_type": "keys",
+            "expected_command_result": {
+              "dd823a0c-b94a-369f-acd6-ddd287e3180e": "tester"
+            }
+          }
+        ]
+      }
+    },
+    "tags": [
+      "smoke"
+    ],
+    "documentation": "Smoke Test for GetOnlinePlayersWithUUIDCommand"
+  },
+  {
+    "test_case_name": "GetServerHostCommand",
+    "arguments": {
+      "${skip_test}": false,
+      "${command_data}": {
+        "command_list": [
+          {
+            "command_name": "GetServerHostCommand",
+            "command_parameters": [],
+            "expected_type": "exact",
+            "expected_command_result": "server_mc_1"
+          }
+        ]
+      }
+    },
+    "tags": [
+      "smoke"
+    ],
+    "documentation": "Smoke Test for GetServerHostCommand"
+  },
+  {
+    "test_case_name": "GetServerPortCommand",
+    "arguments": {
+      "${skip_test}": false,
+      "${command_data}": {
+        "command_list": [
+          {
+            "command_name": "GetServerPortCommand",
+            "command_parameters": [],
+            "expected_type": "exact",
+            "expected_command_result": "25565"
+          }
+        ]
+      }
+    },
+    "tags": [
+      "smoke"
+    ],
+    "documentation": "Smoke Test for GetServerPortCommand"
+  },
+  {
+    "test_case_name": "GetServerTPSCommand",
+    "arguments": {
+      "${skip_test}": false,
+      "${command_data}": {
+        "command_list": [
+          {
+            "command_name": "GetServerTPSCommand",
+            "command_parameters": [],
+            "expected_type": "type_match",
+            "expected_command_result": "FLOAT"
+          }
+        ]
+      }
+    },
+    "tags": [
+      "smoke"
+    ],
+    "documentation": "Smoke Test for GetServerTPSCommand"
+  }
+]

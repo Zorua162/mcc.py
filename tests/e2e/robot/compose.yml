@@ -1,0 +1,12 @@
+services:
+  robot_mcc_tests:
+    image: docker.io/zorua162/docker-mcc-py-robot-framework:test
+    volumes:
+      - "./tests:/tests"
+      - "./output:/output"
+    networks:
+      - server
+networks:
+  server:
+    external: true
+    name: server_default

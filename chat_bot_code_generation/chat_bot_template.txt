@@ -1,0 +1,6 @@
+<<ImportCommands>>
+
+class ChatBot:
+    <<EventMethods>>
+
+    <<CommandMethods>>

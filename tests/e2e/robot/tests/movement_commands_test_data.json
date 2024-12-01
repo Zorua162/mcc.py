@@ -1,0 +1,121 @@
+[
+  {
+    "test_case_name": "ClientIsMovingCommand",
+    "arguments": {
+      "${skip_test}": false,
+      "${command_data}": {
+        "command_list": [
+          {
+            "command_name": "SendMessage",
+            "command_parameters": [
+              "/send /tp @s 10 -60 10"
+            ],
+            "expected_type": "exact",
+            "expected_command_result": "Command was run"
+          },
+          {
+            "command_name": "MoveToLocationCommand",
+            "command_parameters": [
+              0,
+              -60,
+              0
+            ],
+            "expected_type": "exact",
+            "expected_command_result": "True"
+          },
+          {
+            "command_name": "ClientIsMovingCommand",
+            "command_parameters": [],
+            "expected_type": "exact",
+            "expected_command_result": "True"
+          }
+        ]
+      }
+    },
+    "tags": [
+      "smoke"
+    ],
+    "documentation": "Smoke Test for ClientIsMovingCommand"
+  },
+  {
+    "test_case_name": "GetCurrentLocation",
+    "arguments": {
+      "${skip_test}": false,
+      "${command_data}": {
+        "command_list": [
+          {
+            "command_name": "ClearMessageHistory",
+            "command_parameters": [],
+            "expected_type": "exact",
+            "expected_command_result": "History cleared"
+          },
+          {
+            "command_name": "SendMessage",
+            "command_parameters": [
+              "/send /tp @s 0 -60 0"
+            ],
+            "expected_type": "exact",
+            "expected_command_result": "Command was run"
+          },
+          {
+            "command_name": "ExpectMessage",
+            "command_parameters": [
+              "Teleported tester"
+            ],
+            "expected_type": "list_contains",
+            "expected_command_result": "Teleported tester to 0.500000, -60.000000, 0.500000"
+          },
+          {
+            "command_name": "Sleep",
+            "command_parameters": 10
+          },
+          {
+            "command_name": "GetCurrentLocationCommand",
+            "command_parameters": [],
+            "expected_type": "keys",
+            "expected_command_result": {
+              "X": 0.5,
+              "Z": 0.5
+            }
+          }
+        ]
+      }
+    },
+    "tags": [
+      "smoke"
+    ],
+    "documentation": "Smoke Test for GetCurrentLocationCommand"
+  },
+  {
+    "test_case_name": "GetPitchCommand",
+    "arguments": {
+      "${skip_test}": true,
+      "${command_data}": {
+        "command_list": [
+          {
+            "command_name": "SendMessage",
+            "command_parameters": [
+              "/send /tp @s 0 -60 0 10 10"
+            ],
+            "expected_type": "exact",
+            "expected_command_result": "Command was run"
+          },
+          {
+            "command_name": "Sleep",
+            "command_parameters": "0.5"
+          },
+          {
+            "command_name": "GetPitchCommand",
+            "command_parameters": [],
+            "expected_type": "exact",
+            "expected_command_result": 10.0
+          }
+        ]
+      }
+    },
+    "tags": [
+      "smoke"
+    ],
+    "documentation": "Smoke Test for GetPitchCommand"
+  }
+]

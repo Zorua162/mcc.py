@@ -1,0 +1,45 @@
+[project]
+name = "mcc.py"
+version = "0.0.23"
+authors = [
+  { name="zorua162", email="zorua162@gmail.com" },
+]
+description = "Python bindings for controlling the Minecraft Console Client Websocket bot"
+readme = "README.md"
+requires-python = ">=3.8"
+dependencies = ["websockets"]
+
+[project.urls]
+Homepage = "https://github.com/Zorua162/mcc.py"
+Issues = "https://github.com/Zorua162/mcc.py/issues"
+
+[tool.setuptools.packages.find]
+include = ["mcc*"]
+
+[tool.pytest.ini_options]
+pythonpath = [
+    ".",
+    "tests",
+    "tests/unit",
+    "mcc",
+    "mcc/commands"
+]
+log_level = "INFO"
+
+[tool.mypy]
+exclude = '''(?x)(
+    build
+)'''  # TOML's single-quoted strings do not require escaping backslashes
+ignore_missing_imports=true
+
+[tool.robocop]
+configure = [
+    "line-too-long:line_length:88",
+    # "W0503:max_calls:20",
+    # "W0507:max_args:7"
+]
+
+[tool.robotidy]
+configure = [
+    "SplitTooLongLine:line_length=88"
+]

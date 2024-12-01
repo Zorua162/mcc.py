@@ -1,0 +1,37 @@
+__pycache__
+
+# Robot framework test oututs
+output
+interactive_console_output.xml
+
+# Server files that cause issues with pre-commits
+#  - passwords that shouldn't be given
+.rcon-cli.env
+server.properties
+#  - Json files that can't be formatted
+usercache.json
+tests/e2e/server/mc-data/ops.json
+tests/e2e/server/mc-data/whitelist.json
+tests/e2e/server/mc-data/banned-players.json
+tests/e2e/server/mc-data/banned-ips.json
+tests/e2e/server/mc-data/world/stats
+# - Fix end of files
+tests/e2e/server/mc-data/logs
+
+# Misc other folders that aren't wanted
+tests/e2e/server/mc-data/world/advancements
+tests/e2e/server/mc-data/world/data
+tests/e2e/server/mc-data/world/DIM-1
+tests/e2e/server/mc-data/world/DIM1
+tests/e2e/server/mc-data/world/playerdata
+tests/e2e/server/mc-data/world/session.lock
+tests/e2e/server/mc-data
+
+
+# Ignore the MinecraftClient binary that gets download by the container
+MinecraftClient
+MinecraftClient.backup.ini
+
+# Ignore setup-tools artifacts
+build
+mcc.py.egg-info
