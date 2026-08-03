@@ -7,7 +7,6 @@ import json
 import os
 from doc_parsing_utils import CommandData, parse_doc_commands
 
-
 # Paths
 commands_folder = "../mcc/commands"
 path_to_source: str = (
